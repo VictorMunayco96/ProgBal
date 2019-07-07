@@ -49,15 +49,15 @@ in _DNI Int,
 in _Nombre varchar(45),
 in _Apellidos varchar(45),
 in _Usuario varchar(45),
-in _Contraseña varchar(45),
+in _Contrasena varchar(45),
 in _Opcion varchar(1)
 )
 BEGIN
 if _Opcion='I' then
-  insert into Usuario (DNI, Nombre, Apellidos, Usuario, Contraseña) values(_DNI, _Nombre, _Apellidos, _Usuario, _Contraseña);
+  insert into Usuario (DNI, Nombre, Apellidos, Usuario, Contrasena) values(_DNI, _Nombre, _Apellidos, _Usuario, _Contrasena);
   End IF;
   if _Opcion='U' then
-  Update Usuario set  Nombre=_Nombre, Apelido=_Apellido, Usuario=_Usuario, Contraseña=_Contraseña where DNI=_DNI;
+  Update Usuario set  Nombre=_Nombre, Apelido=_Apellido, Usuario=_Usuario, Contrasena=_Contrasena where DNI=_DNI;
   End If;
   if _Opcion='D' then
   delete from Usuario where DNI=_DNI;
@@ -230,3 +230,146 @@ if _Opcion='I' then
   End If;
   END
 $$
+
+DELIMITER $$
+CREATE PROCEDURE PAGetUsuario(
+in _DNI Int,
+in _Nombre varchar(45),
+in _Apellidos varchar(45),
+in _Usuario varchar(45),
+in _Contrasena varchar(45),
+in _Opcion varchar(1)
+)
+BEGIN
+
+if _Opcion='T' then
+select Usu.DNI, Usu.Nombre, Usu.Apellidos, Usu.Usuario, Usu.Contrasena from Usuario Usu  order by Usu.DNI desc ;
+  End IF;
+
+if _Opcion='D' then
+select Usu.DNI, Usu.Nombre, Usu.Apellidos, Usu.Usuario, Usu.Contrasena from Usuario Usu where Usu.DNI=_DNI order by Usu.DNI desc ;
+  End IF;
+  
+  if _Opcion='N' then
+select Usu.DNI, Usu.Nombre, Usu.Apellidos, Usu.Usuario, Usu.Contrasena from Usuario Usu where Usu.Nombre=_Nombre order by Usu.DNI desc ;
+  End If;
+  
+  if _Opcion='L' then
+  select Usu.DNI, Usu.Nombre, Usu.Apellidos, Usu.Usuario, Usu.Contrasena from Usuario Usu where Usu.Usuario=_Usuario and Usu.Contrasena=_Contrasena 
+  order by Usu.DNI desc ;
+  
+  End If;
+  END
+$$
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetConductor(
+in _IdConductor Int,
+in _NumDoc varchar(45),
+in _Nombre varchar(45),
+in _Apellidos varchar(45),
+in _Opcion varchar(1)
+)
+BEGIN
+
+if _Opcion='T' then
+select Con.IdConductor, Con.NumDoc, Con.Nombre, Con.Apellidos from Conductor Con  order by Con.IdConductor desc ;
+  End IF;
+
+if _Opcion='D' then
+select Con.IdConductor, Con.NumDoc, Con.Nombre, Con.Apellidos from Conductor Con where Con.IdConductor=_IdConductor order by Con.IdConductor desc ;
+  End IF;
+  if _Opcion='N' then
+  
+  select Con.IdConductor, Con.NumDoc, Con.Nombre, Con.Apellidos from Conductor Con where Con.NumDoc=_NumDoc order by Con.IdConductor desc ;
+  
+  End If;
+  END
+$$
+
+DELIMITER $$
+CREATE PROCEDURE PAGetCategoria(
+in _IdCategoria int,
+in _Categoria varchar(45),
+in _Opcion varchar(1)
+)
+BEGIN
+
+if _Opcion='T' then
+select Cat.IdCategoria, Cat.Categoria from Categoria Cat  order by Cat.IdCategoria desc ;
+  End IF;
+
+if _Opcion='C' then
+select Cat.IdCategoria, Cat.Categoria from Categoria Cat where Cat.IdCategoria=_IdCategoria  order by Cat.IdCategoria desc ;
+  End If;
+  END
+$$
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetEmpreTrans(
+in _Ruc bigint,
+in _RazonSocial varchar(80),
+in _Domicilio varchar(60),
+in _NumCel varchar(15)
+)
+BEGIN
+
+if _Opcion='T' then
+select ET.EmpreTrans from EmpreTrans ET  order by ET.EmpreTrans desc ;
+  End IF;
+
+if _Opcion='R' then
+select ET.Ruc, Cat.EmpreTrans from EmpreTrans ET where ET.Ruc=_Ruc  order by ET.Ruc desc ;
+  End If;
+  
+  if _Opcion='S' then
+  select ET.Ruc, ET.RazoSocial, ET.Domicilio, ET.NumCel from EmpreTrans ET where ET.RazonSocial=_RazonSocial order by ET.Ruc desc ;
+  End If;
+  END
+$$
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetDestino(
+in _IdDestino int,
+in _Destino varchar(45),
+in _Opcion varchar(1)
+)
+BEGIN
+
+if _Opcion='T' then
+select Des.IdDestino, Des.Destino from Destino Des order by Des.IdDestino desc ;
+  End IF;
+
+if _Opcion='D' then
+select Des.IdDestino, Des.Destino from Desitno Des where Des.IdDestino=_IdDestino  order by Des.IdDes desc ;
+  End If;
+  END
+$$
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetProveClien(
+in _IdProveClien Int,
+in _RazonSocial varchar(45),
+in _Ruc bigint,
+in _Opcion varchar(1)
+)
+BEGIN
+
+if _Opcion='T' then
+select PC.IdProveClien, PC.RazonSocial, PC.Ruc from ProveClien PC  order by PC.IdProveClien desc ;
+  End IF;
+
+if _Opcion='S' then
+select PC.IdProveClien, Pc.RazonSocial, PC.Ruc from ProveClien PC where PC.RazonSocial=_RazonSocial order by PC.IdProveClien desc ;
+  End IF;
+  if _Opcion='R' then
+select PC.IdProveCien, PC.RazonSocial, PC.Ruc from ProveClien PC where PC.Ruc=_Ruc order by PC.IdProveClien desc ; 
+  End If;
+  END
+$$
+
+
