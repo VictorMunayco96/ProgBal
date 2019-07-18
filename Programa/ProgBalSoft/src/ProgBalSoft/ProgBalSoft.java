@@ -1,8 +1,8 @@
 
 package ProgBalSoft;
 
-import Vista.VCategoria;
-import Vista.VProducto;
+import Presentacion.PCategoria;
+import Presentacion.VProducto;
 
 
 public class ProgBalSoft {
