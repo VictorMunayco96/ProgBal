@@ -13,21 +13,24 @@ import javax.swing.table.DefaultTableModel;
  * @author Victor
  */
 public class NCategoria {
-    public String NSetCategoria(int IdCategoria,String Categoria){
+    public String NSetCategoria(int IdCategoria,String Categoria,String Opcion){
 
 DCategoria Obj = new DCategoria();
 
 
 Obj.setIdCategoria(IdCategoria);
 Obj.setCategoria(Categoria);
+Obj.setOpcion(Opcion);
 return Obj.DSetCategoria(Obj);
 }
 
 
-public DefaultTableModel NGetCategoria(int IdCategoria){
+public DefaultTableModel NGetCategoria(int IdCategoria,String Categoria, String Opcion){
 DCategoria Obj = new DCategoria();
 
 Obj.setIdCategoria(IdCategoria);
+Obj.setCategoria(Categoria);
+Obj.setOpcion(Opcion);
 
  return Obj.DGetCategoria(Obj);
 }

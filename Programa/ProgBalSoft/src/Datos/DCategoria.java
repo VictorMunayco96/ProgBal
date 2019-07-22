@@ -20,14 +20,26 @@ public class DCategoria {
 
     int IdCategoria;
     String Categoria;
+    String Opcion;
 
     public DCategoria() {
     }
 
-    public DCategoria(int IdCategoria, String Categoria) {
+    public DCategoria(int IdCategoria, String Categoria, String Opcion) {
         this.IdCategoria = IdCategoria;
         this.Categoria = Categoria;
+        this.Opcion = Opcion;
     }
+
+    public String getOpcion() {
+        return Opcion;
+    }
+
+    public void setOpcion(String Opcion) {
+        this.Opcion = Opcion;
+    }
+
+   
 
     public int getIdCategoria() {
         return IdCategoria;
@@ -50,9 +62,10 @@ public class DCategoria {
         Connection Con = Cn.Conexion();
         String rpta = "";
         try {
-            CallableStatement Proc = Con.prepareCall(" CALL SP_Set_Categoria(?,?)");
+            CallableStatement Proc = Con.prepareCall(" CALL PASetCategoria(?,?,?)");
             Proc.setInt(1, Campo.getIdCategoria());
             Proc.setString(2, Campo.getCategoria());
+            Proc.setString(3, Campo.getOpcion());
             Proc.execute();
             rpta = "Ingreso correctamente";
 
@@ -77,8 +90,10 @@ public class DCategoria {
 
         try {
 
-            CallableStatement Proc = Con.prepareCall(" CALL SP_Get_Categoria(?)");
+            CallableStatement Proc = Con.prepareCall(" CALL PAGetCategoria(?,?,?)");
             Proc.setInt(1, Campo.getIdCategoria());
+            Proc.setString(2,Campo.getCategoria());
+            Proc.setString(3, Campo.getOpcion());
             Proc.execute();
             ResultSet rs = Proc.executeQuery();
             while (rs.next()) {
