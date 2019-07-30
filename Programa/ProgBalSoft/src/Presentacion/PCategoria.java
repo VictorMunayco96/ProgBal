@@ -36,7 +36,7 @@ public class PCategoria extends javax.swing.JFrame {
 
             TblCategoria.setModel(NCategoria.NGetCategoria(DefaultValue.Number(TextBusqueda),DefaultValue.Text(TextBusqueda) ,Accion));
 
-//            OcultarColumna(TblPersona, 0);
+
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, "ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -58,8 +58,7 @@ public class PCategoria extends javax.swing.JFrame {
             if (!TxtCategoria.getText().isEmpty()) {
                 try {
                     
-                    NCategoria.NSetCategoria(DefaultValue.Number(TxtIdCategoria.getText()), 
-                            DefaultValue.Text(TxtCategoria.getText()), 
+                    NCategoria.NSetCategoria(DefaultValue.Number(TxtIdCategoria.getText()),DefaultValue.Text(TxtCategoria.getText()), 
                             Accion);
                     
                     

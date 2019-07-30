@@ -57,7 +57,7 @@ if _Opcion='I' then
   insert into Usuario (DNI, Nombre, Apellidos, Usuario, Contrasena) values(_DNI, _Nombre, _Apellidos, _Usuario, _Contrasena);
   End IF;
   if _Opcion='U' then
-  Update Usuario set  Nombre=_Nombre, Apelido=_Apellido, Usuario=_Usuario, Contrasena=_Contrasena where DNI=_DNI;
+  Update Usuario set  Nombre=_Nombre, Apellidos=_Apellidos, Usuario=_Usuario, Contrasena=_Contrasena where DNI=_DNI;
   End If;
   if _Opcion='D' then
   delete from Usuario where DNI=_DNI;
@@ -78,7 +78,7 @@ if _Opcion='I' then
   insert into Conductor (NumDoc, Nombre, Apellidos) values(_NumDoc, _Nombre, _Apellidos);
   End IF;
   if _Opcion='U' then
-  Update Conductor set NumDoc=_NumDoc, Nombre=_Nombre, Apelido=_Apellido where IdConductor=_IdConductor;
+  Update Conductor set NumDoc=_NumDoc, Nombre=_Nombre, Apellidos=_Apellidos where IdConductor=_IdConductor;
   End If;
   if _Opcion='D' then
   delete from Conductor where IdConductor=_IdConductor;
@@ -231,11 +231,11 @@ if _Opcion='I' then
   END
 $$
 
+
 DELIMITER $$
 CREATE PROCEDURE PAGetUsuario(
 in _DNI Int,
 in _Nombre varchar(45),
-in _Apellidos varchar(45),
 in _Usuario varchar(45),
 in _Contrasena varchar(45),
 in _Opcion varchar(1)
@@ -251,7 +251,7 @@ select Usu.DNI, Usu.Nombre, Usu.Apellidos, Usu.Usuario, Usu.Contrasena from Usua
   End IF;
   
   if _Opcion='N' then
-select Usu.DNI, Usu.Nombre, Usu.Apellidos, Usu.Usuario, Usu.Contrasena from Usuario Usu where Usu.Nombre=_Nombre order by Usu.DNI desc ;
+select Usu.DNI, Usu.Nombre, Usu.Apellidos, Usu.Usuario, Usu.Contrasena from Usuario Usu where Usu.Nombre like concat('%',_Nombre,'%') order by Usu.DNI desc ;
   End If;
   
   if _Opcion='L' then
@@ -262,13 +262,11 @@ select Usu.DNI, Usu.Nombre, Usu.Apellidos, Usu.Usuario, Usu.Contrasena from Usua
   END
 $$
 
-
 DELIMITER $$
 CREATE PROCEDURE PAGetConductor(
 in _IdConductor Int,
 in _NumDoc varchar(45),
 in _Nombre varchar(45),
-in _Apellidos varchar(45),
 in _Opcion varchar(1)
 )
 BEGIN
@@ -277,12 +275,18 @@ if _Opcion='T' then
 select Con.IdConductor, Con.NumDoc, Con.Nombre, Con.Apellidos from Conductor Con  order by Con.IdConductor desc ;
   End IF;
 
-if _Opcion='D' then
+if _Opcion='I' then
 select Con.IdConductor, Con.NumDoc, Con.Nombre, Con.Apellidos from Conductor Con where Con.IdConductor=_IdConductor order by Con.IdConductor desc ;
   End IF;
-  if _Opcion='N' then
+  if _Opcion='D' then
   
   select Con.IdConductor, Con.NumDoc, Con.Nombre, Con.Apellidos from Conductor Con where Con.NumDoc=_NumDoc order by Con.IdConductor desc ;
+  
+  End If;
+  
+  if _Opcion='N' then
+  
+  select Con.IdConductor, Con.NumDoc, Con.Nombre, Con.Apellidos from Conductor Con where Con.Nombre like concat('%',_Nombre,'%') order by Con.IdConductor desc ;
   
   End If;
   END
