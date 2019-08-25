@@ -87,7 +87,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Destino`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Destino` (
-  `IdDestino` INT NOT NULL,
+  `IdDestino` INT NOT NULL AUTO_INCREMENT,
   `Destino` VARCHAR(45) NULL,
   PRIMARY KEY (`IdDestino`))
 ENGINE = InnoDB;

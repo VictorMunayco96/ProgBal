@@ -203,7 +203,7 @@ if _Opcion='I' then
   insert into EmpreTrans (Ruc, RazonSocial, Domicilio, NumCel) values(_Ruc, _RazonSocial, _Domicilio, _NumCel);
   End IF;
   if _Opcion='U' then
-  Update EmpreTrans set Ruc=_Ruc, RazonSocial=_RazonSocial, Domicilio=_Domicilio, NumCel=_NumCel where Ruc=Ruc;
+  Update EmpreTrans set  RazonSocial=_RazonSocial, Domicilio=_Domicilio, NumCel=_NumCel where Ruc=Ruc;
   End If;
   if _Opcion='D' then
   delete from EmpreTrans where Ruc=_Ruc;
@@ -315,31 +315,30 @@ DELIMITER $$
 CREATE PROCEDURE PAGetEmpreTrans(
 in _Ruc bigint,
 in _RazonSocial varchar(80),
-in _Domicilio varchar(60),
-in _NumCel varchar(15)
+in _Opcion varchar(2)
 )
 BEGIN
 
 if _Opcion='T' then
-select ET.EmpreTrans from EmpreTrans ET  order by ET.EmpreTrans desc ;
+select ET.Ruc, ET.RazonSocial, ET.Domicilio, ET.NumCel from EmpreTrans ET  order by ET.Ruc desc ;
   End IF;
 
-if _Opcion='R' then
-select ET.Ruc, Cat.EmpreTrans from EmpreTrans ET where ET.Ruc=_Ruc  order by ET.Ruc desc ;
+if _Opcion='RU' then
+select ET.Ruc, ET.RazonSocial, ET.Domicilio, ET.NumCel from EmpreTrans ET where ET.Ruc like concat('%',_Ruc,'%')  order by ET.Ruc desc ;
   End If;
   
-  if _Opcion='S' then
-  select ET.Ruc, ET.RazoSocial, ET.Domicilio, ET.NumCel from EmpreTrans ET where ET.RazonSocial=_RazonSocial order by ET.Ruc desc ;
+  if _Opcion='RA' then
+  select ET.Ruc, ET.RazonSocial, ET.Domicilio, ET.NumCel from EmpreTrans ET where ET.RazonSocial like concat('%',_RazonSocial,'%') order by ET.Ruc desc ;
   End If;
   END
 $$
 
-
+drop procedure PAGetDestino
 DELIMITER $$
 CREATE PROCEDURE PAGetDestino(
 in _IdDestino int,
 in _Destino varchar(45),
-in _Opcion varchar(1)
+in _Opcion varchar(2)
 )
 BEGIN
 
@@ -347,8 +346,12 @@ if _Opcion='T' then
 select Des.IdDestino, Des.Destino from Destino Des order by Des.IdDestino desc ;
   End IF;
 
-if _Opcion='D' then
-select Des.IdDestino, Des.Destino from Desitno Des where Des.IdDestino=_IdDestino  order by Des.IdDes desc ;
+if _Opcion='ID' then
+select Des.IdDestino, Des.Destino from Destino Des where Des.IdDestino=_IdDestino  order by Des.IdDestino desc ;
+  End If;
+
+if _Opcion='DE' then
+select Des.IdDestino, Des.Destino from Destino Des where Des.Destino like concat('%',_Destino,'%')  order by Des.IdDestino desc ;
   End If;
   END
 $$
