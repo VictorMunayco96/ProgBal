@@ -151,6 +151,50 @@ if _Opcion='I' then
 $$
 
 DELIMITER $$
+CREATE PROCEDURE PAGetProducto(
+in _IdProducto Int,
+in _Producto varchar(45),
+in _Descripcion varchar(80),
+in _Categoria varchar(45),
+in _Opcion varchar(1)
+)
+BEGIN
+if _Opcion='T' then
+ select P.IdProducto, P.Producto, P.Descripcion, P.IdCategoria, C.Categoria from Producto P 
+ inner join Categoria C on P.IdCategoria=C.IdCategoria
+ order by P.IdProducto desc;
+  End IF;
+  if _Opcion='I' then
+ select P.IdProducto, P.Producto, P.Descripcion, P.IdCategoria, C.Categoria from Producto P 
+ inner join Categoria C on P.IdCategoria=C.IdCategoria
+ where P.IdProducto=_IdProducto
+ order by P.IdProducto desc;
+  End If;
+  if _Opcion='P' then
+ select P.IdProducto, P.Producto, P.Descripcion, P.IdCategoria, C.Categoria from Producto P 
+ inner join Categoria C on P.IdCategoria=C.IdCategoria
+ where P.Producto like concat('%',_Producto,'%') 
+ order by P.IdProducto desc;
+  End If;
+  
+  if _Opcion='D' then
+ select P.IdProducto, P.Producto, P.Descripcion, P.IdCategoria, C.Categoria from Producto P 
+ inner join Categoria C on P.IdCategoria=C.IdCategoria
+ where P.Descripcion like concat('%',_Descripcion,'%') 
+ order by P.IdProducto desc;
+  End If;
+ 
+    if _Opcion='C' then
+ select P.IdProducto, P.Producto, P.Descripcion, P.IdCategoria, C.Categoria from Producto P 
+ inner join Categoria C on P.IdCategoria=C.IdCategoria
+ where C.Categoria like concat('%',_Categoria,'%') 
+ order by P.IdProducto desc;
+  End If;
+  END
+$$
+
+
+DELIMITER $$
 CREATE PROCEDURE PASetPeso(
 in _IdPeso Int,
 in _TipoMovimiento varchar(45),
