@@ -176,7 +176,7 @@ public class PProducto extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblProducto = new javax.swing.JTable();
-        CboBusqueda = new javax.swing.JComboBox<String>();
+        CboBusqueda = new javax.swing.JComboBox<>();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -206,6 +206,11 @@ public class PProducto extends javax.swing.JFrame {
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Búsqueda-32.png"))); // NOI18N
         jButton9.setBorderPainted(false);
         jButton9.setFocusPainted(false);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         TblCategoria.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
         TblCategoria.setModel(new javax.swing.table.DefaultTableModel(
@@ -541,7 +546,7 @@ public class PProducto extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TblProducto);
 
         CboBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
-        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID PRODUCTO", "PRODUCTO", "DESCRIPCION", "CATEGORIA" }));
+        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID PRODUCTO", "PRODUCTO", "DESCRIPCION", "CATEGORIA" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -722,6 +727,10 @@ public class PProducto extends javax.swing.JFrame {
             PGetProducto(TxtBusqueda.getText(), CboBusqueda.getSelectedItem().toString().substring(0, 1));
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments

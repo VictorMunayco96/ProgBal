@@ -114,7 +114,7 @@ CREATE PROCEDURE PAGetVehiculo(
 in _Placa varchar(8),
 in _Ruc bigint,
 in _RazonSocial varchar(80),
-in _Opcion varchar(1)
+in _Opcion varchar(2)
 )
 BEGIN
 if _Opcion='T' then
@@ -160,6 +160,41 @@ if _Opcion='I' then
   END
 $$
 
+DELIMITER $$
+CREATE PROCEDURE PAGetConductorVehiculo(
+
+in _Fecha date,
+in _IdConductor int,
+in _Placa varchar(8),
+in _Opcion varchar(1)
+)
+BEGIN
+if _Opcion='T' then
+	Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, concat(C.Nombre," ",C.Apellidos), CV.Placa from CoductorVehiculo CV 
+    inner join Conductor C on CV.IdConductor
+    order by CV.IdConductorVehiculo desc limit 2500;
+  End IF;
+  if _Opcion='F' then
+  Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, concat(C.Nombre," ",C.Apellidos), CV.Placa from CoductorVehiculo CV 
+    inner join Conductor C on CV.IdConductor
+    where CV.Fecha=_Fecha
+    order by CV.IdConductorVehiculo desc limit 2500;
+  End If;
+  if _Opcion='I' then
+  Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, concat(C.Nombre," ",C.Apellidos), CV.Placa from CoductorVehiculo CV 
+    inner join Conductor C on CV.IdConductor
+    where CV.IdConductor=_IdConductor
+    order by CV.IdConductorVehiculo desc limit 2500;
+  End If;
+  
+    if _Opcion='P' then
+  Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, concat(C.Nombre," ",C.Apellidos), CV.Placa from CoductorVehiculo CV 
+    inner join Conductor C on CV.IdConductor
+    where CV.Placa=_Placa
+    order by CV.IdConductorVehiculo desc limit 2500;
+  End If;
+  END
+$$
 
 
 DELIMITER $$

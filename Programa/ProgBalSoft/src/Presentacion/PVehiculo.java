@@ -159,7 +159,7 @@ public class PVehiculo extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TblEmpreTrans = new javax.swing.JTable();
-        CboBusqueda = new javax.swing.JComboBox<String>();
+        CboBusquedaEmpreTrans = new javax.swing.JComboBox<>();
         jButton11 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -240,13 +240,8 @@ public class PVehiculo extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(TblEmpreTrans);
 
-        CboBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RUC", "RAZON SOCIAL" }));
-        CboBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CboBusquedaActionPerformed(evt);
-            }
-        });
+        CboBusquedaEmpreTrans.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        CboBusquedaEmpreTrans.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RUC", "RAZON SOCIAL" }));
 
         jButton11.setBackground(new java.awt.Color(0, 153, 0));
         jButton11.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
@@ -276,7 +271,7 @@ public class PVehiculo extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(CboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CboBusquedaEmpreTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(TxtBusquedaEmpreTrans)
                         .addGap(27, 27, 27)
@@ -295,7 +290,7 @@ public class PVehiculo extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtBusquedaEmpreTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CboBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+                    .addComponent(CboBusquedaEmpreTrans, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                 .addContainerGap())
@@ -323,6 +318,8 @@ public class PVehiculo extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.setEnabled(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -362,18 +359,33 @@ public class PVehiculo extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Guardar-32.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 0));
         jButton2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Nuevo.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         BtnEliminar.setBackground(new java.awt.Color(0, 153, 0));
         BtnEliminar.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Eliminar -32.png"))); // NOI18N
         BtnEliminar.setBorderPainted(false);
         BtnEliminar.setFocusPainted(false);
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel8.setText("RUC");
@@ -442,14 +454,6 @@ public class PVehiculo extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(70, 70, 70)
-                .addComponent(jButton2)
-                .addGap(64, 64, 64)
-                .addComponent(BtnEliminar)
-                .addGap(117, 117, 117))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,6 +478,14 @@ public class PVehiculo extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(TxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -499,13 +511,13 @@ public class PVehiculo extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(43, 43, 43)
+                .addGap(48, 48, 48)
                 .addComponent(jButton6))
         );
 
@@ -542,6 +554,7 @@ public class PVehiculo extends javax.swing.JFrame {
             }
         });
 
+        TblVehiculo.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
         TblVehiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -553,6 +566,12 @@ public class PVehiculo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TblVehiculo.setRowHeight(35);
+        TblVehiculo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TblVehiculoMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(TblVehiculo);
 
         CboBusqueda1.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
@@ -595,7 +614,7 @@ public class PVehiculo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("REGISTROS", jPanel3);
+        jTabbedPane1.addTab("", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -647,7 +666,11 @@ public class PVehiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtRucActionPerformed
 
     private void TxtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBusquedaActionPerformed
-        // TODO add your handling code here:
+if (TxtBusqueda.getText().isEmpty()) {
+            PGetVehiculo(TxtBusqueda.getText(), "T");
+        } else {
+            PGetVehiculo(TxtBusqueda.getText(), CboBusqueda1.getSelectedItem().toString().substring(0, 2));
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_TxtBusquedaActionPerformed
 
     private void TxtRazonSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtRazonSocialActionPerformed
@@ -663,17 +686,17 @@ public class PVehiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void TxtBusquedaEmpreTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBusquedaEmpreTransActionPerformed
-        if(TxtBusqueda.getText().isEmpty()){
-            PGetEmpreTrans(TxtBusqueda.getText(), "T");
+        if(TxtBusquedaEmpreTrans.getText().isEmpty()){
+            PGetEmpreTrans(TxtBusquedaEmpreTrans.getText(), "T");
         }else{
-            PGetEmpreTrans(TxtBusqueda.getText(),CboBusqueda.getSelectedItem().toString().substring(0,2) );}
+            PGetEmpreTrans(TxtBusquedaEmpreTrans.getText(),CboBusquedaEmpreTrans.getSelectedItem().toString().substring(0,2) );}
     }//GEN-LAST:event_TxtBusquedaEmpreTransActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        if(TxtBusqueda.getText().isEmpty()){
-            PGetEmpreTrans(TxtBusqueda.getText(), "T");
+        if(TxtBusquedaEmpreTrans.getText().isEmpty()){
+            PGetEmpreTrans(TxtBusquedaEmpreTrans.getText(), "T");
         }else{
-            PGetEmpreTrans(TxtBusqueda.getText(),CboBusqueda.getSelectedItem().toString().substring(0,2) );}
+            PGetEmpreTrans(TxtBusquedaEmpreTrans.getText(),CboBusquedaEmpreTrans.getSelectedItem().toString().substring(0,2) );}
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void TblEmpreTransMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblEmpreTransMousePressed
@@ -685,18 +708,14 @@ public class PVehiculo extends javax.swing.JFrame {
                 TxtRuc.setText(TblEmpreTrans.getValueAt(fila, 0).toString());
                 TxtRazonSocial.setText(TblEmpreTrans.getValueAt(fila, 1).toString());
                 
-              
-                BtnEliminar.setEnabled(true);
+              jDialog1.dispose();
+               
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: "+e);
 
         }
     }//GEN-LAST:event_TblEmpreTransMousePressed
-
-    private void CboBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CboBusquedaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CboBusquedaActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 jDialog1.dispose();        // TODO add your handling code here:
@@ -719,6 +738,40 @@ jDialog1.dispose();        // TODO add your handling code here:
         PGetEmpreTrans(TxtBusqueda.getText(), "T");
                
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       PSetVehiculo();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PNew();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+      Accion="D";
+     PSetVehiculo();
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void TblVehiculoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblVehiculoMousePressed
+try {
+            if (evt.getClickCount() == 2) {
+                Accion = "U";
+                int fila = TblVehiculo.getSelectedRow();
+
+                TxtPlaca.setText(TblVehiculo.getValueAt(fila, 0).toString());
+                 TxtMarca.setText(TblVehiculo.getValueAt(fila, 1).toString());
+                  TxtRuc.setText(TblVehiculo.getValueAt(fila, 2).toString());
+                   TxtRazonSocial.setText(TblVehiculo.getValueAt(fila, 3).toString());
+               
+
+                jTabbedPane1.setSelectedIndex(0);
+                BtnEliminar.setEnabled(true);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: "+e);
+
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_TblVehiculoMousePressed
 
     /**
      * @param args the command line arguments
@@ -758,8 +811,8 @@ jDialog1.dispose();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEliminar;
-    private javax.swing.JComboBox<String> CboBusqueda;
     private javax.swing.JComboBox CboBusqueda1;
+    private javax.swing.JComboBox<String> CboBusquedaEmpreTrans;
     private javax.swing.JTable TblEmpreTrans;
     private javax.swing.JTable TblVehiculo;
     private javax.swing.JTextField TxtBusqueda;
