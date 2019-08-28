@@ -86,6 +86,8 @@ if _Opcion='I' then
   END
 $$
 
+
+
 DELIMITER $$
 CREATE PROCEDURE PASetVehiculo(
 in _Placa varchar(8),
@@ -102,6 +104,37 @@ if _Opcion='I' then
   End If;
   if _Opcion='D' then
   delete from Vehiculo where Placa=_Placa;
+  End If;
+  END
+$$
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetVehiculo(
+in _Placa varchar(8),
+in _Ruc bigint,
+in _RazonSocial varchar(80),
+in _Opcion varchar(1)
+)
+BEGIN
+if _Opcion='T' then
+select V.Placa, V.Marca, V.Ruc, E.RazonSocial from Vehiculo V 
+inner join EmpreTrans E on V.Ruc=E.Ruc;
+  End IF;
+  if _Opcion='PL' then
+  select V.Placa, V.Marca, V.Ruc, E.RazonSocial from Vehiculo V 
+inner join EmpreTrans E on V.Ruc=E.Ruc
+where V.Placa=_Placa;
+  End If;
+  if _Opcion='RU' then
+  select V.Placa, V.Marca, V.Ruc, E.RazonSocial from Vehiculo V 
+inner join EmpreTrans E on V.Ruc=E.Ruc
+where V.Ruc=_Ruc;
+  End If;
+if _Opcion='RA' then
+  select V.Placa, V.Marca, V.Ruc, E.RazonSocial from Vehiculo V 
+inner join EmpreTrans E on V.Ruc=E.Ruc
+where E.RazonSocial like concat('%',_RazonSocial,'%');
   End If;
   END
 $$
@@ -377,7 +410,7 @@ select ET.Ruc, ET.RazonSocial, ET.Domicilio, ET.NumCel from EmpreTrans ET where 
   END
 $$
 
-drop procedure PAGetDestino
+
 DELIMITER $$
 CREATE PROCEDURE PAGetDestino(
 in _IdDestino int,

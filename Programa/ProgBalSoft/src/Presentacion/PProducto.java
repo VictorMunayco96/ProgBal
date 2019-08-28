@@ -176,7 +176,7 @@ public class PProducto extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblProducto = new javax.swing.JTable();
-        CboBusqueda = new javax.swing.JComboBox<>();
+        CboBusqueda = new javax.swing.JComboBox<String>();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -541,7 +541,7 @@ public class PProducto extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TblProducto);
 
         CboBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
-        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID PRODUCTO", "PRODUCTO", "DESCRIPCION", "CATEGORIA" }));
+        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID PRODUCTO", "PRODUCTO", "DESCRIPCION", "CATEGORIA" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -570,10 +570,11 @@ public class PProducto extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TxtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TxtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
