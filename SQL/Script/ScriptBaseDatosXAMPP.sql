@@ -51,7 +51,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`ConductorVehiculo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`ConductorVehiculo` (
-  `IdConductorVehiculo` INT NOT NULL,
+  `IdConductorVehiculo` INT NOT NULL AUTO_INCREMENT,
   `Fecha` DATE NULL,
   `IdConductor` INT NOT NULL,
   `Placa` VARCHAR(8) NOT NULL,

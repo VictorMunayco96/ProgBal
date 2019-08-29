@@ -113,8 +113,8 @@ Proc.execute();
 registro[0] = rs.getString(1);
 registro[1] = rs.getString(2);
 registro[2] = rs.getString(3);
-registro[3] = rs.getString(4);
-registro[4] = rs.getString(5);
+registro[3] = rs.getString(4)+" "+rs.getString(5);
+registro[4] = rs.getString(6);
 modelo.addRow(registro);
             }
             return modelo;

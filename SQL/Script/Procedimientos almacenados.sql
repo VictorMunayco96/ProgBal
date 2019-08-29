@@ -139,10 +139,11 @@ where E.RazonSocial like concat('%',_RazonSocial,'%');
   END
 $$
 
+
 DELIMITER $$
 CREATE PROCEDURE PASetConductorVehiculo(
 in _IdConductorVehiculo int,
-in _Fecha date,
+in _Fecha varchar(12),
 in _IdConductor int,
 in _Placa varchar(8),
 in _Opcion varchar(1)
@@ -163,35 +164,35 @@ $$
 DELIMITER $$
 CREATE PROCEDURE PAGetConductorVehiculo(
 
-in _Fecha date,
+in _Fecha varchar(12),
 in _IdConductor int,
 in _Placa varchar(8),
 in _Opcion varchar(1)
 )
 BEGIN
 if _Opcion='T' then
-	Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, concat(C.Nombre," ",C.Apellidos), CV.Placa from CoductorVehiculo CV 
-    inner join Conductor C on CV.IdConductor
+	  Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, C.Nombre,C.Apellidos, CV.Placa from ConductorVehiculo CV 
+  inner join Conductor C on CV.IdConductor=C.IdConductor
     order by CV.IdConductorVehiculo desc limit 2500;
   End IF;
   if _Opcion='F' then
-  Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, concat(C.Nombre," ",C.Apellidos), CV.Placa from CoductorVehiculo CV 
-    inner join Conductor C on CV.IdConductor
+  Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, C.Nombre,C.Apellidos, CV.Placa from ConductorVehiculo CV 
+   inner join Conductor C on CV.IdConductor=C.IdConductor
     where CV.Fecha=_Fecha
     order by CV.IdConductorVehiculo desc limit 2500;
   End If;
   if _Opcion='I' then
-  Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, concat(C.Nombre," ",C.Apellidos), CV.Placa from CoductorVehiculo CV 
-    inner join Conductor C on CV.IdConductor
+  Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, C.Nombre,C.Apellidos, CV.Placa from ConductorVehiculo CV 
+  inner join Conductor C on CV.IdConductor=C.IdConductor
     where CV.IdConductor=_IdConductor
     order by CV.IdConductorVehiculo desc limit 2500;
   End If;
   
     if _Opcion='P' then
-  Select CV.IdConductorVehiculo, CV.Fecha, C.IdConductor, concat(C.Nombre," ",C.Apellidos), CV.Placa from CoductorVehiculo CV 
-    inner join Conductor C on CV.IdConductor
-    where CV.Placa=_Placa
-    order by CV.IdConductorVehiculo desc limit 2500;
+  Select CV.IdConductorVehiculo, CV.Fecha, CV.IdConductor, C.Nombre,C.Apellidos, CV.Placa from ConductorVehiculo CV 
+  inner join Conductor C on CV.IdConductor=C.IdConductor  
+  where CV.Placa=_Placa 
+  order by CV.IdConductorVehiculo desc limit 2500;
   End If;
   END
 $$
