@@ -324,9 +324,12 @@ if _Opcion='I' then
   END
 $$
 
+use mydb;
+drop procedure PaSetProveClien;
+
 DELIMITER $$
 CREATE PROCEDURE PASetProveClien(
-in _IdProveClient int,
+in _IdProveClien int,
 in _RazonSocial varchar(45),
 in _Ruc bigint(15),
 in _Opcion varchar(1)
@@ -475,7 +478,7 @@ CREATE PROCEDURE PAGetProveClien(
 in _IdProveClien Int,
 in _RazonSocial varchar(45),
 in _Ruc bigint,
-in _Opcion varchar(1)
+in _Opcion varchar(2)
 )
 BEGIN
 
@@ -483,10 +486,14 @@ if _Opcion='T' then
 select PC.IdProveClien, PC.RazonSocial, PC.Ruc from ProveClien PC  order by PC.IdProveClien desc ;
   End IF;
 
-if _Opcion='S' then
+if _Opcion='ID' then
+select PC.IdProveClien, PC.RazonSocial, PC.Ruc from ProveClien PC where PC.IdProveClien=_IDProveClien order by PC.IdProveClien desc ;
+  End IF;
+
+if _Opcion='RA' then
 select PC.IdProveClien, Pc.RazonSocial, PC.Ruc from ProveClien PC where PC.RazonSocial=_RazonSocial order by PC.IdProveClien desc ;
   End IF;
-  if _Opcion='R' then
+  if _Opcion='RU' then
 select PC.IdProveCien, PC.RazonSocial, PC.Ruc from ProveClien PC where PC.Ruc=_Ruc order by PC.IdProveClien desc ; 
   End If;
   END
