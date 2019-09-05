@@ -5,6 +5,10 @@
  */
 package Presentacion;
 
+import Library.DefaultValue;
+import Negocios.NProveClien;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Administrador
@@ -15,9 +19,99 @@ public class PProveClien extends javax.swing.JFrame {
      * Creates new form VProveClien
      */
     public PProveClien() {
+       
         initComponents();
+        
+        PNew();
+        PGetProveClien(TxtBusqueda.getText(), "T");
+        
+        
     }
 
+     NProveClien NProveClien = new NProveClien();;
+    String Accion = "I";
+
+ public void PNew() {
+TxtIdProveClien.setText("");
+TxtRazonSocial.setText("");
+TxtRuc.setText("");
+
+
+ BtnEliminar.setEnabled(false);
+        Accion="I";
+
+    }
+    
+ 
+ public void PGetProveClien(String TextBusqueda, String Accion) {
+
+        try {
+
+            TblProveClien.setModel(NProveClien.NGetProveClien(DefaultValue.Number(TextBusqueda),DefaultValue.Text(TextBusqueda),DefaultValue.Number(TextBusqueda),Accion));
+
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e);
+        }
+    } 
+ 
+ 
+ public void PSetProveClien() {
+
+        if (Accion.equals("I")) {
+
+            if (!TxtRuc.getText().isEmpty() || !TxtRazonSocial.getText().isEmpty()) {
+                try {
+                    
+                    NProveClien.NSetProveClien(DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Number(TxtRuc.getText()),   Accion);
+                    
+                    
+                    PGetProveClien(TxtBusqueda.getText(), "T");
+
+                    JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                    PNew();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error: "+e, "ERROR", JOptionPane.ERROR_MESSAGE);
+                
+                }
+
+            }
+        } else if (Accion.equals("U")){
+
+            try {
+                //MODIFICAR
+               NProveClien.NSetProveClien(DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Number(TxtRuc.getText()),   Accion);
+                 PGetProveClien(TxtBusqueda.getText(), "T");
+
+                    JOptionPane.showMessageDialog(null, "REGISTRO EDITADO");
+                    PNew();
+            } catch (Exception e) {
+              JOptionPane.showMessageDialog(null, e, "ERROR", JOptionPane.ERROR_MESSAGE);
+              
+
+            }
+
+        } else if (Accion.equals("D")){
+        
+       try {
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "¿ESTAS SEGURO DE ELIMINAR REGISTRO?", "MENSAJE", 2);
+            if (confirmacion == 0) {
+
+                int fila = TblProveClien.getSelectedRow();
+
+               NProveClien.NSetProveClien(DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Number(TxtRuc.getText()),   Accion);
+                 PGetProveClien(TxtBusqueda.getText(), "T");
+                 JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
+                PNew();
+            }
+        } catch (Exception e) {
+         JOptionPane.showConfirmDialog(rootPane, e);
+            System.out.println(e);
+        }
+        }
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,12 +126,12 @@ public class PProveClien extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        TxtIdProveClien = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        TxtRuc = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        TxtRazonSocial = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -46,12 +140,12 @@ public class PProveClien extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        TxtBusqueda = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TblProveClien = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
-        CboBusqueda = new javax.swing.JComboBox<String>();
+        CboBusqueda = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,11 +162,11 @@ public class PProveClien extends javax.swing.JFrame {
         jLabel2.setText("     MANTENIMIENTO");
         jLabel2.setOpaque(true);
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        TxtIdProveClien.setEditable(false);
+        TxtIdProveClien.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        TxtIdProveClien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                TxtIdProveClienActionPerformed(evt);
             }
         });
 
@@ -82,20 +176,20 @@ public class PProveClien extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel4.setText("RUC");
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        TxtRuc.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        TxtRuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                TxtRucActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel8.setText("RAZON SOCIAL");
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        TxtRazonSocial.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        TxtRazonSocial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                TxtRazonSocialActionPerformed(evt);
             }
         });
 
@@ -161,18 +255,18 @@ public class PProveClien extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(TxtRazonSocial))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtIdProveClien, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(46, 46, 46))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,19 +295,19 @@ public class PProveClien extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtIdProveClien, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                        .addComponent(TxtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,10 +331,10 @@ public class PProveClien extends javax.swing.JFrame {
         jLabel6.setText("  MANTENIMIENTO");
         jLabel6.setOpaque(true);
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        TxtBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        TxtBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                TxtBusquedaActionPerformed(evt);
             }
         });
 
@@ -250,8 +344,8 @@ public class PProveClien extends javax.swing.JFrame {
         jButton8.setBorderPainted(false);
         jButton8.setFocusPainted(false);
 
-        jTable1.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TblProveClien.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
+        TblProveClien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -262,8 +356,13 @@ public class PProveClien extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setRowHeight(35);
-        jScrollPane1.setViewportView(jTable1);
+        TblProveClien.setRowHeight(35);
+        TblProveClien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TblProveClienMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TblProveClien);
 
         jButton7.setBackground(new java.awt.Color(0, 153, 0));
         jButton7.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
@@ -277,7 +376,7 @@ public class PProveClien extends javax.swing.JFrame {
         });
 
         CboBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
-        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RAZON SOCIAL", "RUC", " " }));
+        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RAZON SOCIAL", "RUC", " " }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -287,7 +386,7 @@ public class PProveClien extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
@@ -314,7 +413,7 @@ public class PProveClien extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(CboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
@@ -357,21 +456,21 @@ public class PProveClien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void TxtIdProveClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdProveClienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_TxtIdProveClienActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void TxtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtRucActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_TxtRucActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void TxtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBusquedaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_TxtBusquedaActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void TxtRazonSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtRazonSocialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_TxtRazonSocialActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.dispose();        // TODO add your handling code here:
@@ -382,21 +481,46 @@ public class PProveClien extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-//        Accion = "D";
-//        PSetProducto();        // TODO add your handling code here:
+       Accion = "D";
+        PSetProveClien();        // TODO add your handling code here:
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       // PNew();        // TODO add your handling code here:
+        PNew();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       // PSetProducto();
+       PSetProveClien();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void TblProveClienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblProveClienMousePressed
+        
+        try {
+            if (evt.getClickCount() == 2) {
+                Accion = "U";
+
+                int fila = TblProveClien.getSelectedRow();
+
+                TxtIdProveClien.setText(TblProveClien.getValueAt(fila, 0).toString());
+                TxtRuc.setText(TblProveClien.getValueAt(fila, 2).toString());
+                TxtRazonSocial.setText(TblProveClien.getValueAt(fila, 1).toString());
+            
+                BtnEliminar.setEnabled(true);
+                jTabbedPane1.setSelectedIndex(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_TblProveClienMousePressed
 
     /**
      * @param args the command line arguments
@@ -437,6 +561,11 @@ public class PProveClien extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEliminar;
     private javax.swing.JComboBox<String> CboBusqueda;
+    private javax.swing.JTable TblProveClien;
+    private javax.swing.JTextField TxtBusqueda;
+    private javax.swing.JTextField TxtIdProveClien;
+    private javax.swing.JTextField TxtRazonSocial;
+    private javax.swing.JTextField TxtRuc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
@@ -455,10 +584,5 @@ public class PProveClien extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

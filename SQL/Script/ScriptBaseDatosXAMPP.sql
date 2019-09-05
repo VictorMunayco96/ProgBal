@@ -75,7 +75,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`ProveClien`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`ProveClien` (
-  `IdProveClien` INT NOT NULL,
+  `IdProveClien` INT NOT NULL auto_increment,
   `RazonSocial` VARCHAR(45) NULL,
   `Ruc` BIGINT NULL,
   PRIMARY KEY (`IdProveClien`),
