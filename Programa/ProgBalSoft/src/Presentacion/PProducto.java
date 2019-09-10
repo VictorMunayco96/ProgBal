@@ -307,7 +307,7 @@ public class PProducto extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(0, 153, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("   EMPRESA TRANSPORTISTA");
+        jLabel1.setText("    PRODUCTO");
         jLabel1.setOpaque(true);
 
         jLabel2.setBackground(new java.awt.Color(255, 204, 0));
@@ -499,12 +499,12 @@ public class PProducto extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(0, 153, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("EMPRESA TRANSPORTISTA");
+        jLabel5.setText("  PRODUCTO");
         jLabel5.setOpaque(true);
 
         jLabel6.setBackground(new java.awt.Color(255, 204, 0));
         jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
-        jLabel6.setText("  MANTENIMIENTO");
+        jLabel6.setText("    REGISTROS");
         jLabel6.setOpaque(true);
 
         TxtBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
