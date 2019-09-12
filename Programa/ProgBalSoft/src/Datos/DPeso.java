@@ -33,6 +33,7 @@ int PesoGE;
 int PesoGS;
 String ObservE;
 String ObservS;
+String Estado;
 int DNI;
 int IdProveClien;
 int IdDestino;
@@ -42,26 +43,39 @@ String Opcion;
 
 public DPeso(){}
 
-public DPeso(int IdPeso,String TipoMovimiento,String Guia,String FechaGuia,String FechaHoraSal,String FechaHoraEnt,int PesoCE,int PesoCS,int PesoGE,int PesoGS,String ObservE,String ObservS,int DNI,int IdProveClien,int IdDestino,int IdProducto,int IdConductorVehiculo,String Opcion){
-this.IdPeso = IdPeso;
-this.TipoMovimiento = TipoMovimiento;
-this.Guia = Guia;
-this.FechaGuia = FechaGuia;
-this.FechaHoraSal = FechaHoraSal;
-this.FechaHoraEnt = FechaHoraEnt;
-this.PesoCE = PesoCE;
-this.PesoCS = PesoCS;
-this.PesoGE = PesoGE;
-this.PesoGS = PesoGS;
-this.ObservE = ObservE;
-this.ObservS = ObservS;
-this.DNI = DNI;
-this.IdProveClien = IdProveClien;
-this.IdDestino = IdDestino;
-this.IdProducto = IdProducto;
-this.IdConductorVehiculo = IdConductorVehiculo;
-this.Opcion = Opcion;
-}
+    public DPeso(int IdPeso, String TipoMovimiento, String Guia, String FechaGuia, String FechaHoraSal, String FechaHoraEnt, int PesoCE, int PesoCS, int PesoGE, int PesoGS, String ObservE, String ObservS, String Estado, int DNI, int IdProveClien, int IdDestino, int IdProducto, int IdConductorVehiculo, String Opcion) {
+        this.IdPeso = IdPeso;
+        this.TipoMovimiento = TipoMovimiento;
+        this.Guia = Guia;
+        this.FechaGuia = FechaGuia;
+        this.FechaHoraSal = FechaHoraSal;
+        this.FechaHoraEnt = FechaHoraEnt;
+        this.PesoCE = PesoCE;
+        this.PesoCS = PesoCS;
+        this.PesoGE = PesoGE;
+        this.PesoGS = PesoGS;
+        this.ObservE = ObservE;
+        this.ObservS = ObservS;
+        this.Estado = Estado;
+        this.DNI = DNI;
+        this.IdProveClien = IdProveClien;
+        this.IdDestino = IdDestino;
+        this.IdProducto = IdProducto;
+        this.IdConductorVehiculo = IdConductorVehiculo;
+        this.Opcion = Opcion;
+    }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+
+
+
+
 public int getIdPeso(){
 return IdPeso;
 }
@@ -195,7 +209,7 @@ public String DSetPeso(DPeso Campo) {
         Connection Con = Cn.Conexion();
         String rpta = "";
  try {
-            CallableStatement Proc = Con.prepareCall(" CALL PASetPeso(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            CallableStatement Proc = Con.prepareCall(" CALL PASetPeso(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 Proc.setInt(1, Campo.getIdPeso());
 Proc.setString(2, Campo.getTipoMovimiento());
 Proc.setString(3, Campo.getGuia());
@@ -208,12 +222,13 @@ Proc.setInt(9, Campo.getPesoGE());
 Proc.setInt(10, Campo.getPesoGS());
 Proc.setString(11, Campo.getObservE());
 Proc.setString(12, Campo.getObservS());
-Proc.setInt(13, Campo.getDNI());
-Proc.setInt(14, Campo.getIdProveClien());
-Proc.setInt(15, Campo.getIdDestino());
-Proc.setInt(16, Campo.getIdProducto());
-Proc.setInt(17, Campo.getIdConductorVehiculo());
-Proc.setString(18, Campo.getOpcion());
+Proc.setString(13, Campo.getEstado());
+Proc.setInt(14, Campo.getDNI());
+Proc.setInt(15, Campo.getIdProveClien());
+Proc.setInt(16, Campo.getIdDestino());
+Proc.setInt(17, Campo.getIdProducto());
+Proc.setInt(18, Campo.getIdConductorVehiculo());
+Proc.setString(19, Campo.getOpcion());
  Proc.execute();
             rpta = "Ingreso correctamente";
 
@@ -263,6 +278,7 @@ registro[15] = rs.getString(16);
 registro[16] = rs.getString(17);
 registro[17] = rs.getString(18);
 registro[18] = rs.getString(19);
+registro[19] = rs.getString(19);
 modelo.addRow(registro);
             }
             return modelo;

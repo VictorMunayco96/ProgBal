@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class NPeso {
     
-public String NSetPeso(int IdPeso,String TipoMovimiento,String Guia,String FechaGuia,String FechaHoraSal,String FechaHoraEnt,int PesoCE,int PesoCS,int PesoGE,int PesoGS,String ObservE,String ObservS,int DNI,int IdProveClien,int IdDestino,int IdProducto,int IdConductorVehiculo,String Opcion){
+public String NSetPeso(int IdPeso,String TipoMovimiento,String Guia,String FechaGuia,String FechaHoraSal,String FechaHoraEnt,int PesoCE,int PesoCS,int PesoGE,int PesoGS,String ObservE,String ObservS,String Estado,int DNI,int IdProveClien,int IdDestino,int IdProducto,int IdConductorVehiculo,String Opcion){
 
 DPeso Obj = new DPeso();
 Obj.setIdPeso(IdPeso);
@@ -28,6 +28,7 @@ Obj.setPesoGE(PesoGE);
 Obj.setPesoGS(PesoGS);
 Obj.setObservE(ObservE);
 Obj.setObservS(ObservS);
+Obj.setEstado(Estado);
 Obj.setDNI(DNI);
 Obj.setIdProveClien(IdProveClien);
 Obj.setIdDestino(IdDestino);

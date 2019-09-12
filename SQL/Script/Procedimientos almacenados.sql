@@ -277,6 +277,7 @@ in _PesoGE int,
 in _PesoGS int,
 in _ObservE varchar(100),
 in _ObservS varchar(100),
+in _Estado varchar(45),
 in _DNI int,
 in _IdProveClien int,
 in _IdDestino int,
@@ -286,19 +287,187 @@ in _Opcion varchar(1)
 )
 BEGIN
 if _Opcion='I' then
-  insert into Peso (TipoMovimiento, Guia, FechaGuia, FechaHoraSal, FechaHoraEnt, PesoCE, PesoCS, PesoGE, PesoGS, ObservE, ObservS, DNI,
+  insert into Peso (TipoMovimiento, Guia, FechaGuia, FechaHoraSal, FechaHoraEnt, PesoCE, PesoCS, PesoGE, PesoGS, ObservE, ObservS, Estado,DNI,
   IdProveClien, IdDestino, IdProducto, IdConductorVehiculo)
-  values(_TipoMovimiento, _Guia, _FechaGuia, _FechaHoraSal, _FechaHoraEnt, _PesoCE, _PesoCS, _PesoGE, _PesoGS, _ObservE, _ObservS, _DNI,
+  values(_TipoMovimiento, _Guia, _FechaGuia, _FechaHoraSal, _FechaHoraEnt, _PesoCE, _PesoCS, _PesoGE, _PesoGS, _ObservE, _ObservS, _Estado,_DNI,
   _IdProveClien, _IdDestino, _IdProducto, _IdConductorVehiculo);
   End IF;
   if _Opcion='U' then
   Update Peso set TipoMovimiento=_TipoMovimiento, Guia=_Guia, FechaGuia=_FechaGuia, FechaHoraSal=_FechaHoraSal, FechaHoraEnt=_FechaHoraEnt,
-  PesoCE=_PesoCE, PesoCS=_PesoCS, PesoGE=_PesoGE, PesoGS=_PesoGS, ObservE=_ObservE, ObservS=_ObservS, DNI=_DNI, IdProveClien=_IdProveClien
+  PesoCE=_PesoCE, PesoCS=_PesoCS, PesoGE=_PesoGE, PesoGS=_PesoGS, ObservE=_ObservE, ObservS=_ObservS, Estado=_Estado,DNI=_DNI, IdProveClien=_IdProveClien
   , IdDestino=_IdDestino, IdProducto=_IdProducto, IdConductorVehiculo=_IdConductorVehiculo where IdPeso=_IdPeso;
   End If;
   if _Opcion='D' then
   delete from Peso where IdPeso=_IdPeso;
   End If;
+  END
+$$
+
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetPeso(
+in _IdPeso Int,
+in _Guia varchar(20),
+in _Estado varchar(45),
+in _ProveClien varchar(45),
+in _Destino varchar(45),
+in _Producto varchar(45),
+in _Placa varchar(9),
+in _Opcion varchar(1)
+)
+BEGIN
+if _Opcion='T' then
+SELECT
+     peso.`IdPeso` AS peso_IdPeso,
+     peso.`TipoMovimiento` AS peso_TipoMovimiento,
+     peso.`Guia` AS peso_Guia,
+     peso.`FechaGuia` AS peso_FechaGuia,
+     peso.`FechaHoraSal` AS peso_FechaHoraSal,
+     peso.`FechaHoraEnt` AS peso_FechaHoraEnt,
+     peso.`PesoCE` AS peso_PesoCE,
+     peso.`PesoCS` AS peso_PesoCS,
+     peso.`PesoGE` AS peso_PesoGE,
+     peso.`PesoGS` AS peso_PesoGS,
+     peso.`ObservE` AS peso_ObservE,
+     peso.`ObservS` AS peso_ObservS,
+     peso.`Estado` AS peso_Estado,
+     peso.`DNI` AS peso_DNI,
+     peso.`IdProveClien` AS peso_IdProveClien,
+     proveclien.`RazonSocial` AS proveclien_RazonSocial,
+     peso.`IdDestino` AS peso_IdDestino,
+   destino.`Destino` AS destino_Destino,
+     peso.`IdProducto` AS peso_IdProducto,
+   producto.`Descripcion` AS producto_Descripcion,
+     peso.`IdConductorVehiculo` AS peso_IdConductorVehiculo,
+  conductorvehiculo.`Placa` AS conductorvehiculo_Placa,
+     conductor.`Nombre` AS conductor_Nombre,
+     conductor.`Apellidos` AS conductor_Apellidos
+FROM
+     `proveclien` proveclien INNER JOIN `peso` peso ON proveclien.`IdProveClien` = peso.`IdProveClien`
+     INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
+     INNER JOIN `destino` destino ON peso.`IdDestino` = destino.`IdDestino`
+     INNER JOIN `conductorvehiculo` conductorvehiculo ON peso.`IdConductorVehiculo` = conductorvehiculo.`IdConductorVehiculo`
+     INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
+     
+     order by IdPeso Desc limit 4000;
+  End IF;
+
+if _Opcion='IDPE' then
+SELECT
+     peso.`IdPeso` AS peso_IdPeso,
+     peso.`TipoMovimiento` AS peso_TipoMovimiento,
+     peso.`Guia` AS peso_Guia,
+     peso.`FechaGuia` AS peso_FechaGuia,
+     peso.`FechaHoraSal` AS peso_FechaHoraSal,
+     peso.`FechaHoraEnt` AS peso_FechaHoraEnt,
+     peso.`PesoCE` AS peso_PesoCE,
+     peso.`PesoCS` AS peso_PesoCS,
+     peso.`PesoGE` AS peso_PesoGE,
+     peso.`PesoGS` AS peso_PesoGS,
+     peso.`ObservE` AS peso_ObservE,
+     peso.`ObservS` AS peso_ObservS,
+     peso.`Estado` AS peso_Estado,
+     peso.`DNI` AS peso_DNI,
+     peso.`IdProveClien` AS peso_IdProveClien,
+     proveclien.`RazonSocial` AS proveclien_RazonSocial,
+     peso.`IdDestino` AS peso_IdDestino,
+   destino.`Destino` AS destino_Destino,
+     peso.`IdProducto` AS peso_IdProducto,
+   producto.`Descripcion` AS producto_Descripcion,
+     peso.`IdConductorVehiculo` AS peso_IdConductorVehiculo,
+  conductorvehiculo.`Placa` AS conductorvehiculo_Placa,
+     conductor.`Nombre` AS conductor_Nombre,
+     conductor.`Apellidos` AS conductor_Apellidos
+FROM
+     `proveclien` proveclien INNER JOIN `peso` peso ON proveclien.`IdProveClien` = peso.`IdProveClien`
+     INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
+     INNER JOIN `destino` destino ON peso.`IdDestino` = destino.`IdDestino`
+     INNER JOIN `conductorvehiculo` conductorvehiculo ON peso.`IdConductorVehiculo` = conductorvehiculo.`IdConductorVehiculo`
+     INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
+     
+     where Peso.IdPeso=_IdPeso
+     
+     order by IdPeso Desc limit 4000;
+     End If;
+     
+     
+     if _Opcion='GUIA' then
+SELECT
+     peso.`IdPeso` AS peso_IdPeso,
+     peso.`TipoMovimiento` AS peso_TipoMovimiento,
+     peso.`Guia` AS peso_Guia,
+     peso.`FechaGuia` AS peso_FechaGuia,
+     peso.`FechaHoraSal` AS peso_FechaHoraSal,
+     peso.`FechaHoraEnt` AS peso_FechaHoraEnt,
+     peso.`PesoCE` AS peso_PesoCE,
+     peso.`PesoCS` AS peso_PesoCS,
+     peso.`PesoGE` AS peso_PesoGE,
+     peso.`PesoGS` AS peso_PesoGS,
+     peso.`ObservE` AS peso_ObservE,
+     peso.`ObservS` AS peso_ObservS,
+     peso.`Estado` AS peso_Estado,
+     peso.`DNI` AS peso_DNI,
+     peso.`IdProveClien` AS peso_IdProveClien,
+     proveclien.`RazonSocial` AS proveclien_RazonSocial,
+     peso.`IdDestino` AS peso_IdDestino,
+   destino.`Destino` AS destino_Destino,
+     peso.`IdProducto` AS peso_IdProducto,
+   producto.`Descripcion` AS producto_Descripcion,
+     peso.`IdConductorVehiculo` AS peso_IdConductorVehiculo,
+  conductorvehiculo.`Placa` AS conductorvehiculo_Placa,
+     conductor.`Nombre` AS conductor_Nombre,
+     conductor.`Apellidos` AS conductor_Apellidos
+FROM
+     `proveclien` proveclien INNER JOIN `peso` peso ON proveclien.`IdProveClien` = peso.`IdProveClien`
+     INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
+     INNER JOIN `destino` destino ON peso.`IdDestino` = destino.`IdDestino`
+     INNER JOIN `conductorvehiculo` conductorvehiculo ON peso.`IdConductorVehiculo` = conductorvehiculo.`IdConductorVehiculo`
+     INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
+     
+     where Peso.Guia=_Guia
+     
+     order by IdPeso Desc limit 4000;
+     End If;
+     
+     if _Opcion='PROV' then
+SELECT
+     peso.`IdPeso` AS peso_IdPeso,
+     peso.`TipoMovimiento` AS peso_TipoMovimiento,
+     peso.`Guia` AS peso_Guia,
+     peso.`FechaGuia` AS peso_FechaGuia,
+     peso.`FechaHoraSal` AS peso_FechaHoraSal,
+     peso.`FechaHoraEnt` AS peso_FechaHoraEnt,
+     peso.`PesoCE` AS peso_PesoCE,
+     peso.`PesoCS` AS peso_PesoCS,
+     peso.`PesoGE` AS peso_PesoGE,
+     peso.`PesoGS` AS peso_PesoGS,
+     peso.`ObservE` AS peso_ObservE,
+     peso.`ObservS` AS peso_ObservS,
+     peso.`Estado` AS peso_Estado,
+     peso.`DNI` AS peso_DNI,
+     peso.`IdProveClien` AS peso_IdProveClien,
+     proveclien.`RazonSocial` AS proveclien_RazonSocial,
+     peso.`IdDestino` AS peso_IdDestino,
+   destino.`Destino` AS destino_Destino,
+     peso.`IdProducto` AS peso_IdProducto,
+   producto.`Descripcion` AS producto_Descripcion,
+     peso.`IdConductorVehiculo` AS peso_IdConductorVehiculo,
+  conductorvehiculo.`Placa` AS conductorvehiculo_Placa,
+     conductor.`Nombre` AS conductor_Nombre,
+     conductor.`Apellidos` AS conductor_Apellidos
+FROM
+     `proveclien` proveclien INNER JOIN `peso` peso ON proveclien.`IdProveClien` = peso.`IdProveClien`
+     INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
+     INNER JOIN `destino` destino ON peso.`IdDestino` = destino.`IdDestino`
+     INNER JOIN `conductorvehiculo` conductorvehiculo ON peso.`IdConductorVehiculo` = conductorvehiculo.`IdConductorVehiculo`
+     INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
+     
+     where  proveclien.`RazonSocial` like concat('%',_ProveClien,'%')
+     
+     order by IdPeso Desc limit 4000;
+     End If;
+
   END
 $$
 
@@ -456,6 +625,7 @@ in _IdDestino int,
 in _Destino varchar(45),
 in _Opcion varchar(2)
 )
+
 BEGIN
 
 if _Opcion='T' then

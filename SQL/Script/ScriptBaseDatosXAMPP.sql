@@ -150,6 +150,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Peso` (
   `PesoGS` INT NULL,
   `ObservE` VARCHAR(100) NULL,
   `ObservS` VARCHAR(100) NULL,
+  `Estado` VARCHAR(45) NULL,
   `DNI` INT NOT NULL,
   `IdProveClien` INT NOT NULL,
   `IdDestino` INT NOT NULL,
