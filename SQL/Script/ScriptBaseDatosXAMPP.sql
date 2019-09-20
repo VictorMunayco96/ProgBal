@@ -24,7 +24,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`EmpreTrans` (
   `Ruc` BIGINT NOT NULL,
   `RazonSocial` VARCHAR(80) NULL,
-  `Domicilio` VARCHAR(60) NULL,
+  `Domicilio` VARCHAR(100) NULL,
   `NumCel` VARCHAR(15) NULL,
   PRIMARY KEY (`Ruc`))
 ENGINE = InnoDB;

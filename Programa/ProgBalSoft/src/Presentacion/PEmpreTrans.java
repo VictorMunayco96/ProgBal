@@ -7,6 +7,7 @@ package Presentacion;
 
 import Library.DefaultValue;
 import Negocios.NEmpreTrans;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -142,7 +143,7 @@ NEmpreTrans.NSetEmpreTrans(Long.parseLong(TxtRUC.getText()),DefaultValue.Text(Tx
         TblEmpreTrans = new javax.swing.JTable();
         CboBusqueda = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("EMPRESA TRANSPORTISTA");
         setAlwaysOnTop(true);
 
@@ -191,6 +192,11 @@ NEmpreTrans.NSetEmpreTrans(Long.parseLong(TxtRUC.getText()),DefaultValue.Text(Tx
         TxtDomicilio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtDomicilioActionPerformed(evt);
+            }
+        });
+        TxtDomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TxtDomicilioKeyTyped(evt);
             }
         });
 
@@ -544,6 +550,14 @@ NEmpreTrans.NSetEmpreTrans(Long.parseLong(TxtRUC.getText()),DefaultValue.Text(Tx
 
         }
     }//GEN-LAST:event_TblEmpreTransMousePressed
+
+    private void TxtDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtDomicilioKeyTyped
+ if(TxtDomicilio.getText().trim().length() > 99){
+             evt.consume();   
+              Toolkit.getDefaultToolkit().beep(); 
+        }
+               // TODO add your handling code here:
+    }//GEN-LAST:event_TxtDomicilioKeyTyped
 
     /**
      * @param args the command line arguments

@@ -476,7 +476,7 @@ DELIMITER $$
 CREATE PROCEDURE PASetEmpreTrans(
 in _Ruc bigint,
 in _RazonSocial varchar(45),
-in _Domicilio varchar(60),
+in _Domicilio varchar(100),
 in _NumCel varchar(15),
 in _Opcion varchar(1)
 )
@@ -493,14 +493,14 @@ if _Opcion='I' then
   END
 $$
 
-use mydb;
-drop procedure PaSetProveClien;
+
+
 
 DELIMITER $$
 CREATE PROCEDURE PASetProveClien(
 in _IdProveClien int,
 in _RazonSocial varchar(45),
-in _Ruc bigint(15),
+in _Ruc bigint,
 in _Opcion varchar(1)
 )
 BEGIN
