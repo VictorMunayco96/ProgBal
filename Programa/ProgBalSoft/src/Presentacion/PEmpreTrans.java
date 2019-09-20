@@ -58,7 +58,7 @@ TxtNumCel.setText("");
             if (!TxtRUC.getText().isEmpty() || !TxtRazonSocial.getText().isEmpty()) {
                 try {
                     
-                   NEmpreTrans.NSetEmpreTrans(DefaultValue.Number(TxtRUC.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Text(TxtDomicilio.getText()),DefaultValue.Text(TxtNumCel.getText()),   Accion);
+                   NEmpreTrans.NSetEmpreTrans(Long.parseLong(TxtRUC.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Text(TxtDomicilio.getText()),DefaultValue.Text(TxtNumCel.getText()),   Accion);
                     
                     PGetEmpreTrans(TxtBusqueda.getText(), "T");
 
@@ -74,7 +74,7 @@ TxtNumCel.setText("");
 
             try {
                 //MODIFICAR
-               NEmpreTrans.NSetEmpreTrans(DefaultValue.Number(TxtRUC.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Text(TxtDomicilio.getText()),DefaultValue.Text(TxtNumCel.getText()),   Accion); 
+               NEmpreTrans.NSetEmpreTrans(Long.parseLong(TxtRUC.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Text(TxtDomicilio.getText()),DefaultValue.Text(TxtNumCel.getText()),   Accion); 
                
                PGetEmpreTrans(TxtBusqueda.getText(), "T");
 
@@ -94,7 +94,7 @@ TxtNumCel.setText("");
 
                 int fila = TblEmpreTrans.getSelectedRow();
 
-NEmpreTrans.NSetEmpreTrans(DefaultValue.Number(TxtRUC.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Text(TxtDomicilio.getText()),DefaultValue.Text(TxtNumCel.getText()),   Accion);
+NEmpreTrans.NSetEmpreTrans(Long.parseLong(TxtRUC.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Text(TxtDomicilio.getText()),DefaultValue.Text(TxtNumCel.getText()),   Accion);
                  PGetEmpreTrans(TxtBusqueda.getText(), "T");
                  JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
                 PNew();
@@ -143,8 +143,13 @@ NEmpreTrans.NSetEmpreTrans(DefaultValue.Number(TxtRUC.getText()),DefaultValue.Te
         CboBusqueda = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("EMPRESA TRANSPORTISTA");
+        setAlwaysOnTop(true);
 
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
         jTabbedPane1.setEnabled(false);
+        jTabbedPane1.setOpaque(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -307,9 +312,7 @@ NEmpreTrans.NSetEmpreTrans(DefaultValue.Number(TxtRUC.getText()),DefaultValue.Te
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -340,7 +343,7 @@ NEmpreTrans.NSetEmpreTrans(DefaultValue.Number(TxtRUC.getText()),DefaultValue.Te
                 .addComponent(jButton6))
         );
 
-        jTabbedPane1.addTab("MATENIMIENTO", jPanel2);
+        jTabbedPane1.addTab("", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 

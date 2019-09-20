@@ -145,7 +145,13 @@ public class PCategoria extends javax.swing.JFrame {
         setTitle("CATEGORIA");
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
         jTabbedPane1.setEnabled(false);
+        jTabbedPane1.setOpaque(true);
+        jTabbedPane1.setVerifyInputWhenFocusTarget(false);
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseClicked(evt);
@@ -301,7 +307,7 @@ public class PCategoria extends javax.swing.JFrame {
                 .addComponent(jButton5))
         );
 
-        jTabbedPane1.addTab("MATENIMIENTO", jPanel2);
+        jTabbedPane1.addTab("", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 

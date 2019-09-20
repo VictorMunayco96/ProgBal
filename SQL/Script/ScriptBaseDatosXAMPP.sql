@@ -75,7 +75,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`ProveClien`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`ProveClien` (
-  `IdProveClien` INT NOT NULL auto_increment,
+  `IdProveClien` INT NOT NULL AUTO_INCREMENT,
   `RazonSocial` VARCHAR(45) NULL,
   `Ruc` BIGINT NULL,
   PRIMARY KEY (`IdProveClien`),
@@ -140,14 +140,12 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Peso` (
   `IdPeso` INT NOT NULL AUTO_INCREMENT,
   `TipoMovimiento` VARCHAR(45) NULL,
-  `Guia` VARCHAR(20) NULL,
-  `FechaGuia` DATETIME NULL,
+  `NumGuia` INT NULL,
   `FechaHoraSal` DATETIME NULL,
   `FechaHoraEnt` DATETIME NULL,
   `PesoCE` INT NULL,
   `PesoCS` INT NULL,
-  `PesoGE` INT NULL,
-  `PesoGS` INT NULL,
+  `NetoC` INT NULL,
   `ObservE` VARCHAR(100) NULL,
   `ObservS` VARCHAR(100) NULL,
   `Estado` VARCHAR(45) NULL,
@@ -185,6 +183,28 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Peso` (
   CONSTRAINT `fk_Peso_ConductorVehiculo1`
     FOREIGN KEY (`IdConductorVehiculo`)
     REFERENCES `mydb`.`ConductorVehiculo` (`IdConductorVehiculo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Guia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Guia` (
+  `IdGuia` INT NOT NULL AUTO_INCREMENT,
+  `NumGuia` INT NULL,
+  `FechaGuia` INT NULL,
+  `PesoGE` INT NULL,
+  `PesoGS` INT NULL,
+  `NetoG` INT NULL,
+  `Observ` VARCHAR(100) NULL,
+  `IdProveClien` INT NOT NULL,
+  PRIMARY KEY (`IdGuia`),
+  INDEX `fk_Guia_ProveClien1_idx` (`IdProveClien` ASC),
+  CONSTRAINT `fk_Guia_ProveClien1`
+    FOREIGN KEY (`IdProveClien`)
+    REFERENCES `mydb`.`ProveClien` (`IdProveClien`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

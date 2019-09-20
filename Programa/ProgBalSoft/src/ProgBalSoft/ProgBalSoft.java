@@ -19,10 +19,10 @@ import Presentacion.PVehiculo;
 public class ProgBalSoft {
     public static void main(String[] args) {
         //PProveClien Obj = new PProveClien();
-        PPeso  Obj = new PPeso();
-//        PMenu Obj = new PMenu();
+     //   PPeso  Obj = new PPeso();
+      PMenu Obj = new PMenu();
         Obj.setVisible(true);
         Obj.setLocationRelativeTo(null);
- //Obj.setExtendedState(Obj.MAXIMIZED_BOTH);
+ Obj.setExtendedState(Obj.MAXIMIZED_BOTH);
     }
 }

@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DEmpreTrans {
 
-int RUC;
+long RUC;
 String RazonSocial;
 String Domicilio;
 String NumCel;
@@ -26,14 +26,14 @@ String Opcion;
 
 public DEmpreTrans(){}
 
-public DEmpreTrans(int RUC,String RazonSocial,String Domicilio,String NumCel,String Opcion){
+public DEmpreTrans(long RUC,String RazonSocial,String Domicilio,String NumCel,String Opcion){
 this.RUC = RUC;
 this.RazonSocial = RazonSocial;
 this.Domicilio = Domicilio;
 this.NumCel = NumCel;
 this.Opcion = Opcion;
 }
-public int getRUC(){
+public long getRUC(){
 return RUC;
 }
 
@@ -54,7 +54,7 @@ return Opcion;
 }
 
 
-public void setRUC(int RUC) {
+public void setRUC(long RUC) {
 this.RUC=RUC;
 }
 public void setRazonSocial(String RazonSocial) {
@@ -76,7 +76,7 @@ public String DSetEmpreTrans(DEmpreTrans Campo) {
         String rpta = "";
  try {
             CallableStatement Proc = Con.prepareCall(" CALL PASetEmpreTrans(?,?,?,?,?)");
-Proc.setInt(1, Campo.getRUC());
+Proc.setLong(1, Campo.getRUC());
 Proc.setString(2, Campo.getRazonSocial());
 Proc.setString(3, Campo.getDomicilio());
 Proc.setString(4, Campo.getNumCel());
@@ -105,7 +105,7 @@ String[] titulos = {"Ruc","Razon Social","Domicilio","Num Cel"};
         try {
 
             CallableStatement Proc = Con.prepareCall(" CALL PAGetEmpreTrans(?,?,?)");
-Proc.setInt(1, Campo.getRUC());
+Proc.setLong(1, Campo.getRUC());
 Proc.setString(2, Campo.getRazonSocial());
 Proc.setString(3, Campo.getOpcion());
 Proc.execute();

@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class NEmpreTrans {
     
- public String NSetEmpreTrans(int RUC,String RazonSocial,String Domicilio,String NumCel,String Opcion){
+ public String NSetEmpreTrans(long RUC,String RazonSocial,String Domicilio,String NumCel,String Opcion){
 
 DEmpreTrans Obj = new DEmpreTrans();
 Obj.setRUC(RUC);

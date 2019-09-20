@@ -332,7 +332,17 @@ public void PGetConductorVehiculo(String TextBusqueda, String Accion) {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("CONDUCTOR VEHICULO");
+        setAlwaysOnTop(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+        jTabbedPane1.setEnabled(false);
+        jTabbedPane1.setFocusable(false);
+        jTabbedPane1.setRequestFocusEnabled(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -550,7 +560,7 @@ public void PGetConductorVehiculo(String TextBusqueda, String Accion) {
                 .addComponent(jButton5))
         );
 
-        jTabbedPane1.addTab("MATENIMIENTO", jPanel2);
+        jTabbedPane1.addTab("", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 

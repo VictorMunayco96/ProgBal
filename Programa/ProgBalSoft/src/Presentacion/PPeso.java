@@ -77,7 +77,7 @@ public class PPeso extends javax.swing.JFrame {
             TxtPesoCS.setText(TxtPesoVarianza.getText());
 
             TxtFechaHoraSal.setText(Form.format(Now));
-            TxtPesoNeto.setText(Neto());
+            TxtNetoC.setText(Neto());
             VtnPeso.dispose();
         }
 
@@ -234,7 +234,7 @@ public class PPeso extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        TxtIdCategoria = new javax.swing.JTextField();
+        TxtIdPeso = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         TxtPlaca = new javax.swing.JTextField();
@@ -245,7 +245,7 @@ public class PPeso extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         TxtChofer = new javax.swing.JTextField();
-        TxtIdCategoria1 = new javax.swing.JTextField();
+        TxtGuiaBusqueda = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         TxtFechaHoraSal = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -262,7 +262,7 @@ public class PPeso extends javax.swing.JFrame {
         TxtProducto = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jButton12 = new javax.swing.JButton();
-        TxtPesoNeto = new javax.swing.JTextField();
+        TxtNetoC = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
         jLabel44 = new javax.swing.JLabel();
@@ -271,26 +271,29 @@ public class PPeso extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         TxtPesoCE = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
+        ObservE = new javax.swing.JEditorPane();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jEditorPane2 = new javax.swing.JEditorPane();
+        ObserS = new javax.swing.JEditorPane();
+        TxtIdProveClien = new javax.swing.JTextField();
+        TxtRazonSocial = new javax.swing.JTextField();
+        jButton19 = new javax.swing.JButton();
+        jLabel47 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
-        TxtIdCategoria15 = new javax.swing.JTextField();
+        PesoGE = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
-        TxtIdCategoria16 = new javax.swing.JTextField();
+        TxtPesoGS = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
-        TxtIdCategoria17 = new javax.swing.JTextField();
+        TxtFechaGuia = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
-        TxtIdCategoria2 = new javax.swing.JTextField();
+        TxtGuia = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
-        TxtIdCategoria18 = new javax.swing.JTextField();
-        TxtIdCategoria19 = new javax.swing.JTextField();
-        jButton19 = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
+        jLabel45 = new javax.swing.JLabel();
+        TxtNetoG = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -800,11 +803,11 @@ public class PPeso extends javax.swing.JFrame {
         jLabel2.setText("    MANTENIMIENTO");
         jLabel2.setOpaque(true);
 
-        TxtIdCategoria.setEditable(false);
-        TxtIdCategoria.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        TxtIdCategoria.addActionListener(new java.awt.event.ActionListener() {
+        TxtIdPeso.setEditable(false);
+        TxtIdPeso.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtIdPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtIdCategoriaActionPerformed(evt);
+                TxtIdPesoActionPerformed(evt);
             }
         });
 
@@ -888,11 +891,11 @@ public class PPeso extends javax.swing.JFrame {
             }
         });
 
-        TxtIdCategoria1.setEditable(false);
-        TxtIdCategoria1.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        TxtIdCategoria1.addActionListener(new java.awt.event.ActionListener() {
+        TxtGuiaBusqueda.setEditable(false);
+        TxtGuiaBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtGuiaBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtIdCategoria1ActionPerformed(evt);
+                TxtGuiaBusquedaActionPerformed(evt);
             }
         });
 
@@ -980,9 +983,9 @@ public class PPeso extends javax.swing.JFrame {
             }
         });
 
-        TxtPesoNeto.setEditable(false);
-        TxtPesoNeto.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        TxtPesoNeto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtNetoC.setEditable(false);
+        TxtNetoC.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        TxtNetoC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel34.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel34.setText("NETO");
@@ -1036,9 +1039,38 @@ public class PPeso extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane6.setViewportView(jEditorPane1);
+        jScrollPane6.setViewportView(ObservE);
 
-        jScrollPane7.setViewportView(jEditorPane2);
+        jScrollPane7.setViewportView(ObserS);
+
+        TxtIdProveClien.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtIdProveClien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtIdProveClienActionPerformed(evt);
+            }
+        });
+
+        TxtRazonSocial.setEditable(false);
+        TxtRazonSocial.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtRazonSocial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtRazonSocialActionPerformed(evt);
+            }
+        });
+
+        jButton19.setBackground(new java.awt.Color(0, 153, 0));
+        jButton19.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Búsqueda-32.png"))); // NOI18N
+        jButton19.setBorderPainted(false);
+        jButton19.setFocusPainted(false);
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+
+        jLabel47.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel47.setText("PROVE/CLIEN");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1048,9 +1080,6 @@ public class PPeso extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1080,7 +1109,7 @@ public class PPeso extends javax.swing.JFrame {
                         .addComponent(TxtPesoCE, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(TxtIdPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1090,10 +1119,13 @@ public class PPeso extends javax.swing.JFrame {
                                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(TxtPesoNeto, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TxtNetoC, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1112,35 +1144,42 @@ public class PPeso extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(TxtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(TxtIdCategoria))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(TxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(18, 18, 18)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(TxtChofer, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
+                                                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(TxtIdDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(TxtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(TxtIdCategoria1))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(TxtIdProveClien, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(TxtRazonSocial)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(TxtIdDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(TxtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)))))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(TxtIdPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(TxtGuiaBusqueda))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(TxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(TxtChofer, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1156,20 +1195,30 @@ public class PPeso extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TxtIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtIdCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70))
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtGuiaBusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(TxtIdPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(TxtPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                                .addComponent(TxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TxtChofer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(TxtChofer, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1184,27 +1233,30 @@ public class PPeso extends javax.swing.JFrame {
                                 .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(TxtIdDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(TxtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
+                            .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtIdProveClien, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton19, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtIdPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtPesoCE, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TxtFechaHoraEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70))
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TxtIdPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtPesoCE, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1219,16 +1271,16 @@ public class PPeso extends javax.swing.JFrame {
                     .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(TxtPesoNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
+                        .addGap(10, 10, 10)
+                        .addComponent(TxtNetoC, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(jButton5))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                        .addContainerGap(44, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("MATENIMIENTO", jPanel2);
@@ -1257,40 +1309,40 @@ public class PPeso extends javax.swing.JFrame {
             }
         });
 
-        TxtIdCategoria15.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        TxtIdCategoria15.addActionListener(new java.awt.event.ActionListener() {
+        PesoGE.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        PesoGE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtIdCategoria15ActionPerformed(evt);
+                PesoGEActionPerformed(evt);
             }
         });
 
         jLabel40.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel40.setText("PESO G2");
+        jLabel40.setText("PESO G1");
 
-        TxtIdCategoria16.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        TxtIdCategoria16.addActionListener(new java.awt.event.ActionListener() {
+        TxtPesoGS.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtPesoGS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtIdCategoria16ActionPerformed(evt);
+                TxtPesoGSActionPerformed(evt);
             }
         });
 
         jLabel41.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel41.setText("PESO G1");
+        jLabel41.setText("PESO G2");
 
-        TxtIdCategoria17.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        TxtIdCategoria17.addActionListener(new java.awt.event.ActionListener() {
+        TxtFechaGuia.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtFechaGuia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtIdCategoria17ActionPerformed(evt);
+                TxtFechaGuiaActionPerformed(evt);
             }
         });
 
         jLabel42.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel42.setText("FECHA GUIA");
 
-        TxtIdCategoria2.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        TxtIdCategoria2.addActionListener(new java.awt.event.ActionListener() {
+        TxtGuia.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtGuia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtIdCategoria2ActionPerformed(evt);
+                TxtGuiaActionPerformed(evt);
             }
         });
 
@@ -1298,33 +1350,7 @@ public class PPeso extends javax.swing.JFrame {
         jLabel12.setText("N° GUIA");
 
         jLabel43.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel43.setText("PROVEDOR");
-
-        TxtIdCategoria18.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        TxtIdCategoria18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtIdCategoria18ActionPerformed(evt);
-            }
-        });
-
-        TxtIdCategoria19.setEditable(false);
-        TxtIdCategoria19.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        TxtIdCategoria19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtIdCategoria19ActionPerformed(evt);
-            }
-        });
-
-        jButton19.setBackground(new java.awt.Color(0, 153, 0));
-        jButton19.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Búsqueda-32.png"))); // NOI18N
-        jButton19.setBorderPainted(false);
-        jButton19.setFocusPainted(false);
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
-            }
-        });
+        jLabel43.setText("PROV / CLIEN");
 
         jButton23.setBackground(new java.awt.Color(0, 153, 0));
         jButton23.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
@@ -1334,6 +1360,16 @@ public class PPeso extends javax.swing.JFrame {
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton23ActionPerformed(evt);
+            }
+        });
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel45.setText("NETO");
+
+        TxtNetoG.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtNetoG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtNetoGActionPerformed(evt);
             }
         });
 
@@ -1352,36 +1388,30 @@ public class PPeso extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(181, 181, 181)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(TxtIdCategoria16, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TxtIdCategoria15, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TxtIdCategoria2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TxtIdCategoria17, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(TxtIdCategoria18, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxtIdCategoria19, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(TxtPesoGS, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(161, 170, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PesoGE, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtFechaGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(TxtNetoG, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(220, 229, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1393,33 +1423,29 @@ public class PPeso extends javax.swing.JFrame {
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtIdCategoria2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtIdCategoria17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TxtIdCategoria18, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtIdCategoria19, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton19)))
+                    .addComponent(TxtFechaGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtIdCategoria15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PesoGE, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtIdCategoria16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtPesoGS, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtNetoG, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("DATOS GUIA", jPanel4);
@@ -1523,7 +1549,7 @@ public class PPeso extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1556,9 +1582,9 @@ public class PPeso extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxtIdCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdCategoriaActionPerformed
+    private void TxtIdPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdPesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdCategoriaActionPerformed
+    }//GEN-LAST:event_TxtIdPesoActionPerformed
 
     private void TxtPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPlacaActionPerformed
         BusquedaPlaca();        // TODO add your handling code here:
@@ -1618,9 +1644,9 @@ public class PPeso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtChoferActionPerformed
 
-    private void TxtIdCategoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdCategoria1ActionPerformed
+    private void TxtGuiaBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtGuiaBusquedaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdCategoria1ActionPerformed
+    }//GEN-LAST:event_TxtGuiaBusquedaActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -1646,25 +1672,25 @@ public class PPeso extends javax.swing.JFrame {
         BusquedaIdProducto();        // TODO add your handling code here:
     }//GEN-LAST:event_TxtIdProductoActionPerformed
 
-    private void TxtIdCategoria15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdCategoria15ActionPerformed
+    private void PesoGEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesoGEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdCategoria15ActionPerformed
+    }//GEN-LAST:event_PesoGEActionPerformed
 
-    private void TxtIdCategoria16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdCategoria16ActionPerformed
+    private void TxtPesoGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPesoGSActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdCategoria16ActionPerformed
+    }//GEN-LAST:event_TxtPesoGSActionPerformed
 
-    private void TxtIdCategoria17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdCategoria17ActionPerformed
+    private void TxtFechaGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFechaGuiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdCategoria17ActionPerformed
+    }//GEN-LAST:event_TxtFechaGuiaActionPerformed
 
-    private void TxtIdCategoria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdCategoria2ActionPerformed
+    private void TxtGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtGuiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdCategoria2ActionPerformed
+    }//GEN-LAST:event_TxtGuiaActionPerformed
 
-    private void TxtIdCategoria18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdCategoria18ActionPerformed
+    private void TxtIdProveClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdProveClienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdCategoria18ActionPerformed
+    }//GEN-LAST:event_TxtIdProveClienActionPerformed
 
     private void TxtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtProductoActionPerformed
         // TODO add your handling code here:
@@ -1779,9 +1805,9 @@ public class PPeso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton18ActionPerformed
 
-    private void TxtIdCategoria19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdCategoria19ActionPerformed
+    private void TxtRazonSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtRazonSocialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdCategoria19ActionPerformed
+    }//GEN-LAST:event_TxtRazonSocialActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
   VtnProveClien.setVisible(true);
@@ -1843,6 +1869,10 @@ public class PPeso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton23ActionPerformed
 
+    private void TxtNetoGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNetoGActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtNetoGActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1882,6 +1912,9 @@ public class PPeso extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CboBusquedaDestino;
     private javax.swing.JComboBox<String> CboBusquedaProducto;
     private javax.swing.JComboBox<String> CboBusquedaProveClien;
+    private javax.swing.JEditorPane ObserS;
+    private javax.swing.JEditorPane ObservE;
+    private javax.swing.JTextField PesoGE;
     private javax.swing.JTable TblCategoria;
     private javax.swing.JTable TblConductorVehiculo;
     private javax.swing.JTable TblDestino;
@@ -1893,25 +1926,25 @@ public class PPeso extends javax.swing.JFrame {
     private javax.swing.JTextField TxtBusquedaProveClien;
     private javax.swing.JTextField TxtChofer;
     private javax.swing.JTextField TxtDestino;
+    private javax.swing.JTextField TxtFechaGuia;
     private javax.swing.JTextField TxtFechaHoraEnt;
     private javax.swing.JTextField TxtFechaHoraSal;
-    private javax.swing.JTextField TxtIdCategoria;
-    private javax.swing.JTextField TxtIdCategoria1;
-    private javax.swing.JTextField TxtIdCategoria15;
-    private javax.swing.JTextField TxtIdCategoria16;
-    private javax.swing.JTextField TxtIdCategoria17;
-    private javax.swing.JTextField TxtIdCategoria18;
-    private javax.swing.JTextField TxtIdCategoria19;
-    private javax.swing.JTextField TxtIdCategoria2;
+    private javax.swing.JTextField TxtGuia;
+    private javax.swing.JTextField TxtGuiaBusqueda;
     private javax.swing.JTextField TxtIdDestino;
+    private javax.swing.JTextField TxtIdPeso;
     private javax.swing.JTextField TxtIdPlaca;
     private javax.swing.JTextField TxtIdProducto;
+    private javax.swing.JTextField TxtIdProveClien;
+    private javax.swing.JTextField TxtNetoC;
+    private javax.swing.JTextField TxtNetoG;
     private javax.swing.JTextField TxtPesoCE;
     private javax.swing.JTextField TxtPesoCS;
-    private javax.swing.JTextField TxtPesoNeto;
+    private javax.swing.JTextField TxtPesoGS;
     private javax.swing.JTextField TxtPesoVarianza;
     private javax.swing.JTextField TxtPlaca;
     private javax.swing.JTextField TxtProducto;
+    private javax.swing.JTextField TxtRazonSocial;
     private javax.swing.JDialog VtnConductorVehiculo;
     private javax.swing.JDialog VtnDestino;
     private javax.swing.JDialog VtnPeso;
@@ -1937,8 +1970,6 @@ public class PPeso extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JEditorPane jEditorPane2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1965,6 +1996,8 @@ public class PPeso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

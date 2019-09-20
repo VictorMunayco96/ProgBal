@@ -314,7 +314,7 @@ in _ProveClien varchar(45),
 in _Destino varchar(45),
 in _Producto varchar(45),
 in _Placa varchar(9),
-in _Opcion varchar(1)
+in _Opcion varchar(4)
 )
 BEGIN
 if _Opcion='T' then

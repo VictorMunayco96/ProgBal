@@ -20,17 +20,19 @@ public class DProveClien {
     
 int IdProveClien;
 String RazonSocial;
-int Ruc;
+long Ruc;
 String Opcion;
 
 public DProveClien(){}
 
-public DProveClien(int IdProveClien,String RazonSocial,int Ruc,String Opcion){
-this.IdProveClien = IdProveClien;
-this.RazonSocial = RazonSocial;
-this.Ruc = Ruc;
-this.Opcion = Opcion;
-}
+    public DProveClien(int IdProveClien, String RazonSocial, long Ruc, String Opcion) {
+        this.IdProveClien = IdProveClien;
+        this.RazonSocial = RazonSocial;
+        this.Ruc = Ruc;
+        this.Opcion = Opcion;
+    }
+
+
 public int getIdProveClien(){
 return IdProveClien;
 }
@@ -39,7 +41,7 @@ public String getRazonSocial(){
 return RazonSocial;
 }
 
-public int getRuc(){
+public long getRuc(){
 return Ruc;
 }
 
@@ -54,7 +56,7 @@ this.IdProveClien=IdProveClien;
 public void setRazonSocial(String RazonSocial) {
 this.RazonSocial=RazonSocial;
 }
-public void setRuc(int Ruc) {
+public void setRuc(long Ruc) {
 this.Ruc=Ruc;
 }
 public void setOpcion(String Opcion) {
@@ -69,7 +71,7 @@ public String DSetProveClien(DProveClien Campo) {
             CallableStatement Proc = Con.prepareCall(" CALL PASetProveClien(?,?,?,?)");
 Proc.setInt(1, Campo.getIdProveClien());
 Proc.setString(2, Campo.getRazonSocial());
-Proc.setInt(3, Campo.getRuc());
+Proc.setLong(3, Campo.getRuc());
 Proc.setString(4, Campo.getOpcion());
  Proc.execute();
             rpta = "Ingreso correctamente";
@@ -97,7 +99,7 @@ String[] titulos = {"ID","RAZON SOCIAL","RUC"};
             CallableStatement Proc = Con.prepareCall(" CALL PAGetProveClien(?,?,?,?)");
 Proc.setInt(1, Campo.getIdProveClien());
 Proc.setString(2, Campo.getRazonSocial());
-Proc.setInt(3, Campo.getRuc());
+Proc.setLong(3, Campo.getRuc());
 Proc.setString(4, Campo.getOpcion());
 Proc.execute();
             ResultSet rs = Proc.executeQuery();

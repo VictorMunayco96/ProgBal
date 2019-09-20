@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 public class NProveClien {
  
     
-    public String NSetProveClien(int IdProveClien,String RazonSocial,int Ruc,String Opcion){
+    public String NSetProveClien(int IdProveClien,String RazonSocial,long Ruc,String Opcion){
 
 DProveClien Obj = new DProveClien();
 Obj.setIdProveClien(IdProveClien);

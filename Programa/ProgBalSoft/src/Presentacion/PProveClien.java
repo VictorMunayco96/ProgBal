@@ -65,7 +65,7 @@ TxtRuc.setText("");
             if (!TxtRuc.getText().isEmpty() || !TxtRazonSocial.getText().isEmpty()) {
                 try {
                     
-                    NProveClien.NSetProveClien(DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Number(TxtRuc.getText()),   Accion);
+                    NProveClien.NSetProveClien(DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Text(TxtRazonSocial.getText()),Long.parseLong(TxtRuc.getText()),   Accion);
                     
                     
                     PGetProveClien(TxtBusqueda.getText(), "T");
@@ -82,7 +82,7 @@ TxtRuc.setText("");
 
             try {
                 //MODIFICAR
-               NProveClien.NSetProveClien(DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Number(TxtRuc.getText()),   Accion);
+               NProveClien.NSetProveClien(DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Text(TxtRazonSocial.getText()),Long.parseLong(TxtRuc.getText()),   Accion);
                  PGetProveClien(TxtBusqueda.getText(), "T");
 
                     JOptionPane.showMessageDialog(null, "REGISTRO EDITADO");
@@ -101,7 +101,7 @@ TxtRuc.setText("");
 
                 int fila = TblProveClien.getSelectedRow();
 
-               NProveClien.NSetProveClien(DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Text(TxtRazonSocial.getText()),DefaultValue.Number(TxtRuc.getText()),   Accion);
+               NProveClien.NSetProveClien(DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Text(TxtRazonSocial.getText()),Long.parseLong(TxtRuc.getText()),   Accion);
                  PGetProveClien(TxtBusqueda.getText(), "T");
                  JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
                 PNew();
@@ -147,7 +147,13 @@ TxtRuc.setText("");
         jButton7 = new javax.swing.JButton();
         CboBusqueda = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("PROVEEDOR/CLIENTE");
+        setAlwaysOnTop(true);
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+        jTabbedPane1.setOpaque(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -316,7 +322,7 @@ TxtRuc.setText("");
                 .addComponent(jButton9))
         );
 
-        jTabbedPane1.addTab("MATENIMIENTO", jPanel2);
+        jTabbedPane1.addTab("", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -423,7 +429,7 @@ TxtRuc.setText("");
                     .addGap(0, 400, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("REGISTROS", jPanel3);
+        jTabbedPane1.addTab("", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
