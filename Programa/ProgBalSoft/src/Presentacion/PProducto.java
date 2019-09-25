@@ -176,7 +176,7 @@ public class PProducto extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblProducto = new javax.swing.JTable();
-        CboBusqueda = new javax.swing.JComboBox<>();
+        CboBusqueda = new javax.swing.JComboBox<String>();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -302,7 +302,6 @@ public class PProducto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("PRODUCTO");
-        setAlwaysOnTop(true);
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
@@ -552,7 +551,7 @@ public class PProducto extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TblProducto);
 
         CboBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
-        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID PRODUCTO", "PRODUCTO", "DESCRIPCION", "CATEGORIA" }));
+        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID PRODUCTO", "PRODUCTO", "DESCRIPCION", "CATEGORIA" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

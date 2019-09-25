@@ -39,7 +39,17 @@ public class PPeso extends javax.swing.JFrame {
     String TipoMovimiento = "";
     String Estado = "T";
     
+    public String ValidateDate(String Fecha){
     
+        try {
+            if (Fecha!="") {
+                return Fecha;
+            }
+        } catch (Exception e) {
+            return "1990-09-09 00:00:00";
+        }
+         return "1990-09-09 00:00:00";
+    }
 
     public String Movimiento() {
 
@@ -282,7 +292,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
             if (!TxtPlaca.getText().isEmpty()) {
                 try {
                     
-                    NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),TipoMovimiento,DefaultValue.Long(TxtNumGuia.getText()),DefaultValue.Text(TxtFechaHoraSal.getText()),DefaultValue.Text(TxtFechaHoraEnt.getText()),DefaultValue.Number(TxtPesoCE.getText()),DefaultValue.Number(TxtPesoCS.getText()),DefaultValue.Number(TxtNetoC.getText()),DefaultValue.Text(TxtObservE.getText()),DefaultValue.Text(TxtObservS.getText()),Estado,Integer.parseInt(PMenu.LblIdUsuario.getText()),DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.NumberUno(TxtIdDestino.getText()),DefaultValue.NumberUno(TxtIdProducto.getText()),DefaultValue.Number(TxtIdConductorVehiculo.getText()),   Accion);
+                    NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),TipoMovimiento,DefaultValue.Long(TxtNumGuia.getText()),"2000-12-12 00:00:00",DefaultValue.Text(TxtFechaHoraEnt.getText()),DefaultValue.Number(TxtPesoCE.getText()),DefaultValue.Number(TxtPesoCS.getText()),DefaultValue.Number(TxtNetoC.getText()),DefaultValue.Text(TxtObservE.getText()),DefaultValue.Text(TxtObservS.getText()),Estado,Integer.parseInt(PMenu.LblIdUsuario.getText()),DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.NumberUno(TxtIdDestino.getText()),DefaultValue.NumberUno(TxtIdProducto.getText()),DefaultValue.Number(TxtIdConductorVehiculo.getText()),   Accion);
                     
                     
                    // PGetPeso(TxtBusqueda.getText(), "T");
@@ -318,7 +328,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
 
                 int fila = TblPeso.getSelectedRow();
 
-               NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),"",DefaultValue.Long(TxtNumGuia.getText()),DefaultValue.Text(TxtFechaHoraSal.getText()),DefaultValue.Text(TxtFechaHoraEnt.getText()),DefaultValue.Number(TxtPesoCE.getText()),DefaultValue.Number(TxtPesoCS.getText()),DefaultValue.Number(TxtNetoC.getText()),DefaultValue.Text(TxtObservE.getText()),DefaultValue.Text(TxtObservS.getText()),"",0,DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Number(TxtIdDestino.getText()),DefaultValue.Number(TxtIdProducto.getText()),DefaultValue.Number(TxtIdConductorVehiculo.getText()),   Accion);
+               NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),"",DefaultValue.Long(TxtNumGuia.getText()),ValidateDate(TxtFechaHoraSal.getText()),DefaultValue.Text(TxtFechaHoraEnt.getText()),DefaultValue.Number(TxtPesoCE.getText()),DefaultValue.Number(TxtPesoCS.getText()),DefaultValue.Number(TxtNetoC.getText()),DefaultValue.Text(TxtObservE.getText()),DefaultValue.Text(TxtObservS.getText()),"",0,DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Number(TxtIdDestino.getText()),DefaultValue.Number(TxtIdProducto.getText()),DefaultValue.Number(TxtIdConductorVehiculo.getText()),   Accion);
                //  PGetPeso(TxtBusqueda.getText(), "T");
                  JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
                 PNew();
@@ -379,7 +389,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jButton15 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TblProducto = new javax.swing.JTable();
-        CboBusquedaProducto = new javax.swing.JComboBox<>();
+        CboBusquedaProducto = new javax.swing.JComboBox<String>();
         jButton16 = new javax.swing.JButton();
         VtnDestino = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
@@ -389,7 +399,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jButton17 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         TblDestino = new javax.swing.JTable();
-        CboBusquedaDestino = new javax.swing.JComboBox<>();
+        CboBusquedaDestino = new javax.swing.JComboBox<String>();
         jButton18 = new javax.swing.JButton();
         VtnPeso = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
@@ -404,7 +414,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jScrollPane8 = new javax.swing.JScrollPane();
         TblProveClien = new javax.swing.JTable();
         jButton22 = new javax.swing.JButton();
-        CboBusquedaProveClien = new javax.swing.JComboBox<>();
+        CboBusquedaProveClien = new javax.swing.JComboBox<String>();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -563,7 +573,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jScrollPane3.setViewportView(TblProducto);
 
         CboBusquedaProducto.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
-        CboBusquedaProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "DESCRIPCION", "ID PRODUCTO", "CATEGORIA" }));
+        CboBusquedaProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PRODUCTO", "DESCRIPCION", "ID PRODUCTO", "CATEGORIA" }));
 
         jButton16.setBackground(new java.awt.Color(0, 153, 0));
         jButton16.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
@@ -692,7 +702,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jScrollPane5.setViewportView(TblDestino);
 
         CboBusquedaDestino.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        CboBusquedaDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DESTINO", "ID DESTINO" }));
+        CboBusquedaDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DESTINO", "ID DESTINO" }));
 
         jButton18.setBackground(new java.awt.Color(0, 153, 0));
         jButton18.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
@@ -890,7 +900,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         });
 
         CboBusquedaProveClien.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
-        CboBusquedaProveClien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RAZON SOCIAL", "RUC", " " }));
+        CboBusquedaProveClien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RAZON SOCIAL", "RUC", " " }));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);

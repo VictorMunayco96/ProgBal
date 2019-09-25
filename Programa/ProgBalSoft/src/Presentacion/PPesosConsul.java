@@ -72,9 +72,9 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
         jScrollPane1 = new javax.swing.JScrollPane();
         TblPeso = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
-        CboBusqueda = new javax.swing.JComboBox<>();
+        CboBusqueda = new javax.swing.JComboBox<String>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -134,7 +134,7 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
         });
 
         CboBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "PROVEEDOR", "IDPESO" }));
+        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PRODUCTO", "PROVEEDOR", "IDPESO" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
