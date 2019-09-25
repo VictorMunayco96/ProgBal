@@ -13,19 +13,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class NPeso {
     
-public String NSetPeso(int IdPeso,String TipoMovimiento,String Guia,String FechaGuia,String FechaHoraSal,String FechaHoraEnt,int PesoCE,int PesoCS,int PesoGE,int PesoGS,String ObservE,String ObservS,String Estado,int DNI,int IdProveClien,int IdDestino,int IdProducto,int IdConductorVehiculo,String Opcion){
+
+public String NSetPeso(int IdPeso,String TipoMovimiento,long NumGuia,String FechaHoraSal,String FechaHoraEnt,int PesoCE,int PesoCS,int NetoC,String ObservE,String ObservS,String Estado,int DNI,int IdProveClien,int IdDestino,int IdProducto,int IdConductorVehiculo,String Opcion){
 
 DPeso Obj = new DPeso();
 Obj.setIdPeso(IdPeso);
 Obj.setTipoMovimiento(TipoMovimiento);
-Obj.setGuia(Guia);
-Obj.setFechaGuia(FechaGuia);
+Obj.setNumGuia(NumGuia);
 Obj.setFechaHoraSal(FechaHoraSal);
 Obj.setFechaHoraEnt(FechaHoraEnt);
 Obj.setPesoCE(PesoCE);
 Obj.setPesoCS(PesoCS);
-Obj.setPesoGE(PesoGE);
-Obj.setPesoGS(PesoGS);
+Obj.setNetoC(NetoC);
 Obj.setObservE(ObservE);
 Obj.setObservS(ObservS);
 Obj.setEstado(Estado);
@@ -39,14 +38,17 @@ return Obj.DSetPeso(Obj);
 }
 
 
-public DefaultTableModel NGetPeso(int IdPeso,int IdProducto,String Opcion){
+public DefaultTableModel NGetPeso(int IdPeso,long NumGuia,String Estado,String RazonSocial,String Destino,String Descripcion,String Opcion){
 DPeso Obj = new DPeso();
 
 Obj.setIdPeso(IdPeso);
-Obj.setIdProducto(IdProducto);
+Obj.setNumGuia(NumGuia);
+Obj.setEstado(Estado);
+Obj.setRazonSocial(RazonSocial);
+Obj.setDestino(Destino);
+Obj.setDescripcion(Descripcion);
 Obj.setOpcion(Opcion);
 
  return Obj.DGetPeso(Obj);
 }
- 
 }

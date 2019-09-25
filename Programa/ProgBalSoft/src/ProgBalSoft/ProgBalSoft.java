@@ -7,6 +7,7 @@ import Presentacion.PConductorVehiculo;
 import Presentacion.PUsuario;
 import Presentacion.PEmpreTrans;
 import Presentacion.PDestino;
+import Presentacion.PLogin;
 import Presentacion.PProducto;
 import Presentacion.PMenu;
 import Presentacion.PPeso;
@@ -18,11 +19,17 @@ import Presentacion.PVehiculo;
 
 public class ProgBalSoft {
     public static void main(String[] args) {
-        //PProveClien Obj = new PProveClien();
+     //PProveClien Obj = new PProveClien();
      //   PPeso  Obj = new PPeso();
-      PMenu Obj = new PMenu();
+     PLogin Obj = new PLogin();
+     
+     
+        //PMenu Obj = new PMenu();
         Obj.setVisible(true);
         Obj.setLocationRelativeTo(null);
- Obj.setExtendedState(Obj.MAXIMIZED_BOTH);
+        
+
+        
+
     }
 }

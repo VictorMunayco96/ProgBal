@@ -97,7 +97,7 @@ public DefaultTableModel DGetEmpreTrans(DEmpreTrans Campo) {
         Conexion Cn = new Conexion();
         Connection Con = Cn.Conexion();
        DefaultTableModel modelo = null ;
-String[] titulos = {"Ruc","Razon Social","Domicilio","Num Cel"};
+String[] titulos = {"RUC","RAZON SOCIAL","DOMICILIO","CELULAR"};
         String[] registro = new String[4];
 
         modelo = new DefaultTableModel(null, titulos);

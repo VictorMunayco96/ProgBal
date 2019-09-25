@@ -22,7 +22,7 @@ return Obj.DSetEmpreTrans(Obj);
 }
 
 
-public DefaultTableModel NGetEmpreTrans(int RUC,String RazonSocial,String Opcion){
+public DefaultTableModel NGetEmpreTrans(long RUC,String RazonSocial,String Opcion){
 DEmpreTrans Obj = new DEmpreTrans();
 
 Obj.setRUC(RUC);

@@ -19,6 +19,7 @@ public class PMenu extends javax.swing.JFrame {
      */
     public PMenu() {
         initComponents();
+        jButton4.setVisible(false);
     }
     
     public void Dentro(JButton Boton){
@@ -56,21 +57,17 @@ public class PMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        LblNombreUsuario = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        LblIdUsuario = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        LblTipoUsuario = new javax.swing.JLabel();
         TabPestaña = new javax.swing.JTabbedPane();
         INICIO = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
         MANTENIMIENTO = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
@@ -78,7 +75,6 @@ public class PMenu extends javax.swing.JFrame {
         CONFIGURACION = new javax.swing.JPanel();
         jButton17 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
         TRANSPORTE = new javax.swing.JPanel();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
@@ -172,15 +168,15 @@ public class PMenu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 15, Short.MAX_VALUE))
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 15, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -217,7 +213,7 @@ public class PMenu extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,21 +225,27 @@ public class PMenu extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 153, 65));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Usuario.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/login-w-icon.png"))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel5.setText("USUARIO");
+        LblNombreUsuario.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        LblNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        LblNombreUsuario.setText("USUARIO");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("TIPO USUARIO");
 
-        jLabel7.setText("jLabel5");
+        LblIdUsuario.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        LblIdUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        LblIdUsuario.setText("70605597");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("USUARIO");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel9.setText("USUARIO");
+        LblTipoUsuario.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        LblTipoUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        LblTipoUsuario.setText("USUARIO");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -256,14 +258,14 @@ public class PMenu extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(193, Short.MAX_VALUE))
+                            .addComponent(LblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .addComponent(LblTipoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(LblIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,14 +277,14 @@ public class PMenu extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LblTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(LblIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -343,7 +345,7 @@ public class PMenu extends javax.swing.JFrame {
 
         jButton8.setBackground(new java.awt.Color(255, 255, 204));
         jButton8.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
-        jButton8.setText("BALANZA");
+        jButton8.setText("CONSULTA");
         jButton8.setBorderPainted(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton8.setFocusPainted(false);
@@ -361,90 +363,6 @@ public class PMenu extends javax.swing.JFrame {
             }
         });
         jPanel7.add(jButton8);
-
-        jButton9.setBackground(new java.awt.Color(255, 255, 204));
-        jButton9.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
-        jButton9.setText("BALANZA");
-        jButton9.setBorderPainted(false);
-        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton9.setFocusPainted(false);
-        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton9MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton9MouseExited(evt);
-            }
-        });
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton9);
-
-        jButton13.setBackground(new java.awt.Color(255, 255, 204));
-        jButton13.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
-        jButton13.setText("BALANZA");
-        jButton13.setBorderPainted(false);
-        jButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton13.setFocusPainted(false);
-        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton13MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton13MouseExited(evt);
-            }
-        });
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton13);
-
-        jButton15.setBackground(new java.awt.Color(255, 255, 204));
-        jButton15.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
-        jButton15.setText("BALANZA");
-        jButton15.setBorderPainted(false);
-        jButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton15.setFocusPainted(false);
-        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton15MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton15MouseExited(evt);
-            }
-        });
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton15);
-
-        jButton16.setBackground(new java.awt.Color(255, 255, 204));
-        jButton16.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
-        jButton16.setText("BALANZA");
-        jButton16.setBorderPainted(false);
-        jButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton16.setFocusPainted(false);
-        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton16MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton16MouseExited(evt);
-            }
-        });
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton16);
 
         TabPestaña.addTab("", jPanel7);
 
@@ -561,27 +479,6 @@ public class PMenu extends javax.swing.JFrame {
         });
         CONFIGURACION.add(jButton19);
 
-        jButton22.setBackground(new java.awt.Color(255, 255, 204));
-        jButton22.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
-        jButton22.setText("BALANZA");
-        jButton22.setBorderPainted(false);
-        jButton22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton22.setFocusPainted(false);
-        jButton22.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton22MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton22MouseExited(evt);
-            }
-        });
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
-            }
-        });
-        CONFIGURACION.add(jButton22);
-
         TabPestaña.addTab("", CONFIGURACION);
 
         TRANSPORTE.setBackground(new java.awt.Color(255, 255, 255));
@@ -680,8 +577,8 @@ public class PMenu extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TabPestaña)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(TabPestaña, javax.swing.GroupLayout.DEFAULT_SIZE, 1131, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -717,16 +614,18 @@ TabPestaña.setSelectedIndex(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+PPeso Obj = new PPeso();   
+ Obj.setVisible(true);
+        Obj.setLocationRelativeTo(this); 
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+PPesosConsul Obj = new PPesosConsul(); 
+Obj.setVisible(true);
+        Obj.setLocationRelativeTo(this);
+        Obj.setExtendedState(Obj.MAXIMIZED_BOTH);// TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
         Dentro(jButton7);
@@ -743,52 +642,6 @@ TabPestaña.setSelectedIndex(0);        // TODO add your handling code here:
     private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
         Fuera(jButton8);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton8MouseExited
-
-    private void jButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseEntered
-  Dentro(jButton9);         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9MouseEntered
-
-    private void jButton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseExited
-  Fuera(jButton9);         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9MouseExited
-
-    private void jButton13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseEntered
-   Dentro(jButton13);  
-    }//GEN-LAST:event_jButton13MouseEntered
-
-    private void jButton13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseExited
-      Fuera(jButton13);    // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13MouseExited
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        PConductor Obj = new PConductor();
-        Obj.setVisible(true);
-        Obj.setLocationRelativeTo(this);
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseEntered
-      Dentro(jButton15);    // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15MouseEntered
-
-    private void jButton15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseExited
-      Fuera(jButton15);  // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15MouseExited
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseEntered
-       Dentro(jButton16);   // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16MouseEntered
-
-    private void jButton16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseExited
-      Fuera(jButton16);  // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16MouseExited
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 TabPestaña.setSelectedIndex(2);         // TODO add your handling code here:
@@ -875,18 +728,6 @@ PCategoria Obj = new PCategoria();
 Obj.setVisible(true);
 Obj.setLocationRelativeTo(null);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton19ActionPerformed
-
-    private void jButton22MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton22MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22MouseEntered
-
-    private void jButton22MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton22MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22MouseExited
-
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton20MouseEntered
         // TODO add your handling code here:
@@ -982,6 +823,9 @@ Obj.setLocationRelativeTo(null);        // TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CONFIGURACION;
     private javax.swing.JPanel INICIO;
+    public static javax.swing.JLabel LblIdUsuario;
+    public static javax.swing.JLabel LblNombreUsuario;
+    public static javax.swing.JLabel LblTipoUsuario;
     private javax.swing.JPanel MANTENIMIENTO;
     private javax.swing.JPanel TRANSPORTE;
     private javax.swing.JTabbedPane TabPestaña;
@@ -989,15 +833,11 @@ Obj.setLocationRelativeTo(null);        // TODO add your handling code here:
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton3;
@@ -1005,16 +845,12 @@ Obj.setLocationRelativeTo(null);        // TODO add your handling code here:
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

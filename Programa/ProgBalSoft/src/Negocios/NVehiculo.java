@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Administrador
  */
 public class NVehiculo {
-    public String NSetVehiculo(String Placa,String Marca,int Ruc,String Opcion){
+    public String NSetVehiculo(String Placa,String Marca,long Ruc,String Opcion){
 
 DVehiculo Obj = new DVehiculo();
 Obj.setPlaca(Placa);
@@ -23,7 +23,7 @@ return Obj.DSetVehiculo(Obj);
 }
 
 
-public DefaultTableModel NGetVehiculo(String Placa,int Ruc,String RazonSocial,String Opcion){
+public DefaultTableModel NGetVehiculo(String Placa,long Ruc,String RazonSocial,String Opcion){
 DVehiculo Obj = new DVehiculo();
 
 Obj.setPlaca(Placa);

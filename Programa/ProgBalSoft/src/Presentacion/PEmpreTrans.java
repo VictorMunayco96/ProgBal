@@ -43,12 +43,12 @@ TxtNumCel.setText("");
 
         try {
 
-            TblEmpreTrans.setModel(NEmpreTrans.NGetEmpreTrans(DefaultValue.Number(TextBusqueda),DefaultValue.Text(TextBusqueda),Accion));
+            TblEmpreTrans.setModel(NEmpreTrans.NGetEmpreTrans(DefaultValue.Long(TextBusqueda),DefaultValue.Text(TextBusqueda),Accion));
 
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, "ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
+         
             System.out.println(e);
         }
     } 
@@ -145,7 +145,6 @@ NEmpreTrans.NSetEmpreTrans(Long.parseLong(TxtRUC.getText()),DefaultValue.Text(Tx
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("EMPRESA TRANSPORTISTA");
-        setAlwaysOnTop(true);
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);

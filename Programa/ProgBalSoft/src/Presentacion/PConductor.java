@@ -157,7 +157,6 @@ TxtApellidos.setText("");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CONDUCTOR");
-        setAlwaysOnTop(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -574,7 +573,7 @@ TxtApellidos.setText("");
     }//GEN-LAST:event_TblConductorMousePressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

@@ -140,7 +140,6 @@ TxtDestino.setText("");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("DESTINO");
-        setAlwaysOnTop(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

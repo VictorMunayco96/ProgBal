@@ -58,7 +58,7 @@ public class PVehiculo extends javax.swing.JFrame {
 
         try {
 
-            TblVehiculo.setModel(NVehiculo.NGetVehiculo(DefaultValue.Text(TextBusqueda), DefaultValue.Number(TextBusqueda), DefaultValue.Text(TextBusqueda), Accion));
+            TblVehiculo.setModel(NVehiculo.NGetVehiculo(DefaultValue.Text(TextBusqueda), DefaultValue.Long(TextBusqueda), DefaultValue.Text(TextBusqueda), Accion));
 
         } catch (Exception e) {
 
@@ -73,7 +73,7 @@ public class PVehiculo extends javax.swing.JFrame {
 
         try {
 
-            TblEmpreTrans.setModel(NEmpreTrans.NGetEmpreTrans(DefaultValue.Number(TextBusqueda),DefaultValue.Text(TextBusqueda),Accion));
+            TblEmpreTrans.setModel(NEmpreTrans.NGetEmpreTrans(DefaultValue.Long(TextBusqueda),DefaultValue.Text(TextBusqueda),Accion));
 
 
         } catch (Exception e) {
@@ -95,7 +95,7 @@ public class PVehiculo extends javax.swing.JFrame {
             if (!TxtPlaca.getText().isEmpty() || !TxtRuc.getText().isEmpty() || !TxtRazonSocial.getText().isEmpty()) {
                 try {
 
-                    NVehiculo.NSetVehiculo(DefaultValue.Text(TxtPlaca.getText()), DefaultValue.Text(TxtMarca.getText()), DefaultValue.Number(TxtRuc.getText()), Accion);
+                    NVehiculo.NSetVehiculo(DefaultValue.Text(TxtPlaca.getText()), DefaultValue.Text(TxtMarca.getText()), DefaultValue.Long(TxtRuc.getText()), Accion);
 
                     PGetVehiculo(TxtBusqueda.getText(), "T");
 
@@ -111,7 +111,7 @@ public class PVehiculo extends javax.swing.JFrame {
 
             try {
                 //MODIFICAR
-                NVehiculo.NSetVehiculo(DefaultValue.Text(TxtPlaca.getText()), DefaultValue.Text(TxtMarca.getText()), DefaultValue.Number(TxtRuc.getText()), Accion);
+                NVehiculo.NSetVehiculo(DefaultValue.Text(TxtPlaca.getText()), DefaultValue.Text(TxtMarca.getText()), DefaultValue.Long(TxtRuc.getText()), Accion);
                 PGetVehiculo(TxtBusqueda.getText(), "T");
 
                 JOptionPane.showMessageDialog(null, "REGISTRO EDITADO");
@@ -129,7 +129,7 @@ public class PVehiculo extends javax.swing.JFrame {
 
                     int fila = TblVehiculo.getSelectedRow();
 
-                    NVehiculo.NSetVehiculo(DefaultValue.Text(TxtPlaca.getText()), DefaultValue.Text(TxtMarca.getText()), DefaultValue.Number(TxtRuc.getText()), Accion);
+                    NVehiculo.NSetVehiculo(DefaultValue.Text(TxtPlaca.getText()), DefaultValue.Text(TxtMarca.getText()), DefaultValue.Long(TxtRuc.getText()), Accion);
                     PGetVehiculo(TxtBusqueda.getText(), "T");
                     JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
                     PNew();
@@ -319,7 +319,6 @@ public class PVehiculo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VEHICULO");
-        setAlwaysOnTop(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -504,10 +503,11 @@ public class PVehiculo extends javax.swing.JFrame {
                     .addComponent(TxtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TxtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)

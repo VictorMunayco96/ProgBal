@@ -25,6 +25,7 @@ public class PConductorVehiculo extends javax.swing.JFrame {
         initComponents();
         PNew();
         TxtFecha.setEnabled(false);
+        PGetConductorVehiculo("", "T");
     }
 
       NConductor NConductor = new NConductor();
@@ -334,7 +335,6 @@ public void PGetConductorVehiculo(String TextBusqueda, String Accion) {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CONDUCTOR VEHICULO");
-        setAlwaysOnTop(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

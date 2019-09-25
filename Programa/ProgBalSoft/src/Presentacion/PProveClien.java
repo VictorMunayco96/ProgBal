@@ -149,7 +149,6 @@ TxtRuc.setText("");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("PROVEEDOR/CLIENTE");
-        setAlwaysOnTop(true);
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);

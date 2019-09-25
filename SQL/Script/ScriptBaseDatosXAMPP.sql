@@ -24,7 +24,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`EmpreTrans` (
   `Ruc` BIGINT NOT NULL,
   `RazonSocial` VARCHAR(80) NULL,
-  `Domicilio` VARCHAR(100) NULL,
+  `Domicilio` VARCHAR(60) NULL,
   `NumCel` VARCHAR(15) NULL,
   PRIMARY KEY (`Ruc`))
 ENGINE = InnoDB;
@@ -112,7 +112,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Usuario` (
   `Apellidos` VARCHAR(45) NULL,
   `Usuario` VARCHAR(45) NULL,
   `Contrasena` VARCHAR(45) NULL,
-  PRIMARY KEY (`DNI`))
+  PRIMARY KEY (`DNI`),
+  UNIQUE INDEX `Usuario_UNIQUE` (`Usuario` ASC))
 ENGINE = InnoDB;
 
 
@@ -140,7 +141,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Peso` (
   `IdPeso` INT NOT NULL AUTO_INCREMENT,
   `TipoMovimiento` VARCHAR(45) NULL,
-  `NumGuia` INT NULL,
+  `NumGuia` BIGINT NULL,
   `FechaHoraSal` DATETIME NULL,
   `FechaHoraEnt` DATETIME NULL,
   `PesoCE` INT NULL,
@@ -193,8 +194,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Guia` (
   `IdGuia` INT NOT NULL AUTO_INCREMENT,
-  `NumGuia` INT NULL,
-  `FechaGuia` INT NULL,
+  `NumGuia` BIGINT NULL,
+  `FechaGuia` DATE NULL,
   `PesoGE` INT NULL,
   `PesoGS` INT NULL,
   `NetoG` INT NULL,

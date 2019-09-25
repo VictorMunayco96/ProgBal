@@ -20,60 +20,97 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DPeso {
     
-    
     int IdPeso;
 String TipoMovimiento;
-String Guia;
-String FechaGuia;
+long NumGuia;
 String FechaHoraSal;
 String FechaHoraEnt;
 int PesoCE;
 int PesoCS;
-int PesoGE;
-int PesoGS;
+int NetoC;
 String ObservE;
 String ObservS;
 String Estado;
 int DNI;
 int IdProveClien;
+String RazonSocial;
+       
+
 int IdDestino;
+String Destino;
 int IdProducto;
+String Descripcion;
 int IdConductorVehiculo;
+String Placa;
 String Opcion;
 
 public DPeso(){}
 
-    public DPeso(int IdPeso, String TipoMovimiento, String Guia, String FechaGuia, String FechaHoraSal, String FechaHoraEnt, int PesoCE, int PesoCS, int PesoGE, int PesoGS, String ObservE, String ObservS, String Estado, int DNI, int IdProveClien, int IdDestino, int IdProducto, int IdConductorVehiculo, String Opcion) {
+    public DPeso(int IdPeso, String TipoMovimiento, long NumGuia, String FechaHoraSal, String FechaHoraEnt, int PesoCE, int PesoCS, int NetoC, String ObservE, String ObservS, String Estado, int DNI, int IdProveClien, String RazonSocial, int IdDestino, String Destino, int IdProducto, String Descripcion, int IdConductorVehiculo, String Placa, String Opcion) {
         this.IdPeso = IdPeso;
         this.TipoMovimiento = TipoMovimiento;
-        this.Guia = Guia;
-        this.FechaGuia = FechaGuia;
+        this.NumGuia = NumGuia;
         this.FechaHoraSal = FechaHoraSal;
         this.FechaHoraEnt = FechaHoraEnt;
         this.PesoCE = PesoCE;
         this.PesoCS = PesoCS;
-        this.PesoGE = PesoGE;
-        this.PesoGS = PesoGS;
+        this.NetoC = NetoC;
         this.ObservE = ObservE;
         this.ObservS = ObservS;
         this.Estado = Estado;
         this.DNI = DNI;
         this.IdProveClien = IdProveClien;
+        this.RazonSocial = RazonSocial;
         this.IdDestino = IdDestino;
+        this.Destino = Destino;
         this.IdProducto = IdProducto;
+        this.Descripcion = Descripcion;
         this.IdConductorVehiculo = IdConductorVehiculo;
+        this.Placa = Placa;
         this.Opcion = Opcion;
     }
 
-    public String getEstado() {
-        return Estado;
+    public String getOpcion() {
+        return Opcion;
     }
 
-    public void setEstado(String Estado) {
-        this.Estado = Estado;
+    public void setOpcion(String Opcion) {
+        this.Opcion = Opcion;
     }
 
+ 
 
+    public String getRazonSocial() {
+        return RazonSocial;
+    }
+
+    public void setRazonSocial(String RazonSocial) {
+        this.RazonSocial = RazonSocial;
+    }
+
+    public String getDestino() {
+        return Destino;
+    }
+
+    public void setDestino(String Destino) {
+        this.Destino = Destino;
+    }
+
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
+    }
+
+    public String getPlaca() {
+        return Placa;
+    }
+
+    public void setPlaca(String Placa) {
+        this.Placa = Placa;
+    }
 
 
 public int getIdPeso(){
@@ -84,12 +121,8 @@ public String getTipoMovimiento(){
 return TipoMovimiento;
 }
 
-public String getGuia(){
-return Guia;
-}
-
-public String getFechaGuia(){
-return FechaGuia;
+public long getNumGuia(){
+return NumGuia;
 }
 
 public String getFechaHoraSal(){
@@ -108,12 +141,8 @@ public int getPesoCS(){
 return PesoCS;
 }
 
-public int getPesoGE(){
-return PesoGE;
-}
-
-public int getPesoGS(){
-return PesoGS;
+public int getNetoC(){
+return NetoC;
 }
 
 public String getObservE(){
@@ -122,6 +151,10 @@ return ObservE;
 
 public String getObservS(){
 return ObservS;
+}
+
+public String getEstado(){
+return Estado;
 }
 
 public int getDNI(){
@@ -144,10 +177,6 @@ public int getIdConductorVehiculo(){
 return IdConductorVehiculo;
 }
 
-public String getOpcion(){
-return Opcion;
-}
-
 
 public void setIdPeso(int IdPeso) {
 this.IdPeso=IdPeso;
@@ -155,11 +184,8 @@ this.IdPeso=IdPeso;
 public void setTipoMovimiento(String TipoMovimiento) {
 this.TipoMovimiento=TipoMovimiento;
 }
-public void setGuia(String Guia) {
-this.Guia=Guia;
-}
-public void setFechaGuia(String FechaGuia) {
-this.FechaGuia=FechaGuia;
+public void setNumGuia(long NumGuia) {
+this.NumGuia=NumGuia;
 }
 public void setFechaHoraSal(String FechaHoraSal) {
 this.FechaHoraSal=FechaHoraSal;
@@ -173,17 +199,17 @@ this.PesoCE=PesoCE;
 public void setPesoCS(int PesoCS) {
 this.PesoCS=PesoCS;
 }
-public void setPesoGE(int PesoGE) {
-this.PesoGE=PesoGE;
-}
-public void setPesoGS(int PesoGS) {
-this.PesoGS=PesoGS;
+public void setNetoC(int NetoC) {
+this.NetoC=NetoC;
 }
 public void setObservE(String ObservE) {
 this.ObservE=ObservE;
 }
 public void setObservS(String ObservS) {
 this.ObservS=ObservS;
+}
+public void setEstado(String Estado) {
+this.Estado=Estado;
 }
 public void setDNI(int DNI) {
 this.DNI=DNI;
@@ -200,35 +226,30 @@ this.IdProducto=IdProducto;
 public void setIdConductorVehiculo(int IdConductorVehiculo) {
 this.IdConductorVehiculo=IdConductorVehiculo;
 }
-public void setOpcion(String Opcion) {
-this.Opcion=Opcion;
-}
 
 public String DSetPeso(DPeso Campo) {
         Conexion Cn = new Conexion();
         Connection Con = Cn.Conexion();
         String rpta = "";
  try {
-            CallableStatement Proc = Con.prepareCall(" CALL PASetPeso(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            CallableStatement Proc = Con.prepareCall(" CALL PASetPeso(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 Proc.setInt(1, Campo.getIdPeso());
 Proc.setString(2, Campo.getTipoMovimiento());
-Proc.setString(3, Campo.getGuia());
-Proc.setString(4, Campo.getFechaGuia());
-Proc.setString(5, Campo.getFechaHoraSal());
-Proc.setString(6, Campo.getFechaHoraEnt());
-Proc.setInt(7, Campo.getPesoCE());
-Proc.setInt(8, Campo.getPesoCS());
-Proc.setInt(9, Campo.getPesoGE());
-Proc.setInt(10, Campo.getPesoGS());
-Proc.setString(11, Campo.getObservE());
-Proc.setString(12, Campo.getObservS());
-Proc.setString(13, Campo.getEstado());
-Proc.setInt(14, Campo.getDNI());
-Proc.setInt(15, Campo.getIdProveClien());
-Proc.setInt(16, Campo.getIdDestino());
-Proc.setInt(17, Campo.getIdProducto());
-Proc.setInt(18, Campo.getIdConductorVehiculo());
-Proc.setString(19, Campo.getOpcion());
+Proc.setLong(3, Campo.getNumGuia());
+Proc.setString(4, Campo.getFechaHoraSal());
+Proc.setString(5, Campo.getFechaHoraEnt());
+Proc.setInt(6, Campo.getPesoCE());
+Proc.setInt(7, Campo.getPesoCS());
+Proc.setInt(8, Campo.getNetoC());
+Proc.setString(9, Campo.getObservE());
+Proc.setString(10, Campo.getObservS());
+Proc.setString(11, Campo.getEstado());
+Proc.setInt(12, Campo.getDNI());
+Proc.setInt(13, Campo.getIdProveClien());
+Proc.setInt(14, Campo.getIdDestino());
+Proc.setInt(15, Campo.getIdProducto());
+Proc.setInt(16, Campo.getIdConductorVehiculo());
+Proc.setString(17, Campo.getOpcion());
  Proc.execute();
             rpta = "Ingreso correctamente";
 
@@ -245,17 +266,42 @@ public DefaultTableModel DGetPeso(DPeso Campo) {
         Conexion Cn = new Conexion();
         Connection Con = Cn.Conexion();
        DefaultTableModel modelo = null ;
-String[] titulos = {"ID PESO","TIPO MOVIMIENTO","GUIA","FECHA GUIA","FECHA SALIDA","FECHA ENTRADA","PE. CAL. ENT","PE. CAL. SAL","PE. GUIA. ENT","PE. GUIA. SAL","OBSER ENT","OBSER SAL","DNI","IDPROVEEDORCLIEN","IDDESTINO","DESTINO","ID PRODUCTO","PRODUCTO","ID CONDUCTOR VEHICULO"};
-        String[] registro = new String[19];
+String[] titulos = {"ID PESO",
+    "TIPO MOVIMIENTO",
+    "N° GUIA",
+    "FECHA HORA SALIDA",
+    "FECHA HORA ENTRADA",
+    "PESO ENTRADA",
+    "PESO SALIDA",
+    "NETO",
+    "OBSERV ENTRADA",
+    "OBSERV SALIDA",
+    "ESTADO",
+    "DNI",
+    "IDPROVECLIEN",
+    "RAZON SOCIAL",
+    "IDCONDUCTORVEHICULO",
+    "PLACA",
+    "NOMBRE",
+    "APELLIDOS",
+    "IDDESTINO",
+    "DESTINO",
+    "IDPRODUCTO",
+    "TIPO ALIMENTO"};
+        String[] registro = new String[22];
 
         modelo = new DefaultTableModel(null, titulos);
 
         try {
 
-            CallableStatement Proc = Con.prepareCall(" CALL PAGetPeso(?,?,?)");
+            CallableStatement Proc = Con.prepareCall(" CALL PAGetPeso(?,?,?,?,?,?,?)");
 Proc.setInt(1, Campo.getIdPeso());
-Proc.setInt(2, Campo.getIdProducto());
-Proc.setString(3, Campo.getOpcion());
+Proc.setLong(2, Campo.getNumGuia());
+Proc.setString(3, Campo.getEstado());
+Proc.setString(4, Campo.getRazonSocial());
+Proc.setString(5, Campo.getDestino());
+Proc.setString(6, Campo.getDescripcion());
+Proc.setString(7, Campo.getOpcion());
 Proc.execute();
             ResultSet rs = Proc.executeQuery();
             while (rs.next()) {
@@ -278,7 +324,10 @@ registro[15] = rs.getString(16);
 registro[16] = rs.getString(17);
 registro[17] = rs.getString(18);
 registro[18] = rs.getString(19);
-registro[19] = rs.getString(19);
+registro[19] = rs.getString(20);
+registro[20] = rs.getString(21);
+registro[21] = rs.getString(22);
+
 modelo.addRow(registro);
             }
             return modelo;
@@ -287,10 +336,8 @@ modelo.addRow(registro);
             JOptionPane.showMessageDialog(null, e + "error aqui");
             return null;
 
-        }
-
-    }
-    
+        }}
+   
     
     
 

@@ -20,13 +20,13 @@ public class DVehiculo {
     
 String Placa;
 String Marca;
-int Ruc;
+long Ruc;
 String RazonSocial;
 String Opcion;
 
 public DVehiculo(){}
 
-    public DVehiculo(String Placa, String Marca, int Ruc, String RazonSocial, String Opcion) {
+    public DVehiculo(String Placa, String Marca, long Ruc, String RazonSocial, String Opcion) {
         this.Placa = Placa;
         this.Marca = Marca;
         this.Ruc = Ruc;
@@ -51,7 +51,7 @@ public String getMarca(){
 return Marca;
 }
 
-public int getRuc(){
+public long getRuc(){
 return Ruc;
 }
 
@@ -66,7 +66,7 @@ this.Placa=Placa;
 public void setMarca(String Marca) {
 this.Marca=Marca;
 }
-public void setRuc(int Ruc) {
+public void setRuc(long Ruc) {
 this.Ruc=Ruc;
 }
 public void setOpcion(String Opcion) {
@@ -81,7 +81,7 @@ public String DSetVehiculo(DVehiculo Campo) {
             CallableStatement Proc = Con.prepareCall(" CALL PASetVehiculo(?,?,?,?)");
 Proc.setString(1, Campo.getPlaca());
 Proc.setString(2, Campo.getMarca());
-Proc.setInt(3, Campo.getRuc());
+Proc.setLong(3, Campo.getRuc());
 Proc.setString(4, Campo.getOpcion());
  Proc.execute();
             rpta = "Ingreso correctamente";
@@ -108,7 +108,7 @@ String[] titulos = {"PLACA","MARCA","RUC","RAZON SOCIAL"};
 
             CallableStatement Proc = Con.prepareCall(" CALL PAGetVehiculo(?,?,?,?)");
 Proc.setString(1, Campo.getPlaca());
-Proc.setInt(2, Campo.getRuc());
+Proc.setLong(2, Campo.getRuc());
 Proc.setString(3, Campo.getRazonSocial());
 Proc.setString(4, Campo.getOpcion());
 Proc.execute();

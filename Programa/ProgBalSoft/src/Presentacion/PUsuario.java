@@ -153,6 +153,7 @@ public void PGetUsuario(String TextBusqueda, String Accion) {
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("USUARIO");
 
         jTabbedPane1.setEnabled(false);
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
