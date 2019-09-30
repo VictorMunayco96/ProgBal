@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import Datos.Conexion;
 import Library.DefaultValue;
 import Negocios.NConductorVehiculo;
 import Negocios.NDestino;
@@ -12,9 +13,19 @@ import Negocios.NPeso;
 import Negocios.NProducto;
 import Negocios.NProveClien;
 import java.awt.Toolkit;
+import java.io.File;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -34,21 +45,25 @@ public class PPeso extends javax.swing.JFrame {
     NConductorVehiculo NConductorVehiculo = new NConductorVehiculo();
     NProducto NProducto = new NProducto();
     NDestino NDestino = new NDestino();
-     NProveClien NProveClien = new NProveClien();;
-
+    NProveClien NProveClien = new NProveClien();
+    ;
+Conexion Cn = new Conexion();
+    Connection Con = Cn.Conexion();
     String TipoMovimiento = "";
     String Estado = "T";
+
     
-    public String ValidateDate(String Fecha){
     
+    public String ValidateDate(String Fecha) {
+
         try {
-            if (Fecha!="") {
+            if (Fecha != "") {
                 return Fecha;
             }
         } catch (Exception e) {
             return "1990-09-09 00:00:00";
         }
-         return "1990-09-09 00:00:00";
+        return "1990-09-09 00:00:00";
     }
 
     public String Movimiento() {
@@ -76,19 +91,20 @@ public class PPeso extends javax.swing.JFrame {
 
     }
 
-    SimpleDateFormat Form = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-    Date Now = new Date();
+    SimpleDateFormat Form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+   
 
     public void UbicacionPeso() {
         int peso = 0;
         if (Estado.equals("T")) {
+             Date Now = new Date();
             TxtPesoCE.setText(TxtPesoVarianza.getText());
             TipoMovimiento = Movimiento();
             TxtFechaHoraEnt.setText(Form.format(Now));
             VtnPeso.dispose();
         } else if (Estado.equals("D")) {
             TxtPesoCS.setText(TxtPesoVarianza.getText());
-
+ Date Now = new Date();
             TxtFechaHoraSal.setText(Form.format(Now));
             TxtNetoC.setText(Neto());
             VtnPeso.dispose();
@@ -125,8 +141,8 @@ public class PPeso extends javax.swing.JFrame {
         }
 
     }
-    
-     public void BusquedaIdProveClien() {
+
+    public void BusquedaIdProveClien() {
 
         try {
             PGetProveClien(DefaultValue.Text(TxtIdProveClien.getText()), "ID");
@@ -156,22 +172,19 @@ public class PPeso extends javax.swing.JFrame {
 
     }
 
-    
-     public void PGetProveClien(String TextBusqueda, String Accion) {
+    public void PGetProveClien(String TextBusqueda, String Accion) {
 
         try {
 
-            TblProveClien.setModel(NProveClien.NGetProveClien(DefaultValue.Number(TextBusqueda),DefaultValue.Text(TextBusqueda),DefaultValue.Number(TextBusqueda),Accion));
-
+            TblProveClien.setModel(NProveClien.NGetProveClien(DefaultValue.Number(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Number(TextBusqueda), Accion));
 
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, "ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
             System.out.println(e);
         }
-    } 
-    
-    
+    }
+
     public void PGetDestino(String TextBusqueda, String Accion) {
 
         try {
@@ -211,164 +224,243 @@ public class PPeso extends javax.swing.JFrame {
         }
     }
 
-    
-    
-   
-    
     ///////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////SETS AND GETS///////////////////////////////////////////////////
-    
-     NPeso NPeso = new NPeso();
+    NPeso NPeso = new NPeso();
     String Accion = "I";
 
- public void PNew() {
-TxtIdPeso.setText("");
-TipoMovimiento="";
-TxtNumGuia.setText("");
-TxtFechaHoraSal.setText("");
-TxtFechaHoraEnt.setText("");
+    public void PNew() {
+        TxtIdPeso.setText("");
+        TipoMovimiento = "";
+        TxtNumGuia.setText("");
+        TxtFechaHoraSal.setText("");
+        TxtFechaHoraEnt.setText("");
 
-TxtChofer.setText("");
-TxtPesoCE.setText("");
-TxtPesoCS.setText("");
-TxtNetoC.setText("");
-TxtObservE.setText("");
-TxtObservS.setText("");
-Estado="T";
+        TxtChofer.setText("");
+        TxtPesoCE.setText("");
+        TxtPesoCS.setText("");
+        TxtNetoC.setText("");
+        TxtObservE.setText("");
+        TxtObservS.setText("");
+        Estado = "T";
 
-TxtIdProveClien.setText("");
-TxtRazonSocial.setText("");
-TxtIdDestino.setText("");
-TxtDestino.setText("");
-TxtIdProducto.setText("");
-TxtProducto.setText("");
-TxtIdConductorVehiculo.setText("");
-TxtPlaca.setText("");
+        TxtIdProveClien.setText("");
+        TxtRazonSocial.setText("");
+        TxtIdDestino.setText("");
+        TxtDestino.setText("");
+        TxtIdProducto.setText("");
+        TxtProducto.setText("");
+        TxtIdConductorVehiculo.setText("");
+        TxtPlaca.setText("");
 
-Accion="I";
+        Accion = "I";
 
- BtnEliminar.setEnabled(false);
-        
+        BtnEliminar.setEnabled(false);
+         jButton12.setEnabled(true);
 
     }
-    
-    
- 
-public void PGetPeso(String TextBusqueda, String Accion) {
+
+    public void PGetPeso(String TextBusqueda, String Accion) {
 
         try {
 
-            TblPeso.setModel(NPeso.NGetPeso(DefaultValue.Number(TextBusqueda),DefaultValue.Long(TextBusqueda),DefaultValue.Text(TextBusqueda),DefaultValue.Text(TextBusqueda),DefaultValue.Text(TextBusqueda),DefaultValue.Text(TextBusqueda),Accion));
-
+            TblPeso.setModel(NPeso.NGetPeso(DefaultValue.Number(TextBusqueda), DefaultValue.Long(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), Accion));
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, "ERROR"+e, "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR" + e, "ERROR", JOptionPane.ERROR_MESSAGE);
             System.out.println(e);
         }
-    } 
+    }
 
+    public void Imprimir() {
+    
+        if (Integer.parseInt(TxtPesoCE.getText())>Integer.parseInt(TxtPesoCS.getText())) {
+            Map p = new HashMap();
+           
+            
+             p.put("IDPESOS", Integer.parseInt(TxtIdPeso.getText()));
+            JasperReport report;
+            JasperPrint print;
 
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/TicketBalanzaP.jrxml");
 
+                print = JasperFillManager.fillReport(report, p, Con);
+                JasperPrintManager.printReport(print, false);
+                
+                
+//                JasperViewer view = new JasperViewer(print, true);
+//                view.setTitle("Ticket Balanza");
+//                view.setVisible(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            Map p = new HashMap();
+           
+            
+             p.put("IDPESOS", Integer.parseInt(TxtIdPeso.getText()));
+            JasperReport report;
+            JasperPrint print;
 
- public void PSetPeso() {
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/TicketBalanzaC.jrxml");
 
-     System.out.println(TipoMovimiento);
-     System.out.println(TxtNumGuia.getText());
-     System.out.println(TxtFechaHoraSal.getText());
-     
-     System.out.println(TxtFechaHoraEnt.getText());
-     System.out.println(TxtObservE.getText());
-     System.out.println(TxtObservS.getText());
-     System.out.println(Estado);
-     System.out.println(PMenu.LblIdUsuario.getText());
-     System.out.println(TxtDestino.getText());
-     System.out.println(TxtIdProveClien.getText());
-     System.out.println(TxtIdProducto.getText());
-     System.out.println(TxtIdConductorVehiculo.getText());
-     System.out.println(Accion);
+                print = JasperFillManager.fillReport(report, p, Con);
+                JasperPrintManager.printReport(print, false);
+                
+                
+//                JasperViewer view = new JasperViewer(print, true);
+//                view.setTitle("Ticket Balanza");
+//                view.setVisible(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+           
+       
+
+    }
+
+    public void PSetPeso() {
+
+        System.out.println(TipoMovimiento);
+        System.out.println(TxtNumGuia.getText());
+        System.out.println(TxtFechaHoraSal.getText());
+
+        System.out.println(TxtFechaHoraEnt.getText());
+        System.out.println(TxtObservE.getText());
+        System.out.println(TxtObservS.getText());
+        System.out.println(Estado);
+        System.out.println(PMenu.LblIdUsuario.getText());
+        System.out.println(TxtDestino.getText());
+        System.out.println(TxtIdProveClien.getText());
+        System.out.println(TxtIdProducto.getText());
+        System.out.println(TxtIdConductorVehiculo.getText());
+        System.out.println(Accion);
         if (Accion.equals("I")) {
 
-            if (!TxtPlaca.getText().isEmpty()) {
+            if (!TxtPlaca.getText().isEmpty() && !TxtPesoCE.getText().isEmpty()) {
                 try {
-                    
-                    NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),TipoMovimiento,DefaultValue.Long(TxtNumGuia.getText()),"2000-12-12 00:00:00",DefaultValue.Text(TxtFechaHoraEnt.getText()),DefaultValue.Number(TxtPesoCE.getText()),DefaultValue.Number(TxtPesoCS.getText()),DefaultValue.Number(TxtNetoC.getText()),DefaultValue.Text(TxtObservE.getText()),DefaultValue.Text(TxtObservS.getText()),Estado,Integer.parseInt(PMenu.LblIdUsuario.getText()),DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.NumberUno(TxtIdDestino.getText()),DefaultValue.NumberUno(TxtIdProducto.getText()),DefaultValue.Number(TxtIdConductorVehiculo.getText()),   Accion);
-                    
-                    
-                   // PGetPeso(TxtBusqueda.getText(), "T");
 
+                    NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),
+                            TipoMovimiento, DefaultValue.Long(TxtNumGuia.getText()),
+                            "2000-12-12 00:00:00",
+                            DefaultValue.Text(TxtFechaHoraEnt.getText()), DefaultValue.Number(TxtPesoCE.getText()), DefaultValue.Number(TxtPesoCS.getText()), DefaultValue.Number(TxtNetoC.getText()), DefaultValue.Text(TxtObservE.getText()), DefaultValue.Text(TxtObservS.getText()), Estado, Integer.parseInt(PMenu.LblIdUsuario.getText()), DefaultValue.Number(TxtIdProveClien.getText()), DefaultValue.NumberUno(TxtIdDestino.getText()), DefaultValue.NumberUno(TxtIdProducto.getText()), DefaultValue.Number(TxtIdConductorVehiculo.getText()), Accion);
+
+                    // PGetPeso(TxtBusqueda.getText(), "T");
                     JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
                     PNew();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error: "+e, "ERROR", JOptionPane.ERROR_MESSAGE);
-                
+                    JOptionPane.showMessageDialog(null, "Error: " + e, "ERROR", JOptionPane.ERROR_MESSAGE);
+
                 }
 
             }
-        } else if (Accion.equals("U")){
+        } else if (Accion.equals("U")) {
 
             try {
                 //MODIFICAR
-              NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),TipoMovimiento,DefaultValue.Long(TxtNumGuia.getText()),DefaultValue.Text(TxtFechaHoraSal.getText()),DefaultValue.Text(TxtFechaHoraEnt.getText()),DefaultValue.Number(TxtPesoCE.getText()),DefaultValue.Number(TxtPesoCS.getText()),DefaultValue.Number(TxtNetoC.getText()),DefaultValue.Text(TxtObservE.getText()),DefaultValue.Text(TxtObservS.getText()),Estado,Integer.parseInt(PMenu.LblIdUsuario.getText()),DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.NumberUno(TxtIdDestino.getText()),DefaultValue.NumberUno(TxtIdProducto.getText()),DefaultValue.Number(TxtIdConductorVehiculo.getText()),   Accion);
-                    //PGetPeso(TxtBusqueda.getText(), "T");
+                NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),
+                        TipoMovimiento,
+                        DefaultValue.Long(TxtNumGuia.getText()),
+                        DefaultValue.Text(TxtFechaHoraSal.getText()),
+                        DefaultValue.Text(TxtFechaHoraEnt.getText()),
+                        DefaultValue.Number(TxtPesoCE.getText()),
+                        DefaultValue.Number(TxtPesoCS.getText()),
+                        DefaultValue.Number(TxtNetoC.getText()),
+                        DefaultValue.Text(TxtObservE.getText()),
+                        DefaultValue.Text(TxtObservS.getText()),
+                        Estado, Integer.parseInt(PMenu.LblIdUsuario.getText()),
+                        DefaultValue.Number(TxtIdProveClien.getText()),
+                        DefaultValue.NumberUno(TxtIdDestino.getText()),
+                        DefaultValue.NumberUno(TxtIdProducto.getText()),
+                        DefaultValue.Number(TxtIdConductorVehiculo.getText()),
+                        Accion);
+                //PGetPeso(TxtBusqueda.getText(), "T");
 
-                    JOptionPane.showMessageDialog(null, "REGISTRO EDITADO");
-                    PNew();
-            } catch (Exception e) {
-              JOptionPane.showMessageDialog(null, e, "ERROR", JOptionPane.ERROR_MESSAGE);
-              
-
-            }
-
-        } else if (Accion.equals("D")){
-        
-       try {
-            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "¿ESTAS SEGURO DE ELIMINAR REGISTRO?", "MENSAJE", 2);
-            if (confirmacion == 0) {
-
-                int fila = TblPeso.getSelectedRow();
-
-               NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),"",DefaultValue.Long(TxtNumGuia.getText()),ValidateDate(TxtFechaHoraSal.getText()),DefaultValue.Text(TxtFechaHoraEnt.getText()),DefaultValue.Number(TxtPesoCE.getText()),DefaultValue.Number(TxtPesoCS.getText()),DefaultValue.Number(TxtNetoC.getText()),DefaultValue.Text(TxtObservE.getText()),DefaultValue.Text(TxtObservS.getText()),"",0,DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.Number(TxtIdDestino.getText()),DefaultValue.Number(TxtIdProducto.getText()),DefaultValue.Number(TxtIdConductorVehiculo.getText()),   Accion);
-               //  PGetPeso(TxtBusqueda.getText(), "T");
-                 JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
+                JOptionPane.showMessageDialog(null, "REGISTRO EDITADO");
                 PNew();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e, "ERROR", JOptionPane.ERROR_MESSAGE);
+
             }
-        } catch (Exception e) {
-         JOptionPane.showConfirmDialog(rootPane, e);
-            System.out.println(e);
-        }
-        }else if (Accion.equals("DES")){
+
+        } else if (Accion.equals("D")) {
+
+            try {
+                int confirmacion = JOptionPane.showConfirmDialog(rootPane, "¿ESTAS SEGURO DE ELIMINAR REGISTRO?", "MENSAJE", 2);
+                if (confirmacion == 0) {
+
+                    int fila = TblPeso.getSelectedRow();
+
+                    NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()), "", DefaultValue.Long(TxtNumGuia.getText()), ValidateDate(TxtFechaHoraSal.getText()), DefaultValue.Text(TxtFechaHoraEnt.getText()), DefaultValue.Number(TxtPesoCE.getText()), DefaultValue.Number(TxtPesoCS.getText()), DefaultValue.Number(TxtNetoC.getText()), DefaultValue.Text(TxtObservE.getText()), DefaultValue.Text(TxtObservS.getText()), "", 0, DefaultValue.Number(TxtIdProveClien.getText()), DefaultValue.Number(TxtIdDestino.getText()), DefaultValue.Number(TxtIdProducto.getText()), DefaultValue.Number(TxtIdConductorVehiculo.getText()), Accion);
+                    //  PGetPeso(TxtBusqueda.getText(), "T");
+                    JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
+                    PNew();
+                }
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(rootPane, e);
+                System.out.println(e);
+            }
+        } else if (Accion.equals("DES")) {
 
             try {
                 //DESTARAR
-              NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),TipoMovimiento,DefaultValue.Long(TxtNumGuia.getText()),DefaultValue.Text(TxtFechaHoraSal.getText()),DefaultValue.Text(TxtFechaHoraEnt.getText()),DefaultValue.Number(TxtPesoCE.getText()),DefaultValue.Number(TxtPesoCS.getText()),DefaultValue.Number(TxtNetoC.getText()),DefaultValue.Text(TxtObservE.getText()),DefaultValue.Text(TxtObservS.getText()),Estado,Integer.parseInt(PMenu.LblIdUsuario.getText()),DefaultValue.Number(TxtIdProveClien.getText()),DefaultValue.NumberUno(TxtIdDestino.getText()),DefaultValue.NumberUno(TxtIdProducto.getText()),DefaultValue.Number(TxtIdConductorVehiculo.getText()),   "U");
-                    PGetPeso(TxtBusqueda.getText(), "T");
+                NPeso.NSetPeso(DefaultValue.Number(TxtIdPeso.getText()),
+                        TipoMovimiento,
+                        DefaultValue.Long(TxtNumGuia.getText()),
+                        DefaultValue.Text(TxtFechaHoraSal.getText()),
+                        DefaultValue.Text(TxtFechaHoraEnt.getText()),
+                        DefaultValue.Number(TxtPesoCE.getText()),
+                        DefaultValue.Number(TxtPesoCS.getText()),
+                        DefaultValue.Number(TxtNetoC.getText()),
+                        DefaultValue.Text(TxtObservE.getText()),
+                        DefaultValue.Text(TxtObservS.getText()),
+                        Estado, Integer.parseInt(PMenu.LblIdUsuario.getText()),
+                        DefaultValue.Number(TxtIdProveClien.getText()),
+                        DefaultValue.NumberUno(TxtIdDestino.getText()),
+                        DefaultValue.NumberUno(TxtIdProducto.getText()),
+                        DefaultValue.Number(TxtIdConductorVehiculo.getText()),
+                        "U");
+                PGetPeso(TxtBusqueda.getText(), "T");
 
-                    JOptionPane.showMessageDialog(null, "PESO REGISTRADO");
+                try {
+                int confirmacion = JOptionPane.showConfirmDialog(rootPane, "¿DESEA IMPRIMIR TICKET?", "MENSAJE", 2);
+                
+                 if (confirmacion == 0) {
+
+                   
+
+                   Imprimir();
                     PNew();
+                }
+                
+                }catch(Exception e){
+                  JOptionPane.showMessageDialog(null, e, "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                
+                
+                
+                JOptionPane.showMessageDialog(null, "PESO REGISTRADO");
+                
+                
+                PNew();
             } catch (Exception e) {
-              JOptionPane.showMessageDialog(null, e, "ERROR", JOptionPane.ERROR_MESSAGE);
-              
+                JOptionPane.showMessageDialog(null, e, "ERROR", JOptionPane.ERROR_MESSAGE);
 
             }
 
         }
 
- }
-    
-    
-    
+    }
+
     ///////////////////////////////////////////////////////FIN////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -389,7 +481,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jButton15 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TblProducto = new javax.swing.JTable();
-        CboBusquedaProducto = new javax.swing.JComboBox<String>();
+        CboBusquedaProducto = new javax.swing.JComboBox<>();
         jButton16 = new javax.swing.JButton();
         VtnDestino = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
@@ -399,7 +491,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jButton17 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         TblDestino = new javax.swing.JTable();
-        CboBusquedaDestino = new javax.swing.JComboBox<String>();
+        CboBusquedaDestino = new javax.swing.JComboBox<>();
         jButton18 = new javax.swing.JButton();
         VtnPeso = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
@@ -414,7 +506,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jScrollPane8 = new javax.swing.JScrollPane();
         TblProveClien = new javax.swing.JTable();
         jButton22 = new javax.swing.JButton();
-        CboBusquedaProveClien = new javax.swing.JComboBox<String>();
+        CboBusquedaProveClien = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -465,6 +557,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jButton19 = new javax.swing.JButton();
         jLabel47 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
+        BtnEliminar1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -573,7 +666,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jScrollPane3.setViewportView(TblProducto);
 
         CboBusquedaProducto.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
-        CboBusquedaProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PRODUCTO", "DESCRIPCION", "ID PRODUCTO", "CATEGORIA" }));
+        CboBusquedaProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "DESCRIPCION", "ID PRODUCTO", "CATEGORIA" }));
 
         jButton16.setBackground(new java.awt.Color(0, 153, 0));
         jButton16.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
@@ -702,7 +795,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jScrollPane5.setViewportView(TblDestino);
 
         CboBusquedaDestino.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        CboBusquedaDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DESTINO", "ID DESTINO" }));
+        CboBusquedaDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DESTINO", "ID DESTINO" }));
 
         jButton18.setBackground(new java.awt.Color(0, 153, 0));
         jButton18.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
@@ -900,7 +993,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         });
 
         CboBusquedaProveClien.setFont(new java.awt.Font("Segoe UI Light", 0, 15)); // NOI18N
-        CboBusquedaProveClien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RAZON SOCIAL", "RUC", " " }));
+        CboBusquedaProveClien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RAZON SOCIAL", "RUC", " " }));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -992,9 +1085,19 @@ public void PGetPeso(String TextBusqueda, String Accion) {
 
         TxtIdPeso.setEditable(false);
         TxtIdPeso.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtIdPeso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TxtIdPesoMousePressed(evt);
+            }
+        });
         TxtIdPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtIdPesoActionPerformed(evt);
+            }
+        });
+        TxtIdPeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TxtIdPesoKeyPressed(evt);
             }
         });
 
@@ -1160,7 +1263,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
 
         jButton12.setBackground(new java.awt.Color(0, 102, 0));
         jButton12.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Guardar-32.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/BALANZA.PNG"))); // NOI18N
         jButton12.setBorderPainted(false);
         jButton12.setFocusPainted(false);
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -1265,6 +1368,17 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("SELECCIONAR PESO");
 
+        BtnEliminar1.setBackground(new java.awt.Color(0, 102, 0));
+        BtnEliminar1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        BtnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/printer.png"))); // NOI18N
+        BtnEliminar1.setBorderPainted(false);
+        BtnEliminar1.setFocusPainted(false);
+        BtnEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1309,7 +1423,7 @@ public void PGetPeso(String TextBusqueda, String Accion) {
                             .addComponent(TxtNetoC)
                             .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1357,17 +1471,15 @@ public void PGetPeso(String TextBusqueda, String Accion) {
                                         .addComponent(TxtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TxtIdConductorVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(TxtIdConductorVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(BtnEliminar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1379,62 +1491,61 @@ public void PGetPeso(String TextBusqueda, String Accion) {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtIdPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtNumGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(TxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TxtChofer, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(70, 70, 70))
-                                    .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(TxtIdPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TxtNumGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(TxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TxtChofer, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TxtIdProveClien, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TxtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TxtIdDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(TxtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TxtIdProveClien, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TxtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TxtIdDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TxtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(TxtIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(TxtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(TxtIdConductorVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
+                .addComponent(TxtIdConductorVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1777,58 +1888,87 @@ public void PGetPeso(String TextBusqueda, String Accion) {
     private void TxtIdPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdPesoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtIdPesoActionPerformed
-public void Destarar(){
-
- PGetPeso(DefaultValue.Text(TxtPlaca.getText()), "PLAC"); 
     
- TxtIdPeso.setText(TblPeso.getValueAt(0, 0).toString());
- TipoMovimiento=TblPeso.getValueAt(0, 1).toString();
- TxtNumGuia.setText(TblPeso.getValueAt(0, 2).toString());
- //TxtFechaHoraSal.setText(TblPeso.getValueAt(0, 3).toString());
- TxtFechaHoraEnt.setText(TblPeso.getValueAt(0, 4).toString());
- TxtPesoCE.setText(TblPeso.getValueAt(0, 5).toString());
- //TxtPesoCS.setText(TblPeso.getValueAt(0, 6).toString());
- //TxtNetoC.setText(TblPeso.getValueAt(0, 7).toString());
- TxtObservE.setText(TblPeso.getValueAt(0, 8).toString());
- //TxtObservS.setText(TblPeso.getValueAt(0, 9).toString());
- Estado="D";
- //TxtDNI.setText(TblPeso.getValueAt(0, 11).toString());
- TxtIdProveClien.setText(TblPeso.getValueAt(0, 12).toString());
- TxtRazonSocial.setText(TblPeso.getValueAt(0, 13).toString());
- TxtIdConductorVehiculo.setText(TblPeso.getValueAt(0, 14).toString());
- TxtPlaca.setText(TblPeso.getValueAt(0, 15).toString());
- TxtChofer.setText(TblPeso.getValueAt(0, 16).toString()+" "+TblPeso.getValueAt(0, 17).toString());
- TxtIdDestino.setText(TblPeso.getValueAt(0, 18).toString());
- TxtDestino.setText(TblPeso.getValueAt(0, 19).toString());
- TxtIdProducto.setText(TblPeso.getValueAt(0, 20).toString());
-TxtProducto.setText(TblPeso.getValueAt(0, 21).toString());
- Accion="DES";
- 
-}
+     public void BusIDPESO() {
+String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
+        PGetPeso(ID, "IDPE");
+
+        TxtIdPeso.setText(TblPeso.getValueAt(0, 0).toString());
+        TipoMovimiento = TblPeso.getValueAt(0, 1).toString();
+        TxtNumGuia.setText(TblPeso.getValueAt(0, 2).toString());
+        TxtFechaHoraSal.setText(TblPeso.getValueAt(0, 3).toString());
+        TxtFechaHoraEnt.setText(TblPeso.getValueAt(0, 4).toString());
+        TxtPesoCE.setText(TblPeso.getValueAt(0, 5).toString());
+        TxtPesoCS.setText(TblPeso.getValueAt(0, 6).toString());
+        TxtNetoC.setText(TblPeso.getValueAt(0, 7).toString());
+        TxtObservE.setText(TblPeso.getValueAt(0, 8).toString());
+        TxtObservS.setText(TblPeso.getValueAt(0, 9).toString());
+        Estado = "D";
+      //  TxtDNI.setText(TblPeso.getValueAt(0, 11).toString());
+        TxtIdProveClien.setText(TblPeso.getValueAt(0, 12).toString());
+        TxtRazonSocial.setText(TblPeso.getValueAt(0, 13).toString());
+        TxtIdConductorVehiculo.setText(TblPeso.getValueAt(0, 14).toString());
+        TxtPlaca.setText(TblPeso.getValueAt(0, 15).toString());
+        TxtChofer.setText(TblPeso.getValueAt(0, 16).toString() + " " + TblPeso.getValueAt(0, 17).toString());
+        TxtIdDestino.setText(TblPeso.getValueAt(0, 18).toString());
+        TxtDestino.setText(TblPeso.getValueAt(0, 19).toString());
+        TxtIdProducto.setText(TblPeso.getValueAt(0, 20).toString());
+        TxtProducto.setText(TblPeso.getValueAt(0, 21).toString());
+      jButton12.setEnabled(false);
+      Accion="U";
+
+    }
+    public void Destarar() {
+
+        PGetPeso(DefaultValue.Text(TxtPlaca.getText()), "PLAC");
+
+        TxtIdPeso.setText(TblPeso.getValueAt(0, 0).toString());
+        TipoMovimiento = TblPeso.getValueAt(0, 1).toString();
+        TxtNumGuia.setText(TblPeso.getValueAt(0, 2).toString());
+        //TxtFechaHoraSal.setText(TblPeso.getValueAt(0, 3).toString());
+        TxtFechaHoraEnt.setText(TblPeso.getValueAt(0, 4).toString());
+        TxtPesoCE.setText(TblPeso.getValueAt(0, 5).toString());
+        //TxtPesoCS.setText(TblPeso.getValueAt(0, 6).toString());
+        //TxtNetoC.setText(TblPeso.getValueAt(0, 7).toString());
+        TxtObservE.setText(TblPeso.getValueAt(0, 8).toString());
+        //TxtObservS.setText(TblPeso.getValueAt(0, 9).toString());
+        Estado = "D";
+        //TxtDNI.setText(TblPeso.getValueAt(0, 11).toString());
+        TxtIdProveClien.setText(TblPeso.getValueAt(0, 12).toString());
+        TxtRazonSocial.setText(TblPeso.getValueAt(0, 13).toString());
+        TxtIdConductorVehiculo.setText(TblPeso.getValueAt(0, 14).toString());
+        TxtPlaca.setText(TblPeso.getValueAt(0, 15).toString());
+        TxtChofer.setText(TblPeso.getValueAt(0, 16).toString() + " " + TblPeso.getValueAt(0, 17).toString());
+        TxtIdDestino.setText(TblPeso.getValueAt(0, 18).toString());
+        TxtDestino.setText(TblPeso.getValueAt(0, 19).toString());
+        TxtIdProducto.setText(TblPeso.getValueAt(0, 20).toString());
+        TxtProducto.setText(TblPeso.getValueAt(0, 21).toString());
+        Accion = "DES";
+
+    }
     private void TxtPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPlacaActionPerformed
-        
-       
+
         try {
-             Destarar();
+            Destarar();
         } catch (Exception e) {
-             PGetConductorVehiculo(DefaultValue.Text(TxtPlaca.getText()), "P");
+            PGetConductorVehiculo(DefaultValue.Text(TxtPlaca.getText()), "P");
 
             TxtChofer.setText(TblConductorVehiculo.getValueAt(0, 3).toString());
             TxtIdConductorVehiculo.setText(TblConductorVehiculo.getValueAt(0, 0).toString());
         }
-       
+
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtPlacaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-PSetPeso();
+        PSetPeso();
 
 //jPanel5.setVisible(true);
 //        PSetCategoria();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        PNew();        // TODO add your handling code here:
+      PNew();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
@@ -1921,7 +2061,7 @@ PSetPeso();
     }//GEN-LAST:event_TxtGuiaActionPerformed
 
     private void TxtIdProveClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdProveClienActionPerformed
-BusquedaIdProveClien();        // TODO add your handling code here:
+        BusquedaIdProveClien();        // TODO add your handling code here:
     }//GEN-LAST:event_TxtIdProveClienActionPerformed
 
     private void TxtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtProductoActionPerformed
@@ -1933,6 +2073,7 @@ BusquedaIdProveClien();        // TODO add your handling code here:
         VtnPeso.setSize(457, 253);
         VtnPeso.setLocationRelativeTo(this);
         VtnPeso.setAlwaysOnTop(true);
+        TxtPesoVarianza.setText("");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -2042,7 +2183,7 @@ BusquedaIdProveClien();        // TODO add your handling code here:
     }//GEN-LAST:event_TxtRazonSocialActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-  VtnProveClien.setVisible(true);
+        VtnProveClien.setVisible(true);
         VtnProveClien.setSize(588, 602);
         VtnProveClien.setLocationRelativeTo(this);
         VtnProveClien.setAlwaysOnTop(true);
@@ -2090,7 +2231,7 @@ BusquedaIdProveClien();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void TblProveClienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblProveClienMousePressed
-     try {
+        try {
             if (evt.getClickCount() == 2) {
 
                 int fila = TblProveClien.getSelectedRow();
@@ -2103,7 +2244,7 @@ BusquedaIdProveClien();        // TODO add your handling code here:
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
 
-        }       
+        }
     }//GEN-LAST:event_TblProveClienMousePressed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
@@ -2117,6 +2258,22 @@ BusquedaIdProveClien();        // TODO add your handling code here:
     private void TxtNetoGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNetoGActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtNetoGActionPerformed
+
+    private void BtnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminar1ActionPerformed
+Imprimir();        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEliminar1ActionPerformed
+
+    private void TxtIdPesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtIdPesoKeyPressed
+       
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtIdPesoKeyPressed
+
+    private void TxtIdPesoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtIdPesoMousePressed
+        if (evt.getClickCount()==2) {
+            BusIDPESO();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtIdPesoMousePressed
 
     /**
      * @param args the command line arguments
@@ -2155,6 +2312,7 @@ BusquedaIdProveClien();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEliminar;
+    private javax.swing.JButton BtnEliminar1;
     private javax.swing.JComboBox<String> CboBusquedaDestino;
     private javax.swing.JComboBox<String> CboBusquedaProducto;
     private javax.swing.JComboBox<String> CboBusquedaProveClien;

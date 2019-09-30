@@ -269,8 +269,8 @@ CREATE PROCEDURE PASetPeso(
 in _IdPeso Int,
 in _TipoMovimiento varchar(45),
 in _NumGuia bigint,
-in _FechaHoraSal datetime,
-in _FechaHoraEnt datetime,
+in _FechaHoraSal varchar(60),
+in _FechaHoraEnt varchar(60),
 in _PesoCE int,
 in _PesoCS int,
 in _NetoC int,
@@ -293,7 +293,7 @@ if _Opcion='I' then
   End IF;
 
   if _Opcion='U' then
-  Update Peso set TipoMovimiento=_TipoMovimiento, NumGuia=_NumGuia, FechaHoraEnt=_FechaHoraEnt, PesoCE=_PesoCE, PesoCS=_PesoCS, 
+  Update Peso set TipoMovimiento=_TipoMovimiento, NumGuia=_NumGuia, FechaHoraSal=_FechaHoraSal, FechaHoraEnt=_FechaHoraEnt, PesoCE=_PesoCE, PesoCS=_PesoCS, 
  NetoC=_NetoC, ObservE=_ObservE, ObservS=_ObservS, Estado=_Estado,DNI=_DNI, IdProveClien=_IdProveClien
   , IdDestino=_IdDestino, IdProducto=_IdProducto, IdConductorVehiculo=_IdConductorVehiculo where IdPeso=_IdPeso;
 

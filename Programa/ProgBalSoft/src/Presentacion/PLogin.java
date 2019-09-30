@@ -109,7 +109,7 @@ public void PGetUsuario(String TextBusqueda, String TextBusqueda2, String Accion
         jButton1.setBackground(new java.awt.Color(0, 153, 65));
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Guardar-32.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/LOGUEARSE.png"))); // NOI18N
         jButton1.setText("INGRESAR");
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
@@ -122,7 +122,7 @@ public void PGetUsuario(String TextBusqueda, String TextBusqueda2, String Accion
         jButton2.setBackground(new java.awt.Color(0, 153, 65));
         jButton2.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Guardar-32.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Izquierda Filled-30.png"))); // NOI18N
         jButton2.setText("SALIR");
         jButton2.setBorderPainted(false);
         jButton2.setFocusPainted(false);
