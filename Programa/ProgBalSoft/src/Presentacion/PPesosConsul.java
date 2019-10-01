@@ -5,9 +5,20 @@
  */
 package Presentacion;
 
+import Datos.Conexion;
 import Library.DefaultValue;
 import Negocios.NPeso;
+import java.io.File;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -72,7 +83,8 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
         jScrollPane1 = new javax.swing.JScrollPane();
         TblPeso = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
-        CboBusqueda = new javax.swing.JComboBox<String>();
+        CboBusqueda = new javax.swing.JComboBox<>();
+        BtnEliminar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -134,7 +146,18 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
         });
 
         CboBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PRODUCTO", "PROVEEDOR", "IDPESO" }));
+        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "PROVEEDOR", "IDPESO" }));
+
+        BtnEliminar2.setBackground(new java.awt.Color(0, 102, 0));
+        BtnEliminar2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        BtnEliminar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/printer.png"))); // NOI18N
+        BtnEliminar2.setBorderPainted(false);
+        BtnEliminar2.setFocusPainted(false);
+        BtnEliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminar2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -144,23 +167,23 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(550, 550, 550)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(TxtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(354, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BtnEliminar2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(435, 435, 435))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1591, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +197,8 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(TxtBusqueda)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(CboBusqueda))
+                    .addComponent(CboBusqueda)
+                    .addComponent(BtnEliminar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
                 .addContainerGap())
@@ -226,6 +250,61 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    Conexion Cn = new Conexion();
+    Connection Con = Cn.Conexion();
+    
+    public void Imprimir() {
+     int fila = TblPeso.getSelectedRow();
+        if (Integer.parseInt(TblPeso.getValueAt(fila, 5).toString())>Integer.parseInt(TblPeso.getValueAt(fila, 6).toString())) {
+            Map p = new HashMap();
+           
+            
+             p.put("IDPESOS", Integer.parseInt(TblPeso.getValueAt(fila, 0).toString()));
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/TicketBalanzaP.jrxml");
+
+                print = JasperFillManager.fillReport(report, p, Con);
+                //JasperPrintManager.printReport(print, false);
+                
+                
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Ticket Balanza");
+                view.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            Map p = new HashMap();
+           
+            
+             p.put("IDPESOS", Integer.parseInt(TblPeso.getValueAt(fila, 0).toString()));
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/TicketBalanzaC.jrxml");
+
+                print = JasperFillManager.fillReport(report, p, Con);
+//                JasperPrintManager.printReport(print, false);
+                
+                
+              JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Ticket Balanza");
+                view.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }}
+    
+    private void BtnEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminar2ActionPerformed
+Imprimir();        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEliminar2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,6 +341,8 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnEliminar1;
+    private javax.swing.JButton BtnEliminar2;
     private javax.swing.JComboBox<String> CboBusqueda;
     private javax.swing.JTable TblPeso;
     private javax.swing.JTextField TxtBusqueda;

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1f6026a9-1565-4690-a511-2e6de49bbd97">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="95"/>
+	<property name="ireport.y" value="40"/>
 	<property name="ireport.callouts" value="##Fri Sep 27 00:13:57 COT 2019"/>
 	<parameter name="IDPESOS" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -78,11 +78,11 @@ FROM
 	<pageHeader>
 		<band height="53" splitType="Stretch">
 			<staticText>
-				<reportElement x="74" y="33" width="412" height="20" uuid="792fd0e7-adcb-4b45-abce-615afb9200ae"/>
+				<reportElement x="74" y="31" width="412" height="20" uuid="792fd0e7-adcb-4b45-abce-615afb9200ae"/>
 				<text><![CDATA[======================================================================================]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="74" y="14" width="412" height="20" uuid="e966724d-6808-439d-8e8b-d91ed4572e96"/>
+				<reportElement x="74" y="10" width="412" height="20" uuid="e966724d-6808-439d-8e8b-d91ed4572e96"/>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
@@ -154,7 +154,7 @@ FROM
 				<text><![CDATA[FECHA Y HORA    :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="310" y="273" width="70" height="31" uuid="c429be65-9841-4c69-a79f-581eaf0c34a9"/>
+				<reportElement x="310" y="274" width="70" height="31" uuid="c429be65-9841-4c69-a79f-581eaf0c34a9"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="13"/>
 				</textElement>
@@ -213,7 +213,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{producto_Descripcion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="187" y="110" width="297" height="20" uuid="3de4ceec-3aec-4609-ae26-6f2ddf1e9ed0"/>
+				<reportElement x="189" y="110" width="297" height="20" uuid="3de4ceec-3aec-4609-ae26-6f2ddf1e9ed0"/>
 				<textFieldExpression><![CDATA[$F{destino_Destino}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -226,7 +226,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{peso_FechaHoraEnt}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="196" y="285" width="80" height="20" uuid="00324b0f-b279-4764-ac6f-c1876c2dc70d"/>
+				<reportElement x="198" y="285" width="80" height="20" uuid="00324b0f-b279-4764-ac6f-c1876c2dc70d"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{peso_FechaHoraSal}]]></textFieldExpression>
 			</textField>
@@ -239,7 +239,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{peso_ObservS}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="380" y="273" width="106" height="31" uuid="a13dfd48-c450-4002-b748-3aa85b353114"/>
+				<reportElement x="381" y="274" width="106" height="31" uuid="a13dfd48-c450-4002-b748-3aa85b353114"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
@@ -260,22 +260,17 @@ FROM
 				<textFieldExpression><![CDATA[$F{peso_NetoC}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="385" y="306" width="100" height="1" uuid="5b4c056e-32a5-40a9-bba4-2396aec44884"/>
+				<reportElement x="385" y="305" width="100" height="1" uuid="5b4c056e-32a5-40a9-bba4-2396aec44884"/>
 			</line>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="44" splitType="Stretch"/>
+		<band height="13" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="69" splitType="Stretch"/>
+		<band height="12" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="150" splitType="Stretch">
-			<staticText>
-				<reportElement x="74" y="130" width="100" height="20" uuid="aec018d9-60c6-426b-ba63-0b8f9530f11a"/>
-				<text><![CDATA[Static text]]></text>
-			</staticText>
-		</band>
+		<band height="6" splitType="Stretch"/>
 	</summary>
 </jasperReport>
