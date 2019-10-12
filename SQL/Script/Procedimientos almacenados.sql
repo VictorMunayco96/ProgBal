@@ -307,7 +307,6 @@ if _Opcion='I' then
 $$
 
 
-
 DELIMITER $$
 CREATE PROCEDURE PAGetPeso(
 in _IdPeso Int,
@@ -501,6 +500,42 @@ FROM
      INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
      INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa` = vehiculo.`Placa`     
      where  producto.`Descripcion` like concat('%',_Producto) AND peso.`Estado`="D" 
+     
+     order by IdPeso Desc limit 14000;
+     End If;
+
+if _Opcion='DEST' then
+SELECT
+     peso.`IdPeso` AS peso_IdPeso,
+     peso.`TipoMovimiento` AS peso_TipoMovimiento,
+     peso.`NumGuia` AS peso_NumGuia,
+     peso.`FechaHoraSal` AS peso_FechaHoraSal,
+     peso.`FechaHoraEnt` AS peso_FechaHoraEnt,
+     peso.`PesoCE` AS peso_PesoCE,
+     peso.`PesoCS` AS peso_PesoCS,
+     peso.`NetoC` AS peso_NetoC,
+     peso.`ObservE` AS peso_ObservE,
+     peso.`ObservS` AS peso_ObservS,
+     peso.`Estado` AS peso_Estado,
+     peso.`DNI` AS peso_DNI,
+     proveclien.`IdProveClien` AS proveclien_IdProveClien,
+     proveclien.`RazonSocial` AS proveclien_RazonSocial,
+     conductorvehiculo.`IdConductorVehiculo` AS conductorvehiculo_IdConductorVehiculo,
+     conductorvehiculo.`Placa` AS conductorvehiculo_Placa,
+     conductor.`Nombre` AS conductor_Nombre,
+     conductor.`Apellidos` AS conductor_Apellidos,
+     destino.`IdDestino` AS destino_IdDestino,
+     destino.`Destino` AS destino_Destino,
+     producto.`IdProducto` AS producto_IdProducto,
+     producto.`Descripcion` AS producto_Descripcion
+FROM
+     `proveclien` proveclien INNER JOIN `peso` peso ON proveclien.`IdProveClien` = peso.`IdProveClien`
+     INNER JOIN `conductorvehiculo` conductorvehiculo ON peso.`IdConductorVehiculo` = conductorvehiculo.`IdConductorVehiculo`
+     INNER JOIN `destino` destino ON peso.`IdDestino` = destino.`IdDestino`
+     INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
+     INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
+     INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa` = vehiculo.`Placa`     
+     where   destino.`Destino` like concat('%',_Producto) AND peso.`Estado`="D" 
      
      order by IdPeso Desc limit 14000;
      End If;

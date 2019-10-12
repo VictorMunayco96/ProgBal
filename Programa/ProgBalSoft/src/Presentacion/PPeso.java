@@ -26,7 +26,14 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import gnu.io.CommPort;
+import gnu.io.CommPortIdentifier;
+import gnu.io.SerialPort;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Enumeration;
 /**
  *
  * @author Victor
@@ -39,9 +46,98 @@ public class PPeso extends javax.swing.JFrame {
     public PPeso() {
         initComponents();
         TxtIdConductorVehiculo.setVisible(false);
-
+Arrancar();
+        
+        
+        
     }
 
+    /*-----------------------------------------------------------------PUERTO COM ---------------------------------------------*/
+     /*-----------------------------------------------------------------PUERTO COM ---------------------------------------------*/
+     /*-----------------------------------------------------------------PUERTO COM ---------------------------------------------*/
+     /*-----------------------------------------------------------------PUERTO COM ---------------------------------------------*/
+    
+    
+    CommPortIdentifier portId;
+	Enumeration puertos;
+	SerialPort serialport;
+	static InputStream entrada = null;
+	Thread t;
+    
+    
+    	public static class LeerSerial implements Runnable {
+	   int aux;
+       public void run () {
+    	   while(true){
+    		  try {
+				aux = entrada.read(); // aqui estamos obteniendo nuestro dato serial
+				Thread.sleep(100);
+ 				if (aux>0) {
+					System.out.println((char)aux);//imprimimos el dato serial
+                                        TxtPesoVarianza.setText(String.valueOf((char)aux));
+				}				
+			} catch (Exception e) {
+ 			} } }}
+
+    
+    void Arrancar(){
+      //super();
+        puertos=CommPortIdentifier.getPortIdentifiers();
+        t = new Thread(new LeerSerial());
+        while (puertos.hasMoreElements()) { //para recorrer el numero de los puertos, y especificar con cual quiero trabajar 
+        	//hasmorelements mientras tenga mas eleementos
+        	portId = (CommPortIdentifier) puertos.nextElement(); //next elemento recorre uno por uno
+        	System.out.println(portId.getName()); //puertos disponbibles
+        	if (portId.getName().equalsIgnoreCase("COM13")) {
+        		try {
+        		serialport= (SerialPort)portId.open("fdf", 500);//tiempo en ms
+    				entrada = serialport.getInputStream();//esta variable del tipo InputStream obtiene el dato serial
+   				t.start(); // inciamos el hilo para realizar nuestra accion de imprimir el dato serial
+     		 
+			} catch (Exception e) {
+ 			} } }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     /*-----------------------------------------------------------------PUERTO COM ---------------------------------------------*/
+     /*-----------------------------------------------------------------PUERTO COM ---------------------------------------------*/
+     /*-----------------------------------------------------------------PUERTO COM ---------------------------------------------*/
+     /*-----------------------------------------------------------------PUERTO COM ---------------------------------------------*/
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     NConductorVehiculo NConductorVehiculo = new NConductorVehiculo();
     NProducto NProducto = new NProducto();
     NDestino NDestino = new NDestino();
@@ -426,7 +522,7 @@ Conexion Cn = new Conexion();
                         DefaultValue.NumberUno(TxtIdProducto.getText()),
                         DefaultValue.Number(TxtIdConductorVehiculo.getText()),
                         "U");
-                PGetPeso(TxtBusqueda.getText(), "T");
+                PGetPeso("", "T");
 
                 try {
                 int confirmacion = JOptionPane.showConfirmDialog(rootPane, "¿DESEA IMPRIMIR TICKET?", "MENSAJE", 2);
@@ -507,6 +603,9 @@ Conexion Cn = new Conexion();
         TblProveClien = new javax.swing.JTable();
         jButton22 = new javax.swing.JButton();
         CboBusquedaProveClien = new javax.swing.JComboBox<>();
+        jDialog1 = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TblPeso = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -574,15 +673,6 @@ Conexion Cn = new Conexion();
         jButton23 = new javax.swing.JButton();
         jLabel45 = new javax.swing.JLabel();
         TxtNetoG = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        TxtBusqueda = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TblPeso = new javax.swing.JTable();
-        jButton6 = new javax.swing.JButton();
 
         TblConductorVehiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1057,6 +1147,36 @@ Conexion Cn = new Conexion();
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        TblPeso.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TblPeso);
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -1753,111 +1873,6 @@ Conexion Cn = new Conexion();
 
         jTabbedPane1.addTab("DATOS GUIA", jPanel4);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel5.setBackground(new java.awt.Color(0, 153, 0));
-        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("   CATEGORIA");
-        jLabel5.setOpaque(true);
-
-        jLabel6.setBackground(new java.awt.Color(255, 204, 0));
-        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
-        jLabel6.setText("  MANTENIMIENTO");
-        jLabel6.setOpaque(true);
-
-        TxtBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        TxtBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtBusquedaActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel7.setText("ID");
-
-        jButton8.setBackground(new java.awt.Color(0, 153, 0));
-        jButton8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Búsqueda-32.png"))); // NOI18N
-        jButton8.setBorderPainted(false);
-        jButton8.setFocusPainted(false);
-
-        TblPeso.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        TblPeso.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        TblPeso.setRowHeight(35);
-        TblPeso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                TblPesoMousePressed(evt);
-            }
-        });
-        jScrollPane1.setViewportView(TblPeso);
-
-        jButton6.setBackground(new java.awt.Color(0, 153, 0));
-        jButton6.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Izquierda Filled-30.png"))); // NOI18N
-        jButton6.setBorderPainted(false);
-        jButton6.setFocusPainted(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TxtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 386, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("", jPanel3);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1884,10 +1899,6 @@ Conexion Cn = new Conexion();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TxtIdPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdPesoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdPesoActionPerformed
     
      public void BusIDPESO() {
 String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
@@ -1946,145 +1957,6 @@ String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
         Accion = "DES";
 
     }
-    private void TxtPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPlacaActionPerformed
-
-        try {
-            Destarar();
-        } catch (Exception e) {
-            PGetConductorVehiculo(DefaultValue.Text(TxtPlaca.getText()), "P");
-
-            TxtChofer.setText(TblConductorVehiculo.getValueAt(0, 3).toString());
-            TxtIdConductorVehiculo.setText(TblConductorVehiculo.getValueAt(0, 0).toString());
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtPlacaActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PSetPeso();
-
-//jPanel5.setVisible(true);
-//        PSetCategoria();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      PNew();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-//        Accion = "D";
-//        PSetCategoria();        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnEliminarActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void TxtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBusquedaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtBusquedaActionPerformed
-
-    private void TblPesoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblPesoMousePressed
-//        try {
-//            if (evt.getClickCount() == 2) {
-//                Accion = "U";
-//                int fila = TblCategoria.getSelectedRow();
-//
-//                TxtIdCategoria.setText(TblCategoria.getValueAt(fila, 0).toString());
-//                TxtCategoria.setText(TblCategoria.getValueAt(fila, 1).toString());
-//                jTabbedPane1.setSelectedIndex(0);
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Error: "+e);
-//
-//        }
-    }//GEN-LAST:event_TblPesoMousePressed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
-
-    private void TxtChoferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtChoferActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtChoferActionPerformed
-
-    private void TxtNumGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNumGuiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtNumGuiaActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void TxtFechaHoraSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFechaHoraSalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtFechaHoraSalActionPerformed
-
-    private void TxtFechaHoraEntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFechaHoraEntActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtFechaHoraEntActionPerformed
-
-    private void TxtIdConductorVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdConductorVehiculoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdConductorVehiculoActionPerformed
-
-    private void TxtPesoCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPesoCSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtPesoCSActionPerformed
-
-    private void TxtIdProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdProductoActionPerformed
-        BusquedaIdProducto();        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdProductoActionPerformed
-
-    private void PesoGEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesoGEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PesoGEActionPerformed
-
-    private void TxtPesoGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPesoGSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtPesoGSActionPerformed
-
-    private void TxtFechaGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFechaGuiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtFechaGuiaActionPerformed
-
-    private void TxtGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtGuiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtGuiaActionPerformed
-
-    private void TxtIdProveClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdProveClienActionPerformed
-        BusquedaIdProveClien();        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdProveClienActionPerformed
-
-    private void TxtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtProductoActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        VtnPeso.setVisible(true);
-        VtnPeso.setSize(457, 253);
-        VtnPeso.setLocationRelativeTo(this);
-        VtnPeso.setAlwaysOnTop(true);
-        TxtPesoVarianza.setText("");
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void TxtIdDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdDestinoActionPerformed
-        BusquedaIdDestino();        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIdDestinoActionPerformed
-
-    private void TxtDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDestinoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtDestinoActionPerformed
-
     private void TxtBusquedaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBusquedaProductoActionPerformed
         if (TxtBusquedaProducto.getText().isEmpty()) {
             PGetProducto(TxtBusquedaProducto.getText(), "T");
@@ -2123,24 +1995,6 @@ String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        VtnProducto.setVisible(true);
-        VtnProducto.setSize(588, 602);
-        VtnProducto.setLocationRelativeTo(this);
-        VtnProducto.setAlwaysOnTop(true);
-        PGetProducto(TxtBusquedaProducto.getText(), "T");
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-
-        VtnDestino.setVisible(true);
-        VtnDestino.setSize(527, 507);
-        VtnDestino.setLocationRelativeTo(this);
-        VtnDestino.setAlwaysOnTop(true);
-        PGetDestino(TxtBusquedaDestino.getText(), "T");
-
-    }//GEN-LAST:event_jButton14ActionPerformed
-
     private void TxtBusquedaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBusquedaDestinoActionPerformed
         if (TxtBusquedaDestino.getText().isEmpty()) {
             PGetDestino(TxtBusquedaDestino.getText(), "T");
@@ -2177,22 +2031,6 @@ String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton18ActionPerformed
-
-    private void TxtRazonSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtRazonSocialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtRazonSocialActionPerformed
-
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        VtnProveClien.setVisible(true);
-        VtnProveClien.setSize(588, 602);
-        VtnProveClien.setLocationRelativeTo(this);
-        VtnProveClien.setAlwaysOnTop(true);
-        PGetProveClien(TxtBusquedaProveClien.getText(), "T");        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
-
-    private void TxtPesoCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPesoCEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtPesoCEActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         UbicacionPeso();        // TODO add your handling code here:
@@ -2251,22 +2089,174 @@ String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton22ActionPerformed
 
-    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton23ActionPerformed
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void TxtNetoGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNetoGActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtNetoGActionPerformed
 
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void TxtGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtGuiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtGuiaActionPerformed
+
+    private void TxtFechaGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFechaGuiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtFechaGuiaActionPerformed
+
+    private void TxtPesoGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPesoGSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtPesoGSActionPerformed
+
+    private void PesoGEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesoGEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PesoGEActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     private void BtnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminar1ActionPerformed
-Imprimir();        // TODO add your handling code here:
+        Imprimir();        // TODO add your handling code here:
     }//GEN-LAST:event_BtnEliminar1ActionPerformed
 
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        VtnProveClien.setVisible(true);
+        VtnProveClien.setSize(588, 602);
+        VtnProveClien.setLocationRelativeTo(this);
+        VtnProveClien.setAlwaysOnTop(true);
+        PGetProveClien(TxtBusquedaProveClien.getText(), "T");        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void TxtRazonSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtRazonSocialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtRazonSocialActionPerformed
+
+    private void TxtIdProveClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdProveClienActionPerformed
+        BusquedaIdProveClien();        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtIdProveClienActionPerformed
+
+    private void TxtPesoCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPesoCEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtPesoCEActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+
+        VtnDestino.setVisible(true);
+        VtnDestino.setSize(527, 507);
+        VtnDestino.setLocationRelativeTo(this);
+        VtnDestino.setAlwaysOnTop(true);
+        PGetDestino(TxtBusquedaDestino.getText(), "T");
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void TxtDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDestinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtDestinoActionPerformed
+
+    private void TxtIdDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdDestinoActionPerformed
+        BusquedaIdDestino();        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtIdDestinoActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        VtnProducto.setVisible(true);
+        VtnProducto.setSize(588, 602);
+        VtnProducto.setLocationRelativeTo(this);
+        VtnProducto.setAlwaysOnTop(true);
+        PGetProducto(TxtBusquedaProducto.getText(), "T");
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        VtnPeso.setVisible(true);
+        VtnPeso.setSize(457, 253);
+        VtnPeso.setLocationRelativeTo(this);
+        VtnPeso.setAlwaysOnTop(true);
+        TxtPesoVarianza.setText("");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void TxtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtProductoActionPerformed
+
+    private void TxtIdProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdProductoActionPerformed
+        BusquedaIdProducto();        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtIdProductoActionPerformed
+
+    private void TxtPesoCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPesoCSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtPesoCSActionPerformed
+
+    private void TxtIdConductorVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdConductorVehiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtIdConductorVehiculoActionPerformed
+
+    private void TxtFechaHoraEntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFechaHoraEntActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtFechaHoraEntActionPerformed
+
+    private void TxtFechaHoraSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFechaHoraSalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtFechaHoraSalActionPerformed
+
+    private void TxtNumGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNumGuiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtNumGuiaActionPerformed
+
+    private void TxtChoferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtChoferActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtChoferActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        //        Accion = "D";
+        //        PSetCategoria();        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PNew();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PSetPeso();
+
+        //jPanel5.setVisible(true);
+        //        PSetCategoria();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TxtPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPlacaActionPerformed
+
+        try {
+            Destarar();
+        } catch (Exception e) {
+            PGetConductorVehiculo(DefaultValue.Text(TxtPlaca.getText()), "P");
+
+            TxtChofer.setText(TblConductorVehiculo.getValueAt(0, 3).toString());
+            TxtIdConductorVehiculo.setText(TblConductorVehiculo.getValueAt(0, 0).toString());
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtPlacaActionPerformed
+
     private void TxtIdPesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtIdPesoKeyPressed
-       
+
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtIdPesoKeyPressed
+
+    private void TxtIdPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdPesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtIdPesoActionPerformed
 
     private void TxtIdPesoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtIdPesoMousePressed
         if (evt.getClickCount()==2) {
@@ -2284,6 +2274,7 @@ Imprimir();        // TODO add your handling code here:
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+          new PPeso();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -2306,6 +2297,7 @@ Imprimir();        // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PPeso().setVisible(true);
+              
             }
         });
     }
@@ -2322,7 +2314,6 @@ Imprimir();        // TODO add your handling code here:
     private javax.swing.JTable TblPeso;
     private javax.swing.JTable TblProducto;
     private javax.swing.JTable TblProveClien;
-    private javax.swing.JTextField TxtBusqueda;
     private javax.swing.JTextField TxtBusquedaDestino;
     private javax.swing.JTextField TxtBusquedaProducto;
     private javax.swing.JTextField TxtBusquedaProveClien;
@@ -2345,7 +2336,7 @@ Imprimir();        // TODO add your handling code here:
     private javax.swing.JTextField TxtPesoCE;
     private javax.swing.JTextField TxtPesoCS;
     private javax.swing.JTextField TxtPesoGS;
-    private javax.swing.JTextField TxtPesoVarianza;
+    public static javax.swing.JTextField TxtPesoVarianza;
     private javax.swing.JTextField TxtPlaca;
     private javax.swing.JTextField TxtProducto;
     private javax.swing.JTextField TxtRazonSocial;
@@ -2370,9 +2361,8 @@ Imprimir();        // TODO add your handling code here:
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2402,14 +2392,10 @@ Imprimir();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;

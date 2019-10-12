@@ -195,7 +195,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Guia` (
   `IdGuia` INT NOT NULL AUTO_INCREMENT,
   `NumGuia` BIGINT NULL,
-  `FechaGuia` DATE NULL,
+  `FechaGuia` DATETIME NULL,
   `PesoGE` INT NULL,
   `PesoGS` INT NULL,
   `NetoG` INT NULL,

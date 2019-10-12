@@ -146,7 +146,7 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
         });
 
         CboBusqueda.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
-        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "PROVEEDOR", "IDPESO" }));
+        CboBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRODUCTO", "PROVEEDOR", "DESTINO", "IDPESO" }));
 
         BtnEliminar2.setBackground(new java.awt.Color(0, 102, 0));
         BtnEliminar2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
