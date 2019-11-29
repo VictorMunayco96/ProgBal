@@ -38,7 +38,7 @@ return Obj.DSetPeso(Obj);
 }
 
 
-public DefaultTableModel NGetPeso(int IdPeso,long NumGuia,String Estado,String RazonSocial,String Destino,String Descripcion,String Opcion){
+public DefaultTableModel NGetPeso(int IdPeso,long NumGuia,String Estado,String RazonSocial,String Destino,String Descripcion,String Opcion,String FechaIni, String FechaFin){
 DPeso Obj = new DPeso();
 
 Obj.setIdPeso(IdPeso);
@@ -48,6 +48,8 @@ Obj.setRazonSocial(RazonSocial);
 Obj.setDestino(Destino);
 Obj.setDescripcion(Descripcion);
 Obj.setOpcion(Opcion);
+Obj.setFechaIni(FechaIni);
+Obj.setFechaFin(FechaFin);
 
  return Obj.DGetPeso(Obj);
 }

@@ -315,7 +315,9 @@ in _Estado varchar(45),
 in _ProveClien varchar(45),
 in _Destino varchar(45),
 in _Producto varchar(45),
-in _Opcion varchar(4)
+in _Opcion varchar(4),
+in _FechaIni varchar(19),
+in _FechaFin varchar(19)
 )
 BEGIN
 if _Opcion='T' then
@@ -350,7 +352,8 @@ FROM
      INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
      INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa` = vehiculo.`Placa`
 
-WHERE peso.`Estado`="D" 
+WHERE peso.`Estado`="D" and date(`FechaHoraSal`)>=_FechaIni AND DATE(`FechaHoraSal`) <=_FechaFin
+      
      order by IdPeso Desc limit 14000;
   End IF;
 
@@ -385,6 +388,7 @@ FROM
      INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
      INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
      INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa` = vehiculo.`Placa`
+
      
      where Peso.IdPeso=_IdPeso AND peso.`Estado`="D" 
      
@@ -423,7 +427,7 @@ FROM
      INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
      INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa` = vehiculo.`Placa`
      
-     where conductorvehiculo.`Placa`=_Destino and peso.`Estado`="T"
+     where conductorvehiculo.`Placa`=_Destino and peso.`Estado`="T" 
      
      order by IdPeso Desc limit 14000;
      End If;
@@ -463,7 +467,8 @@ FROM
      INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
      INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
      INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa` = vehiculo.`Placa`     
-     where  proveclien.`RazonSocial` like concat('%',_ProveClien,'%') AND peso.`Estado`="D" 
+     where  proveclien.`RazonSocial` like concat('%',_ProveClien,'%') AND peso.`Estado`="D" and date(`FechaHoraSal`)>=_FechaIni AND DATE(`FechaHoraSal`) <=_FechaFin
+      
      
      order by IdPeso Desc limit 14000;
      End If;
@@ -499,7 +504,8 @@ FROM
      INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
      INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
      INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa` = vehiculo.`Placa`     
-     where  producto.`Descripcion` like concat('%',_Producto) AND peso.`Estado`="D" 
+     where  producto.`Descripcion` like concat('%',_Producto) AND peso.`Estado`="D" and date(`FechaHoraSal`)>=_FechaIni AND DATE(`FechaHoraSal`) <=_FechaFin
+     
      
      order by IdPeso Desc limit 14000;
      End If;
@@ -535,7 +541,8 @@ FROM
      INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
      INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
      INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa` = vehiculo.`Placa`     
-     where   destino.`Destino` like concat('%',_Producto) AND peso.`Estado`="D" 
+     where   destino.`Destino` like concat('%',_Producto) AND peso.`Estado`="D" and date(`FechaHoraSal`)>=_FechaIni AND DATE(`FechaHoraSal`) <=_FechaFin
+     
      
      order by IdPeso Desc limit 14000;
      End If;

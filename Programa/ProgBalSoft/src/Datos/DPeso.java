@@ -6,6 +6,7 @@
 package Datos;
 
 
+import Presentacion.PPesosConsul;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -43,10 +44,12 @@ String Descripcion;
 int IdConductorVehiculo;
 String Placa;
 String Opcion;
+String FechaIni;
+String FechaFin;
 
 public DPeso(){}
 
-    public DPeso(int IdPeso, String TipoMovimiento, long NumGuia, String FechaHoraSal, String FechaHoraEnt, int PesoCE, int PesoCS, int NetoC, String ObservE, String ObservS, String Estado, int DNI, int IdProveClien, String RazonSocial, int IdDestino, String Destino, int IdProducto, String Descripcion, int IdConductorVehiculo, String Placa, String Opcion) {
+    public DPeso(int IdPeso, String TipoMovimiento, long NumGuia, String FechaHoraSal, String FechaHoraEnt, int PesoCE, int PesoCS, int NetoC, String ObservE, String ObservS, String Estado, int DNI, int IdProveClien, String RazonSocial, int IdDestino, String Destino, int IdProducto, String Descripcion, int IdConductorVehiculo, String Placa, String Opcion, String FechaIni, String FechaFin) {
         this.IdPeso = IdPeso;
         this.TipoMovimiento = TipoMovimiento;
         this.NumGuia = NumGuia;
@@ -68,7 +71,26 @@ public DPeso(){}
         this.IdConductorVehiculo = IdConductorVehiculo;
         this.Placa = Placa;
         this.Opcion = Opcion;
+        this.FechaIni = FechaIni;
+        this.FechaFin = FechaFin;
     }
+
+    public String getFechaIni() {
+        return FechaIni;
+    }
+
+    public void setFechaIni(String FechaIni) {
+        this.FechaIni = FechaIni;
+    }
+
+    public String getFechaFin() {
+        return FechaFin;
+    }
+
+    public void setFechaFin(String FechaFin) {
+        this.FechaFin = FechaFin;
+    }
+
 
     public String getOpcion() {
         return Opcion;
@@ -265,6 +287,8 @@ Proc.setString(17, Campo.getOpcion());
 public DefaultTableModel DGetPeso(DPeso Campo) {
         Conexion Cn = new Conexion();
         Connection Con = Cn.Conexion();
+        int Cont=0;
+        long PesoAcu=0;
        DefaultTableModel modelo = null ;
 String[] titulos = {"ID PESO",
     "TIPO MOVIMIENTO",
@@ -294,7 +318,7 @@ String[] titulos = {"ID PESO",
 
         try {
 
-            CallableStatement Proc = Con.prepareCall(" CALL PAGetPeso(?,?,?,?,?,?,?)");
+            CallableStatement Proc = Con.prepareCall(" CALL PAGetPeso(?,?,?,?,?,?,?,?,?)");
 Proc.setInt(1, Campo.getIdPeso());
 Proc.setLong(2, Campo.getNumGuia());
 Proc.setString(3, Campo.getEstado());
@@ -302,6 +326,8 @@ Proc.setString(4, Campo.getRazonSocial());
 Proc.setString(5, Campo.getDestino());
 Proc.setString(6, Campo.getDescripcion());
 Proc.setString(7, Campo.getOpcion());
+Proc.setString(8, Campo.getFechaIni()); //VARIABLE CREADA PARA FACILITAR LA BUSQUEDA
+Proc.setString(9, Campo.getFechaFin());  //VARIABLE CREADA PARA FACILITAR LA BUSQUEDA
 Proc.execute();
             ResultSet rs = Proc.executeQuery();
             while (rs.next()) {
@@ -329,7 +355,11 @@ registro[20] = rs.getString(21);
 registro[21] = rs.getString(22);
 
 modelo.addRow(registro);
+Cont++;
+PesoAcu=PesoAcu+Long.parseLong(registro[7]);
             }
+            PPesosConsul.TxtNumRegistros.setText(String.valueOf(Cont));
+            PPesosConsul.TxtPesoAcumulado.setText(String.valueOf(PesoAcu));
             return modelo;
 
         } catch (SQLException e) {

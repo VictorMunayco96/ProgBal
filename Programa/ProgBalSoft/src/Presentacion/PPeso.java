@@ -29,6 +29,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
+import java.awt.event.KeyEvent;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -360,7 +361,7 @@ Conexion Cn = new Conexion();
 
         try {
 
-            TblPeso.setModel(NPeso.NGetPeso(DefaultValue.Number(TextBusqueda), DefaultValue.Long(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), Accion));
+            TblPeso.setModel(NPeso.NGetPeso(DefaultValue.Number(TextBusqueda), DefaultValue.Long(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), Accion,"",""));
 
         } catch (Exception e) {
 
@@ -1233,12 +1234,18 @@ Conexion Cn = new Conexion();
                 TxtPlacaActionPerformed(evt);
             }
         });
+        TxtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TxtPlacaKeyPressed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(0, 102, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Guardar-32.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -1250,6 +1257,7 @@ Conexion Cn = new Conexion();
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Nuevo.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setFocusPainted(false);
+        jButton2.setFocusable(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -1261,6 +1269,7 @@ Conexion Cn = new Conexion();
         BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Eliminar -32.png"))); // NOI18N
         BtnEliminar.setBorderPainted(false);
         BtnEliminar.setFocusPainted(false);
+        BtnEliminar.setFocusable(false);
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminarActionPerformed(evt);
@@ -1295,6 +1304,7 @@ Conexion Cn = new Conexion();
 
         TxtChofer.setEditable(false);
         TxtChofer.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtChofer.setFocusable(false);
         TxtChofer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtChoferActionPerformed(evt);
@@ -1314,6 +1324,7 @@ Conexion Cn = new Conexion();
         TxtFechaHoraSal.setEditable(false);
         TxtFechaHoraSal.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
         TxtFechaHoraSal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtFechaHoraSal.setFocusable(false);
         TxtFechaHoraSal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtFechaHoraSalActionPerformed(evt);
@@ -1329,6 +1340,7 @@ Conexion Cn = new Conexion();
         TxtFechaHoraEnt.setEditable(false);
         TxtFechaHoraEnt.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
         TxtFechaHoraEnt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtFechaHoraEnt.setFocusable(false);
         TxtFechaHoraEnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtFechaHoraEntActionPerformed(evt);
@@ -1351,6 +1363,7 @@ Conexion Cn = new Conexion();
         TxtPesoCS.setEditable(false);
         TxtPesoCS.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         TxtPesoCS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtPesoCS.setFocusable(false);
         TxtPesoCS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtPesoCSActionPerformed(evt);
@@ -1375,6 +1388,7 @@ Conexion Cn = new Conexion();
 
         TxtProducto.setEditable(false);
         TxtProducto.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtProducto.setFocusable(false);
         TxtProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtProductoActionPerformed(evt);
@@ -1395,6 +1409,7 @@ Conexion Cn = new Conexion();
         TxtNetoC.setEditable(false);
         TxtNetoC.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         TxtNetoC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtNetoC.setFocusable(false);
 
         jLabel34.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1405,6 +1420,7 @@ Conexion Cn = new Conexion();
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Búsqueda-32.png"))); // NOI18N
         jButton13.setBorderPainted(false);
         jButton13.setFocusPainted(false);
+        jButton13.setFocusable(false);
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -1423,6 +1439,7 @@ Conexion Cn = new Conexion();
 
         TxtDestino.setEditable(false);
         TxtDestino.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtDestino.setFocusable(false);
         TxtDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtDestinoActionPerformed(evt);
@@ -1434,6 +1451,7 @@ Conexion Cn = new Conexion();
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Búsqueda-32.png"))); // NOI18N
         jButton14.setBorderPainted(false);
         jButton14.setFocusPainted(false);
+        jButton14.setFocusable(false);
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -1443,6 +1461,7 @@ Conexion Cn = new Conexion();
         TxtPesoCE.setEditable(false);
         TxtPesoCE.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         TxtPesoCE.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtPesoCE.setFocusable(false);
         TxtPesoCE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtPesoCEActionPerformed(evt);
@@ -1464,6 +1483,7 @@ Conexion Cn = new Conexion();
 
         TxtRazonSocial.setEditable(false);
         TxtRazonSocial.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        TxtRazonSocial.setFocusable(false);
         TxtRazonSocial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtRazonSocialActionPerformed(evt);
@@ -1475,6 +1495,7 @@ Conexion Cn = new Conexion();
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/Búsqueda-32.png"))); // NOI18N
         jButton19.setBorderPainted(false);
         jButton19.setFocusPainted(false);
+        jButton19.setFocusable(false);
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton19ActionPerformed(evt);
@@ -1493,6 +1514,7 @@ Conexion Cn = new Conexion();
         BtnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AImagenes/printer.png"))); // NOI18N
         BtnEliminar1.setBorderPainted(false);
         BtnEliminar1.setFocusPainted(false);
+        BtnEliminar1.setFocusable(false);
         BtnEliminar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminar1ActionPerformed(evt);
@@ -2244,6 +2266,7 @@ String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
 
             TxtChofer.setText(TblConductorVehiculo.getValueAt(0, 3).toString());
             TxtIdConductorVehiculo.setText(TblConductorVehiculo.getValueAt(0, 0).toString());
+           
         }
 
         // TODO add your handling code here:
@@ -2264,6 +2287,12 @@ String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtIdPesoMousePressed
+
+    private void TxtPlacaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtPlacaKeyPressed
+     
+  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtPlacaKeyPressed
 
     /**
      * @param args the command line arguments
