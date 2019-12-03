@@ -631,7 +631,7 @@ PPeso Obj = new PPeso();
 PPesosConsul Obj = new PPesosConsul(); 
 Obj.setVisible(true);
         Obj.setLocationRelativeTo(this);
-        Obj.setExtendedState(Obj.MAXIMIZED_BOTH);// TODO add your handling code here:
+      //  Obj.setExtendedState(Obj.MAXIMIZED_BOTH);// TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered

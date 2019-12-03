@@ -47,7 +47,7 @@ public class PPeso extends javax.swing.JFrame {
     public PPeso() {
         initComponents();
         TxtIdConductorVehiculo.setVisible(false);
-Arrancar();
+//Arrancar();
         
         
         
