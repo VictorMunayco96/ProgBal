@@ -763,7 +763,7 @@ PSetConductorVehiculo();
     private void TblConductorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblConductorMousePressed
         try {
             if (evt.getClickCount() == 2) {
-                Accion = "U";
+       
                 int fila = TblConductor.getSelectedRow();
 
                 TxtIdConductor.setText(TblConductor.getValueAt(fila, 0).toString());

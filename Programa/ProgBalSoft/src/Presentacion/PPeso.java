@@ -66,7 +66,7 @@ public class PPeso extends javax.swing.JFrame {
 	Thread t;
     
     
-    	public static class LeerSerial implements Runnable {
+    /*	public static class LeerSerial implements Runnable {
 	   int aux;
        public void run () {
     	   while(true){
@@ -102,8 +102,7 @@ public class PPeso extends javax.swing.JFrame {
     
     
     
-    
-    
+    */
     
     
     
@@ -143,7 +142,7 @@ public class PPeso extends javax.swing.JFrame {
     NProducto NProducto = new NProducto();
     NDestino NDestino = new NDestino();
     NProveClien NProveClien = new NProveClien();
-    ;
+    
 Conexion Cn = new Conexion();
     Connection Con = Cn.Conexion();
     String TipoMovimiento = "";
@@ -361,7 +360,7 @@ Conexion Cn = new Conexion();
 
         try {
 
-            TblPeso.setModel(NPeso.NGetPeso(DefaultValue.Number(TextBusqueda), DefaultValue.Long(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), Accion,"",""));
+            TblPeso.setModel(NPeso.NGetPeso(DefaultValue.Number(TextBusqueda), DefaultValue.Long(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), Accion,"2012-12-12 10:10:10","2012-12-12 10:10:10"));
 
         } catch (Exception e) {
 
@@ -503,7 +502,7 @@ Conexion Cn = new Conexion();
                 JOptionPane.showConfirmDialog(rootPane, e);
                 System.out.println(e);
             }
-        } else if (Accion.equals("DES")) {
+        } else if (Accion.equals("DES") && !TxtPesoCS.getText().isEmpty()&& !TxtDestino.getText().equals("INGRESAR CAMPO")&& !TxtProducto.getText().equals("INGRESAR CAMPO")) {
 
             try {
                 //DESTARAR
@@ -1952,9 +1951,18 @@ String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
 
     }
     public void Destarar() {
-
-        PGetPeso(DefaultValue.Text(TxtPlaca.getText()), "PLAC");
-
+        
+            PGetPeso(DefaultValue.Text(TxtPlaca.getText()), "PLAC");    
+       
+            
+            try {
+            
+            
+            
+        
+        
+       
+        System.out.println(DefaultValue.Text(TxtPlaca.getText()));
         TxtIdPeso.setText(TblPeso.getValueAt(0, 0).toString());
         TipoMovimiento = TblPeso.getValueAt(0, 1).toString();
         TxtNumGuia.setText(TblPeso.getValueAt(0, 2).toString());
@@ -1977,6 +1985,10 @@ String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
         TxtIdProducto.setText(TblPeso.getValueAt(0, 20).toString());
         TxtProducto.setText(TblPeso.getValueAt(0, 21).toString());
         Accion = "DES";
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(rootPane, "NO HAY VEHICULO PARA DESTARAR CON ESTA PLACA","MENSAJE",JOptionPane.ERROR_MESSAGE);
+        }
+  
 
     }
     private void TxtBusquedaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBusquedaProductoActionPerformed

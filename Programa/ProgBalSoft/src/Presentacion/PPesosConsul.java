@@ -6,6 +6,7 @@
 package Presentacion;
 
 import Datos.Conexion;
+import Datos.DPeso;
 import Library.DefaultValue;
 import Negocios.NPeso;
 import java.io.File;
@@ -71,6 +72,9 @@ TblPeso.getColumnModel().getColumn(Num).setPreferredWidth(0);
             ColumHide(18);
             ColumHide(20);
              ColumHide(1);
+           
+             PPesosConsul.TxtNumRegistros.setText(String.valueOf(DPeso.Cont));
+           PPesosConsul.TxtPesoAcumulado.setText(String.valueOf(DPeso.PesoAcu));
 
         } catch (Exception e) {
 

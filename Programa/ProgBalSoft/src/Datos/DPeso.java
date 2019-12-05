@@ -284,11 +284,15 @@ Proc.setString(17, Campo.getOpcion());
         return rpta;
 
     }
+
+  public static int Cont=0;
+  public static long PesoAcu=0;
 public DefaultTableModel DGetPeso(DPeso Campo) {
         Conexion Cn = new Conexion();
         Connection Con = Cn.Conexion();
-        int Cont=0;
-        long PesoAcu=0;
+          Cont=0;
+             PesoAcu=0;
+      
        DefaultTableModel modelo = null ;
 String[] titulos = {"ID PESO",
     "TIPO MOVIMIENTO",
@@ -358,8 +362,7 @@ modelo.addRow(registro);
 Cont++;
 PesoAcu=PesoAcu+Long.parseLong(registro[7]);
             }
-            PPesosConsul.TxtNumRegistros.setText(String.valueOf(Cont));
-            PPesosConsul.TxtPesoAcumulado.setText(String.valueOf(PesoAcu));
+            
             return modelo;
 
         } catch (SQLException e) {

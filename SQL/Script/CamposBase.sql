@@ -15,5 +15,9 @@ select * from proveclien;
 select * from conductor;
 select * from vehiculo;
 select * from conductorvehiculo;
+SELECT * FROM USUARIO;
 
 select * from peso;
+
+DELETE FROM PESO WHERE IDPESO=2;
+INSERT INTO USUARIO VALUES (12345678,'VISITANTE','VISITANTE','VISITANTE','VISITANTE');

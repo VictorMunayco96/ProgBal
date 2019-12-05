@@ -427,7 +427,9 @@ FROM
      INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
      INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa` = vehiculo.`Placa`
      
-     where conductorvehiculo.`Placa`=_Destino and peso.`Estado`="T" 
+ where conductorvehiculo.`Placa`='A9J881' and peso.`Estado`="T" 
+
+     /*where conductorvehiculo.`Placa`=_Destino and peso.`Estado`="T" */
      
      order by IdPeso Desc limit 14000;
      End If;
