@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
+import javax.swing.JTable;
 /**
  *
  * @author Victor
@@ -293,13 +294,23 @@ Conexion Cn = new Conexion();
             System.out.println(e);
         }
     }
+ public void ColumHide(int Num, JTable Nom){
+    
+    Nom.getColumnModel().getColumn(Num).setMaxWidth(0);
 
+Nom.getColumnModel().getColumn(Num).setMinWidth(0);
+
+Nom.getColumnModel().getColumn(Num).setPreferredWidth(0);
+    
+    }
     public void PGetProducto(String TextBusqueda, String Accion) {
 
         try {
 
             TblProducto.setModel(NProducto.NGetProducto(DefaultValue.Number(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), DefaultValue.Text(TextBusqueda), Accion));
-
+            ColumHide(1, TblProducto);
+            ColumHide(3, TblProducto);
+            ColumHide(4, TblProducto);
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, "ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1980,9 +1991,23 @@ String ID=JOptionPane.showInputDialog("Ingresar ID para busqueda:");
         TxtIdConductorVehiculo.setText(TblPeso.getValueAt(0, 14).toString());
         TxtPlaca.setText(TblPeso.getValueAt(0, 15).toString());
         TxtChofer.setText(TblPeso.getValueAt(0, 16).toString() + " " + TblPeso.getValueAt(0, 17).toString());
-        TxtIdDestino.setText(TblPeso.getValueAt(0, 18).toString());
-        TxtDestino.setText(TblPeso.getValueAt(0, 19).toString());
-        TxtIdProducto.setText(TblPeso.getValueAt(0, 20).toString());
+
+                if (TblPeso.getValueAt(0, 18).toString().equals("1")) {
+                    TxtIdDestino.setText("");
+                }else{
+                    TxtIdDestino.setText(TblPeso.getValueAt(0, 18).toString());
+                }
+TxtDestino.setText(TblPeso.getValueAt(0, 19).toString());
+
+        //TxtIdProducto.setText(TblPeso.getValueAt(0, 20).toString());
+        
+         if (TblPeso.getValueAt(0, 20).toString().equals("1")) {
+                    TxtIdProducto.setText("");
+                }else{
+                    TxtIdProducto.setText(TblPeso.getValueAt(0, 20).toString());
+                }
+        
+        
         TxtProducto.setText(TblPeso.getValueAt(0, 21).toString());
         Accion = "DES";
         } catch (NullPointerException e) {
