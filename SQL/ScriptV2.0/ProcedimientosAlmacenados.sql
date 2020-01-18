@@ -203,3 +203,205 @@ BEGIN
 
 END
 $$
+
+
+
+/*------------------------------------------TIPO DESTINO-----------------------------------*/
+
+$$ DELIMETER 
+
+CREATE PROCEDURE PASetTipoDestino(
+
+  in _IdTipoDestino     int,  
+  in _TipoDestino       Varchar(50),  
+  in _CodDestino        Varchar(15),
+  in _Estado            Tinyint,
+
+  in _Opcion            Varchar(1)
+
+
+)
+BEGIN
+
+ if _Opcion='I' then 
+        
+        Insert into TipoDestino (TipoDestino,CodDestino,Estado) values(_TipoDestino,_CodDestino,1);
+
+    End IF;
+   
+    if _Opcion='U' then 
+        Update TipoDestino set TipoDestino=_TipoDestino, CodDestino=_CodDestino where IdTipoDestino=_IdTipoDestino;
+    End If;
+
+    if _Opcion='D' then 
+        Update TipoDestino set Estado=0;
+    End If; 
+END
+
+
+
+
+$$
+
+/*------------------------------------------DESTINO-----------------------------------*/
+
+$$ DELIMETER
+
+CREATE PROCEDURE PASetDestino(
+
+  in _IdDestino     int,
+  in _Destino       Varchar(80),
+  in _CodDestino    Varchar(15),
+  in _Estado        Tinyint,
+  in _IdTipoDestino Int,
+
+  in _Opcion        Varchar(1)
+
+  
+
+) 
+BEGIN
+
+    if _Opcion= 'I' then
+
+        Insert into Destino (Destino,CodDestino,Estado,IdTipoDestino) Values(_Destino,_CodDestino,1,_IdTipoDestino);
+
+    End IF;
+
+    if _Opcion='U' then
+    
+        Update Destino set Destino=_Destino, CodDestino=_CodDestino, IdTipoDestino=_IdTipoDestino where IdDestino=_IdDestino;
+    
+    End If;
+
+    if _Opcion='D' then
+    
+        Update Destino set Estado=0;
+    
+        End if;
+        
+    END
+    $$
+
+    $$ DELIMETER
+
+
+/*------------------------------------------TIPO DESTINO DESC-----------------------------------*/
+
+
+    CREATE PROCEDURE PASetDestinoDesc(
+
+        in _IdDestinoDesc   Int,
+        in _DestinoDes      Varchar(80),
+        in _CodDestinoDesc  Varchar(15),
+        in _Estado          Tinyint,
+        in _IdDestino       Int,
+
+        in _Opcion          Varchar(1)
+
+    
+
+    )
+    BEGIN
+
+    if _Opcion='I' then
+
+            Insert into DestinoDesc (DestinoDes,CodDestinoDesc,Estado,IdDestino) Values(_DestinoDes,_CodDestinoDesc,1,_IdDestino);
+
+    End IF;
+
+    if _Opcion='U' then
+        Update DestinoDesc set DestinoDes=_DestinoDes, CodDestinoDesc=_CodDestinoDesc,IdDestino=_IdDestino where IdDestinoDesc=_IdDestinoDesc;
+        End If;
+
+        if _Opcion='D' then
+            Update DestinoDesc set Estado=0;
+            End if;
+
+        END
+        
+        $$
+
+
+        $$ DELIMETER
+
+
+        /*------------------------------------------TIPO DESTINO BLOQ-----------------------------------*/
+
+        CREATE PROCEDURE PASetDestinoBloq(
+
+            in _IdDestinoBloq       Int,
+            in _DestinoBloq         Varchar(45),
+            in _CodDestinoBloq      Varchar(15),
+            in _Estado              Tinyint,
+            in _IdDestinoDesc       Int,
+
+            in _Opcion              Varchar(1)
+
+
+
+        )
+        BEGIN
+
+        if _Opcion='I' then
+
+                Insert into DestinoBloq (DestinoBloq,CodDestinoBloq,Estado,IdDestinoDesc) Values(_DestinoBloq,_CodDestinoBloq,1,_IdDestinoDesc);
+
+        End If;
+
+        if _Opcion='U' then
+        
+                Update DestinoBloq set DestinoBloq=_DestinoBloq, CodDestinoBloq=_CodDestinoBloq, IdDestino=_IdDestino where _IdDestinoBloq=_IdDestinoBloq;
+        
+        End If;
+
+        If _Opcion='D' then 
+        
+                Update DestinoBloq set Estado=0;
+        
+        End if;
+
+            END
+
+            $$
+
+
+
+/*------------------------------------------TIPO GALPON-----------------------------------*/
+
+  $$ DELIMETER
+
+    CREATE PROCEDURE PASetGalpon(
+                
+    in _IdGalpon    Int,
+    in _Galpon      Varchar(45),
+    in _CodGalpon   Varchar(45),
+    in _Estado      Tinyint,
+    in _IdDestinoBloq   Int,
+    in _Opcion      Varchar(1)
+
+     )
+    BEGIN
+
+            if _Opcion='I' then
+
+                    Insert into Galpon (Galpon,CodGalpon,Estado,IdDestinoBloq) Values(_Galpon,_CodGalpon,1,_IdDestinoBloq);
+
+            End If;
+
+            if _Opcion='U' then
+            
+                    Update Galpon set Galpon=_Galpon, CodGalpon=_CodGalpon, Estado=_Estado, IdDestinoBloq=_IdDestinoBloq where IdGalpon=_IdGalpon;
+            
+            End iF;
+
+            If _Opcion='D' then
+            
+                    Update Galpon set Estado=0;
+                    
+            End If;
+
+    END
+
+  $$ 
+
