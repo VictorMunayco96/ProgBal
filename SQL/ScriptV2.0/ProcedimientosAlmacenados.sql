@@ -243,6 +243,40 @@ END
 
 $$
 
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetTipoDestino(
+
+in _IdTipoDestino   Int,
+in _TipoDestino     varchar(50),
+in _CodDestino      varchar(15),
+in _Opcion          varchar(1)
+
+ )
+BEGIN
+    if _Opcion='TODO' then 
+        Select * from TipoDestino
+        where Estado=1 
+        order by IdTipoDestino desc; 
+    End IF;
+   
+    if _Opcion='CODT' then 
+        Select * from TipoDestino
+        where Estado=1 and CodDestino=_CodDestino 
+        order by IdTipoDestino desc;
+    End If;
+        
+    if _Opcion='TIPO' then 
+        Select * from TipoDestino
+        where Estado=1 and TipoDestino=_TipoDestino 
+        order by IdTipoDestino desc;
+    End If; 
+END
+$$
+
+
+
 /*------------------------------------------DESTINO-----------------------------------*/
 
 $$ DELIMETER
@@ -283,11 +317,63 @@ BEGIN
     END
     $$
 
-    $$ DELIMETER
+
+DELIMITER $$
+CREATE PROCEDURE PAGetDestino(
+
+in _IdDestino        Int,
+in _Destino    varchar(50),
+in _CodDestino       varchar(15),
+in _IdTipoDestino    int,
+in _Opcion           varchar(1)
+
+ )
+BEGIN
+    if _Opcion='TODO' then 
+        Select D.IdDestino, D.Destino, D.CodDestino, D.IdDestino, TD.TipoDestino from Destino D
+        inner join TipoDestino TD on D.IdTipoDestino=TD.IdTipoDestino
+        where D.Estado=1 
+        order by D.IdDestino desc; 
+    End IF;
+   
+  if _Opcion='IDDE' then 
+        Select D.IdDestino, D.Destino, D.CodDestino, D.IdDestino, TD.TipoDestino from Destino D
+        inner join TipoDestino TD on D.IdTipoDestino=TD.IdTipoDestino
+        where D.Estado=1 and D.IdDestino=_IdDestino
+        order by IdDestino desc;
+    End If;
+
+    if _Opcion='CODT' then 
+        Select D.IdDestino, D.Destino, D.CodDestino, D.IdDestino, TD.TipoDestino from Destino D
+        inner join TipoDestino TD on D.IdTipoDestino=TD.IdTipoDestino
+        where D.Estado=1 and CodDestino=_CodDestino 
+        order by IdDestino desc;
+    End If;
+
+    if _Opcion='DEST' then 
+        Select D.IdDestino, D.Destino, D.CodDestino, D.IdDestino, TD.TipoDestino from Destino D
+        inner join TipoDestino TD on D.IdTipoDestino=TD.IdTipoDestino
+        where D.Estado=1 and Destino like concat('%',_Destino,'%') 
+        order by IdDestino desc;
+    End If;
+
+    
+        
+    if _Opcion='IDTI' then 
+        Select D.IdDestino, D.Destino, D.CodDestino, D.IdDestino, TD.TipoDestino from Destino D
+        inner join TipoDestino TD on D.IdTipoDestino=TD.IdTipoDestino
+        where D.Estado=1 and D.IdTipoDestino=_IdTipoDestino
+        order by IdDestino desc;
+    End If; 
+
+
+END
+$$
 
 
 /*------------------------------------------TIPO DESTINO DESC-----------------------------------*/
 
+    $$ DELIMETER
 
     CREATE PROCEDURE PASetDestinoDesc(
 
@@ -324,6 +410,62 @@ BEGIN
 
 
         $$ DELIMETER
+
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetDestinoDesc(
+
+in _IdDestinoDesc       Int,
+in _DestinoDes          varchar(80),
+in _CodDestinoDesc      varchar(15),
+in _IdDestino           int,
+in _Opcion              varchar(1)
+
+ )
+BEGIN
+    if _Opcion='TODO' then 
+        Select DD.IdDestinoDesc, DD.DestinoDes, DD.CodDestinoDesc, DD.IdDestino, D.Destino from DestinoDesc DD
+        inner join Destino D on DD.IdDestino=D.IdDestino
+        where DD.Estado=1  
+        order by D.IdDestinoDesc desc; 
+    End IF;
+   
+  if _Opcion='IDDE' then 
+        Select DD.IdDestinoDesc, DD.DestinoDes, DD.CodDestinoDesc, DD.IdDestino, D.Destino from DestinoDesc DD
+        inner join Destino D on DD.IdDestino=D.IdDestino
+        where DD.Estado=1 where DD.IdDestinoDesc=_IdDestinoDesc
+        order by D.IdDestinoDesc desc;
+    End If;
+
+    if _Opcion='CODD' then 
+        Select DD.IdDestinoDesc, DD.DestinoDes, DD.CodDestinoDesc, DD.IdDestino, D.Destino from DestinoDesc DD
+        inner join Destino D on DD.IdDestino=D.IdDestino
+        where DD.Estado=1 where DD.CodDestinoDesc=_CodDestinoDesc
+        order by D.IdDestinoDesc desc;
+    End If;
+
+    if _Opcion='DEST' then 
+        Select DD.IdDestinoDesc, DD.DestinoDes, DD.CodDestinoDesc, DD.IdDestino, D.Destino from DestinoDesc DD
+        inner join Destino D on DD.IdDestino=D.IdDestino
+        where DD.Estado=1 where DD.DestinoDes=_DestinoDes
+        order by D.IdDestinoDesc desc;
+    End If;
+        
+    if _Opcion='IDDT' then 
+        Select DD.IdDestinoDesc, DD.DestinoDes, DD.CodDestinoDesc, DD.IdDestino, D.Destino from DestinoDesc DD
+        inner join Destino D on DD.IdDestino=D.IdDestino
+        where DD.Estado=1 where DD.IdDesino=_IdDestino
+        order by D.IdDestinoDesc desc;
+    End If; 
+
+
+END
+$$
+
+
 
 
         /*------------------------------------------TIPO DESTINO BLOQ-----------------------------------*/
@@ -398,7 +540,7 @@ BEGIN
             If _Opcion='D' then
             
                     Update Galpon set Estado=0;
-                    
+
             End If;
 
     END
