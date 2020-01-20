@@ -99,30 +99,30 @@ BEGIN
     if _Opcion='TODO' then 
         Select CP.IdCategoriaProd, CP.CategoriaProd, CP.CodCategoria, CP.IdTipoProducto, TP.TipoProducto from CategoriaProd CP
         inner join TipoProducto TP on CP.IdTipoProducto=TP.IdTipoProducto
-        where Estado=1 
-        order by IdCategoriaProd desc; 
+        where CP.Estado=1 
+        order by CP.IdCategoriaProd desc; 
     End IF;
    
     if _Opcion='CODC' then 
         Select CP.IdCategoriaProd, CP.CategoriaProd, CP.CodCategoria, CP.IdTipoProducto, TP.TipoProducto from CategoriaProd CP
         inner join TipoProducto TP on CP.IdTipoProducto=TP.IdTipoProducto
-        where Estado=1 and CodCategoria=_CodCategoria
-        order by IdCategoriaProd desc; 
+        where CP.Estado=1 and CP.CodCategoria=_CodCategoria
+        order by CP.IdCategoriaProd desc; 
     End If;
         
     if _Opcion='CATE' then 
         Select CP.IdCategoriaProd, CP.CategoriaProd, CP.CodCategoria, CP.IdTipoProducto, TP.TipoProducto from CategoriaProd CP
         inner join TipoProducto TP on CP.IdTipoProducto=TP.IdTipoProducto
-        where Estado=1 and CategoriaProd=_CategoriaProd
-        order by IdCategoriaProd desc;
+        where CP.Estado=1 and CP.CategoriaProd=_CategoriaProd
+        order by CP.IdCategoriaProd desc;
     End If; 
 
        
     if _Opcion='IDTI' then 
         Select CP.IdCategoriaProd, CP.CategoriaProd, CP.CodCategoria, CP.IdTipoProducto, TP.TipoProducto from CategoriaProd CP
         inner join TipoProducto TP on CP.IdTipoProducto=TP.IdTipoProducto
-        where Estado=1 and IdTipoProducto=_IdTipoProducto
-        order by IdCategoriaProd desc;
+        where CP.Estado=1 and CP.IdTipoProducto=_IdTipoProducto
+        order by CP.IdCategoriaProd desc;
     End If; 
 
 END
@@ -165,44 +165,121 @@ CREATE PROCEDURE PAGetProducto(
 in _IdProducto      Int,
 in _Producto        varchar(50),
 in _CodProducto     varchar(15),
-in _Estado          TinyInt,
 in _IdCategoriaProd Int,
-in _NombreGuia      Varchar(150),
 in _Opcion          varchar(1)
 
  )
 BEGIN
     if _Opcion='TODO' then 
-        Select CP.IdCategoriaProd, CP.CategoriaProd, CP.CodCategoria, CP.IdTipoProducto, TP.TipoProducto from CategoriaProd CP
-        inner join TipoProducto TP on CP.IdTipoProducto=TP.IdTipoProducto
-        where Estado=1 
-        order by IdCategoriaProd desc; 
+        Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
+        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
+        where P.Estado=1 
+        order by P.IdProducto desc; 
     End IF;
    
-    if _Opcion='CODC' then 
-        Select CP.IdCategoriaProd, CP.CategoriaProd, CP.CodCategoria, CP.IdTipoProducto, TP.TipoProducto from CategoriaProd CP
-        inner join TipoProducto TP on CP.IdTipoProducto=TP.IdTipoProducto
-        where Estado=1 and CodCategoria=_CodCategoria
-        order by IdCategoriaProd desc; 
+    if _Opcion='PROD' then 
+        Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
+        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
+        where P.Estado=1 and P.Producto=_Producto 
+        order by P.IdProducto desc; 
     End If;
         
     if _Opcion='CATE' then 
-        Select CP.IdCategoriaProd, CP.CategoriaProd, CP.CodCategoria, CP.IdTipoProducto, TP.TipoProducto from CategoriaProd CP
-        inner join TipoProducto TP on CP.IdTipoProducto=TP.IdTipoProducto
-        where Estado=1 and CategoriaProd=_CategoriaProd
-        order by IdCategoriaProd desc;
+      Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
+        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
+        where P.Estado=1 and P.CodProducto=_CodProducto 
+        order by P.IdProducto desc; 
     End If; 
 
        
-    if _Opcion='IDTI' then 
-        Select CP.IdCategoriaProd, CP.CategoriaProd, CP.CodCategoria, CP.IdTipoProducto, TP.TipoProducto from CategoriaProd CP
-        inner join TipoProducto TP on CP.IdTipoProducto=TP.IdTipoProducto
-        where Estado=1 and IdTipoProducto=_IdTipoProducto
-        order by IdCategoriaProd desc;
+    if _Opcion='IDCA' then 
+         Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
+        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
+        where P.Estado=1 and P.Producto=_Producto 
+        order by P.IdProducto desc; 
     End If; 
 
 END
 $$
+
+
+
+/*------------------------------------------DescProd-----------------------------------*/
+
+DELIMITER $$
+CREATE PROCEDURE PASetProducto(
+
+in _IdProducto      Int,
+in _Producto        varchar(60),
+in _CodProducto     varchar(15),
+in _Estado          TinyInt,
+in _IdCategoriaProd Int,
+in _NombreGuia      Varchar(150),
+in _Opcion          varchar(1)
+ )
+BEGIN
+    if _Opcion='I' then 
+        insert into Producto (Producto, CodProducto, Estado, IdCategoriaProd, NombreGuia) 
+        values (_Producto, _CodProducto, 1, _IdCategoriaProd, _NombreGuia);
+    End IF;
+   
+    if _Opcion='U' then 
+        Update Producto set Producto=_Producto, CodProducto=_CodProducto, IdCategoriaProd=_IdCategoriaProd, NombreGuia=_NombreGuia  where _IdProducto=_IdProducto;
+    End If;
+
+    if _Opcion='D' then 
+        Update Producto set Estado=0;
+    End If; 
+END
+$$
+
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetProducto(
+
+in _IdProducto      Int,
+in _Producto        varchar(50),
+in _CodProducto     varchar(15),
+in _IdCategoriaProd Int,
+in _Opcion          varchar(1)
+
+ )
+BEGIN
+    if _Opcion='TODO' then 
+        Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
+        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
+        where P.Estado=1 
+        order by P.IdProducto desc; 
+    End IF;
+   
+    if _Opcion='PROD' then 
+        Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
+        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
+        where P.Estado=1 and P.Producto=_Producto 
+        order by P.IdProducto desc; 
+    End If;
+        
+    if _Opcion='CATE' then 
+      Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
+        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
+        where P.Estado=1 and P.CodProducto=_CodProducto 
+        order by P.IdProducto desc; 
+    End If; 
+
+       
+    if _Opcion='IDCA' then 
+         Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
+        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
+        where P.Estado=1 and P.Producto=_Producto 
+        order by P.IdProducto desc; 
+    End If; 
+
+END
+$$
+
+
+
 
 
 
