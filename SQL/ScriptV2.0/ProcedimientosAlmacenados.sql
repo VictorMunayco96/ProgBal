@@ -207,28 +207,27 @@ $$
 /*------------------------------------------DescProd-----------------------------------*/
 
 DELIMITER $$
-CREATE PROCEDURE PASetProducto(
+CREATE PROCEDURE PASetDescProd(
 
-in _IdProducto      Int,
-in _Producto        varchar(60),
-in _CodProducto     varchar(15),
+in _IdDescProd      Int,
+in _DescProd        varchar(60),
+in _CodDescProd     varchar(15),
 in _Estado          TinyInt,
-in _IdCategoriaProd Int,
-in _NombreGuia      Varchar(150),
+in _IdProducto      Int,
 in _Opcion          varchar(1)
  )
 BEGIN
     if _Opcion='I' then 
-        insert into Producto (Producto, CodProducto, Estado, IdCategoriaProd, NombreGuia) 
-        values (_Producto, _CodProducto, 1, _IdCategoriaProd, _NombreGuia);
+        insert into DescProd (DescProd,CodDescProd,Estado,IdProducto) 
+        values (_DescProd,_CodDescProd,1,_IdProducto);
     End IF;
    
     if _Opcion='U' then 
-        Update Producto set Producto=_Producto, CodProducto=_CodProducto, IdCategoriaProd=_IdCategoriaProd, NombreGuia=_NombreGuia  where _IdProducto=_IdProducto;
+        Update DescProd set DescProd=_DescProd,CodDescProd=_CodDescProd, IdProducto=_IdProducto  where _IdDescProd=_IdDescProd;
     End If;
 
     if _Opcion='D' then 
-        Update Producto set Estado=0;
+        Update DescProd set Estado=0;
     End If; 
 END
 $$
@@ -236,43 +235,44 @@ $$
 
 
 DELIMITER $$
-CREATE PROCEDURE PAGetProducto(
+CREATE PROCEDURE PAGetDescProd(
 
+in _IdDescProd      Int,
+in _DescProd        varchar(60),
+in _CodDescProd     varchar(15),
+in _Estado          TinyInt,
 in _IdProducto      Int,
-in _Producto        varchar(50),
-in _CodProducto     varchar(15),
-in _IdCategoriaProd Int,
 in _Opcion          varchar(1)
 
  )
 BEGIN
     if _Opcion='TODO' then 
-        Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
-        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
-        where P.Estado=1 
-        order by P.IdProducto desc; 
+        Select DP.IdDescProd, DP.DescProd, DP.CodDescProd, DP.IdProducto, P.Producto from DescProd DP
+        inner join Producto P on DP.IdProducto=P.IdProducto
+        where DP.Estado=1 
+        order by DP.IdDescProd desc; 
     End IF;
    
-    if _Opcion='PROD' then 
-        Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
-        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
-        where P.Estado=1 and P.Producto=_Producto 
-        order by P.IdProducto desc; 
+    if _Opcion='IDDE' then 
+      Select DP.IdDescProd, DP.DescProd, DP.CodDescProd, DP.IdProducto, P.Producto from DescProd DP
+        inner join Producto P on DP.IdProducto=P.IdProducto
+        where DP.Estado=1 where DP.IdDescProd=_IdDescProd
+        order by DP.IdDescProd desc;
     End If;
         
-    if _Opcion='CATE' then 
-      Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
-        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
-        where P.Estado=1 and P.CodProducto=_CodProducto 
-        order by P.IdProducto desc; 
+    if _Opcion='DESC' then 
+      Select DP.IdDescProd, DP.DescProd, DP.CodDescProd, DP.IdProducto, P.Producto from DescProd DP
+        inner join Producto P on DP.IdProducto=P.IdProducto
+        where DP.Estado=1 where DP.DescProd like concat('%',_DescProd,'%')
+        order by DP.IdDescProd desc; 
     End If; 
 
        
-    if _Opcion='IDCA' then 
-         Select P.IdProducto, P.Producto, P.CodProducto, P.IdCategoria, C.CategoriaProd, P.NombreGuia from Producto P
-        inner join CategoriaProd C on P.IdCategoria=C.IdCategoria
-        where P.Estado=1 and P.Producto=_Producto 
-        order by P.IdProducto desc; 
+    if _Opcion='IDPR' then 
+        Select DP.IdDescProd, DP.DescProd, DP.CodDescProd, DP.IdProducto, P.Producto from DescProd DP
+        inner join Producto P on DP.IdProducto=P.IdProducto
+        where DP.Estado=1 where DP.IdProducto=_IdProducto
+        order by DP.IdDescProd desc; 
     End If; 
 
 END
