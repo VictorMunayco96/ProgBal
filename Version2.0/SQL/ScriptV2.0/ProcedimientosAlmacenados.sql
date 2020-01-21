@@ -6,7 +6,7 @@ CREATE PROCEDURE PASetTipoProducto(
 in _IdTipoProducto  Int,
 in _TipoProducto    varchar(50),
 in _CodTipoProducto varchar(15),
-in _Estado          TinyInt,
+
 in _Opcion          varchar(1)
 
  )
@@ -64,7 +64,6 @@ CREATE PROCEDURE PASetCategoriaProd(
 in _IdCategoriaProd Int,
 in _CategoriaProd   varchar(50),
 in _CodCategoria    varchar(15),
-in _Estado          TinyInt,
 in _Opcion          varchar(1)
 
  )
@@ -91,7 +90,6 @@ CREATE PROCEDURE PAGetCategoriaProd(
 in _IdCategoriaProd Int,
 in _CategoriaProd   varchar(50),
 in _CodCategoria    varchar(15),
-in _Estado          TinyInt,
 in _Opcion          varchar(1)
 
  )
@@ -136,7 +134,6 @@ CREATE PROCEDURE PASetProducto(
 in _IdProducto      Int,
 in _Producto        varchar(60),
 in _CodProducto     varchar(15),
-in _Estado          TinyInt,
 in _IdCategoriaProd Int,
 in _NombreGuia      Varchar(150),
 in _Opcion          varchar(1)
@@ -212,7 +209,6 @@ CREATE PROCEDURE PASetDescProd(
 in _IdDescProd      Int,
 in _DescProd        varchar(60),
 in _CodDescProd     varchar(15),
-in _Estado          TinyInt,
 in _IdProducto      Int,
 in _Opcion          varchar(1)
  )
@@ -240,7 +236,6 @@ CREATE PROCEDURE PAGetDescProd(
 in _IdDescProd      Int,
 in _DescProd        varchar(60),
 in _CodDescProd     varchar(15),
-in _Estado          TinyInt,
 in _IdProducto      Int,
 in _Opcion          varchar(1)
 
@@ -292,8 +287,7 @@ CREATE PROCEDURE PASetTipoDestino(
   in _IdTipoDestino     int,  
   in _TipoDestino       Varchar(50),  
   in _CodDestino        Varchar(15),
-  in _Estado            Tinyint,
-
+  
   in _Opcion            Varchar(1)
 
 
@@ -363,7 +357,6 @@ CREATE PROCEDURE PASetDestino(
   in _IdDestino     int,
   in _Destino       Varchar(80),
   in _CodDestino    Varchar(15),
-  in _Estado        Tinyint,
   in _IdTipoDestino Int,
 
   in _Opcion        Varchar(1)
@@ -457,7 +450,6 @@ $$
         in _IdDestinoDesc   Int,
         in _DestinoDes      Varchar(80),
         in _CodDestinoDesc  Varchar(15),
-        in _Estado          Tinyint,
         in _IdDestino       Int,
 
         in _Opcion          Varchar(1)
@@ -552,7 +544,7 @@ $$
             in _IdDestinoBloq       Int,
             in _DestinoBloq         Varchar(45),
             in _CodDestinoBloq      Varchar(15),
-            in _Estado              Tinyint,
+
             in _IdDestinoDesc       Int,
 
             in _Opcion              Varchar(1)
@@ -586,6 +578,59 @@ $$
 
 
 
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetDestinoBloq(
+
+in _IdDestinoBloq       Int,
+in _DestinoBloq          varchar(80),
+in _CodDestinoBloq      varchar(15),
+in _IdDestinoDesc           int,
+in _Opcion              varchar(1)
+
+ )
+BEGIN
+    if _Opcion='TODO' then 
+        Select DB.IdDestinoBloq, DB.DestinoBloq, DB.CodDestinoBlog, IdDestinoDesc, DD.DestinoDesc from DestinoBloq DB
+        inner join Destino DD on DB.IdDestinoDesc=D.IdDestinoDesc
+        where DB.Estado=1  
+        order by DB.IdDestinoBloq desc; 
+    End IF;
+   
+  if _Opcion='IDDE' then 
+        Select DB.IdDestinoBloq, DB.DestinoBloq, DB.CodDestinoBlog, IdDestinoDesc, DD.DestinoDesc from DestinoBloq DB
+        inner join Destino DD on DB.IdDestinoDesc=D.IdDestinoDesc
+        where DB.Estado=1 and DB.IdDestinoBloq=_IdDestinoBloq  
+        order by DB.IdDestinoBloq desc;
+    End If;
+
+    if _Opcion='CODD' then 
+        Select DB.IdDestinoBloq, DB.DestinoBloq, DB.CodDestinoBlog, IdDestinoDesc, DD.DestinoDesc from DestinoBloq DB
+        inner join Destino DD on DB.IdDestinoDesc=D.IdDestinoDesc
+        where DB.Estado=1 and DB.CodDestinoBloq=_CodDestinoBloq  
+        order by DB.IdDestinoBloq desc;
+    End If;
+
+    if _Opcion='DEST' then 
+        Select DB.IdDestinoBloq, DB.DestinoBloq, DB.CodDestinoBlog, IdDestinoDesc, DD.DestinoDesc from DestinoBloq DB
+        inner join Destino DD on DB.IdDestinoDesc=D.IdDestinoDesc
+        where DB.Estado=1 and DB.DestinoBLoq=_DestinoBloq  
+        order by DB.IdDestinoBloq desc;
+    End If;
+        
+    if _Opcion='IDDD' then 
+        Select DD.IdDestinoDesc, DD.DestinoDes, DD.CodDestinoDesc, DD.IdDestino, D.Destino from DestinoDesc DD
+        inner join Destino D on DD.IdDestino=D.IdDestino
+        where DD.Estado=1 where DB.IdDestinoDesc=_IdDestinoDesc
+        order by D.IdDestinoDesc desc;
+    End If; 
+
+
+
+END
+$$
+
 /*------------------------------------------TIPO GALPON-----------------------------------*/
 
   $$ DELIMETER
@@ -595,7 +640,6 @@ $$
     in _IdGalpon    Int,
     in _Galpon      Varchar(45),
     in _CodGalpon   Varchar(45),
-    in _Estado      Tinyint,
     in _IdDestinoBloq   Int,
     in _Opcion      Varchar(1)
 
@@ -624,3 +668,55 @@ $$
 
   $$ 
 
+
+
+DELIMITER $$
+CREATE PROCEDURE PAGetGalpon(
+
+in _IdGalpon       Int,
+in _Galpon         varchar(45),
+in _CodGalpon      varchar(15),
+in _IdDestinoBloq  int,
+in _Opcion         varchar(1)
+
+ )
+BEGIN
+    if _Opcion='TODO' then 
+        Select G.IdGalpon, G.Galpon, G.CodGalpon, G.IdDestinoBloq, DB.DestinoBLoq from Galpon G
+        inner join DestinoBloq DB on G.IdDestinoBLoq=DB.IdDestinoBLoq
+        where G.Estado=1  
+        order by G.IdGalpon desc; 
+    End IF;
+   
+  if _Opcion='IDGA' then 
+        Select G.IdGalpon, G.Galpon, G.CodGalpon, G.IdDestinoBloq, DB.DestinoBLoq from Galpon G
+        inner join DestinoBloq DB on G.IdDestinoBLoq=DB.IdDestinoBLoq
+        where G.Estado=1 and G.IdGalpon=_IdGalpon
+        order by G.IdGalpon desc;    
+    End If;
+
+    if _Opcion='CODG' then 
+        Select G.IdGalpon, G.Galpon, G.CodGalpon, G.IdDestinoBloq, DB.DestinoBLoq from Galpon G
+        inner join DestinoBloq DB on G.IdDestinoBLoq=DB.IdDestinoBLoq
+        where G.Estado=1 and G.CodGalpon=_CodGalpon 
+        order by G.IdGalpon desc;
+    End If;
+
+    if _Opcion='GALP' then 
+        Select G.IdGalpon, G.Galpon, G.CodGalpon, G.IdDestinoBloq, DB.DestinoBLoq from Galpon G
+        inner join DestinoBloq DB on G.IdDestinoBLoq=DB.IdDestinoBLoq
+        where G.Estado=1 and G.Galpon like concat('%',_Galpon,'%')  
+        order by G.IdGalpon desc;
+    End If;
+        
+    if _Opcion='IDDE' then 
+        Select G.IdGalpon, G.Galpon, G.CodGalpon, G.IdDestinoBloq, DB.DestinoBLoq from Galpon G
+        inner join DestinoBloq DB on G.IdDestinoBLoq=DB.IdDestinoBLoq
+        where G.Estado=1 and G.IdDestinoBloq=_IdDestinoBloq  
+        order by G.IdGalpon desc;
+    End If; 
+
+
+
+END
+$$
