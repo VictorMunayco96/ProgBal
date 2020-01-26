@@ -24,7 +24,7 @@ BEGIN
     End If; 
 END
 $$
-
+drop procedure PAGetTipoProducto
 
 DELIMITER $$
 CREATE PROCEDURE PAGetTipoProducto(
@@ -41,6 +41,13 @@ BEGIN
         where Estado=1 
         order by IdTipoProducto desc; 
     End IF;
+
+    if _Opcion='IDTI' then 
+        Select * from TipoProducto
+        where Estado=1 and IdTipoProducto=_IdTipoProducto 
+        order by IdTipoProducto desc; 
+    End IF;
+
    
     if _Opcion='CODT' then 
         Select * from TipoProducto
@@ -50,7 +57,7 @@ BEGIN
         
     if _Opcion='TIPO' then 
         Select * from TipoProducto
-        where Estado=1 and TipoProducto=_TipoProducto 
+        where Estado=1 and TipoProducto like concat('%',_TipoProducto,'%') 
         order by IdTipoProducto desc;
     End If; 
 END
