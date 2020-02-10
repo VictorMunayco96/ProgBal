@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1f6026a9-1565-4690-a511-2e6de49bbd97">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="40"/>
+	<property name="ireport.callouts" value="##Fri Sep 27 00:13:57 COT 2019"/>
+	<parameter name="IDPESOS" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     concat(conductor.`Nombre`,' ',conductor.`Apellidos`) AS NomApe,
+     peso.`IdPeso` AS peso_IdPeso,
+     peso.`TipoMovimiento` AS peso_TipoMovimiento,
+     peso.`NumGuia` AS peso_NumGuia,
+     peso.`FechaHoraSal` AS peso_FechaHoraSal,
+     peso.`FechaHoraEnt` AS peso_FechaHoraEnt,
+     peso.`PesoCE` AS peso_PesoCE,
+     peso.`PesoCS` AS peso_PesoCS,
+     peso.`NetoC` AS peso_NetoC,
+     peso.`ObservE` AS peso_ObservE,
+     peso.`ObservS` AS peso_ObservS,
+     peso.`Estado` AS peso_Estado,
+     peso.`DNI` AS peso_DNI,
+     proveclien.`IdProveClien` AS proveclien_IdProveClien,
+     proveclien.`RazonSocial` AS proveclien_RazonSocial,
+     conductorvehiculo.`IdConductorVehiculo` AS conductorvehiculo_IdConductorVehiculo,
+     conductorvehiculo.`Placa` AS conductorvehiculo_Placa,
+     destino.`IdDestino` AS destino_IdDestino,
+     destino.`Destino` AS destino_Destino,
+     producto.`IdProducto` AS producto_IdProducto,
+     producto.`Descripcion` AS producto_Descripcion,
+     usuario.`DNI` AS usuario_DNI,
+concat(usuario.`Nombre`," ",usuario.`Apellidos`) as Balancero
+FROM
+     `proveclien` proveclien INNER JOIN `peso` peso ON proveclien.`IdProveClien` = peso.`IdProveClien`
+     INNER JOIN `conductorvehiculo` conductorvehiculo ON peso.`IdConductorVehiculo` = conductorvehiculo.`IdConductorVehiculo`
+     INNER JOIN `destino` destino ON peso.`IdDestino` = destino.`IdDestino`
+     INNER JOIN `producto` producto ON peso.`IdProducto` = producto.`IdProducto`
+     INNER JOIN `usuario` usuario ON peso.`DNI` = usuario.`DNI`
+     INNER JOIN `conductor` conductor ON conductorvehiculo.`IdConductor` = conductor.`IdConductor`
+     INNER JOIN `vehiculo` vehiculo ON conductorvehiculo.`Placa`= vehiculo.`Placa` WHERE peso.`IdPeso`=$P{IDPESOS}]]>
+	</queryString>
+	<field name="NomApe" class="java.lang.String"/>
+	<field name="peso_IdPeso" class="java.lang.Integer"/>
+	<field name="peso_TipoMovimiento" class="java.lang.String"/>
+	<field name="peso_NumGuia" class="java.lang.Long"/>
+	<field name="peso_FechaHoraSal" class="java.sql.Timestamp"/>
+	<field name="peso_FechaHoraEnt" class="java.sql.Timestamp"/>
+	<field name="peso_PesoCE" class="java.lang.Integer"/>
+	<field name="peso_PesoCS" class="java.lang.Integer"/>
+	<field name="peso_NetoC" class="java.lang.Integer"/>
+	<field name="peso_ObservE" class="java.lang.String"/>
+	<field name="peso_ObservS" class="java.lang.String"/>
+	<field name="peso_Estado" class="java.lang.String"/>
+	<field name="peso_DNI" class="java.lang.Integer"/>
+	<field name="proveclien_IdProveClien" class="java.lang.Integer"/>
+	<field name="proveclien_RazonSocial" class="java.lang.String"/>
+	<field name="conductorvehiculo_IdConductorVehiculo" class="java.lang.Integer"/>
+	<field name="conductorvehiculo_Placa" class="java.lang.String"/>
+	<field name="destino_IdDestino" class="java.lang.Integer"/>
+	<field name="destino_Destino" class="java.lang.String"/>
+	<field name="producto_IdProducto" class="java.lang.Integer"/>
+	<field name="producto_Descripcion" class="java.lang.String"/>
+	<field name="usuario_DNI" class="java.lang.Integer"/>
+	<field name="Balancero" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="74" y="59" width="412" height="20" uuid="b06bfeec-28ca-4089-9cbf-c3993e27c48b"/>
+				<text><![CDATA[======================================================================================]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="74" y="31" width="412" height="20" uuid="792fd0e7-adcb-4b45-abce-615afb9200ae"/>
+				<text><![CDATA[======================================================================================]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="10" width="412" height="20" uuid="e966724d-6808-439d-8e8b-d91ed4572e96"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[BALANZA DE CAMIONES 80 TN]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="276" y="0" width="100" height="20" uuid="72f2433b-34c4-4efa-9887-f25524436060"/>
+				<text><![CDATA[TICKET NUMERO: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="0" width="57" height="20" uuid="a81e74fa-e4d1-4b1b-afea-6164a6bcbd46"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{peso_IdPeso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="374" splitType="Stretch">
+			<staticText>
+				<reportElement x="212" y="29" width="64" height="20" uuid="116c935b-4dd4-4067-a3c5-a38c8afacc67"/>
+				<text><![CDATA[CHOFER     :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="49" width="91" height="20" uuid="5c99b3e5-5160-49a3-99f2-41b004c0f2ed"/>
+				<text><![CDATA[RAZON SOCIAL   :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="90" width="91" height="20" uuid="cb1c0f39-5e59-43a4-81f8-2edf4b3e745f"/>
+				<text><![CDATA[PRODUCTO         :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="110" width="91" height="20" uuid="3a2a64c2-0633-4568-9dab-104790147127"/>
+				<text><![CDATA[DESTINO             :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="29" width="64" height="20" uuid="f2c4530b-1d8c-402a-b0e7-65f777b7e06d"/>
+				<text><![CDATA[PLACA         :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="69" width="91" height="20" uuid="8e64542e-c200-498b-8b15-a8449038d8f8"/>
+				<text><![CDATA[N° GUIA                :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="9" width="115" height="20" uuid="7260ebba-0c49-4ac2-b6e0-a374d5f2c564"/>
+				<text><![CDATA[TIPO DE MOVIMIENTO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="161" width="178" height="20" uuid="103c79ec-ebdc-4270-b49c-9cb8c01b3c7e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ENTRADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="265" width="100" height="20" uuid="17c03e54-a219-4c60-9ed3-453a102c313c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SALIDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="181" width="100" height="20" uuid="32fc6eee-2722-4011-b93f-cc6b9caed981"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[FECHA Y HORA    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="285" width="100" height="20" uuid="8bb3eec5-2942-4646-a7d9-197d46daee6a"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[FECHA Y HORA    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="274" width="70" height="31" uuid="c429be65-9841-4c69-a79f-581eaf0c34a9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[TARA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="243" width="70" height="31" uuid="d1f2f0c8-2fc8-4500-a8b8-fc529a02591a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[BRUTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="309" width="70" height="31" uuid="69ead255-5877-4617-8eda-a98ca322b19b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[NETO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="201" width="100" height="20" uuid="651f7a76-ca85-4af0-88a5-33e548294899"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[OBSERVACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="305" width="98" height="20" uuid="a52f5e7b-fd57-43d6-9696-cb6da42e98eb"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[OBSERVACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="130" width="91" height="20" uuid="11c134d2-6afb-414e-bd30-7247c9698fb2"/>
+				<text><![CDATA[BALANCERO       :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="9" width="100" height="20" uuid="88de53f4-82dc-426a-bbf9-089c108688bf"/>
+				<textFieldExpression><![CDATA[$F{peso_TipoMovimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="29" width="50" height="20" uuid="e93be007-0319-4695-926e-fa74de7eee64"/>
+				<textFieldExpression><![CDATA[$F{conductorvehiculo_Placa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="29" width="210" height="20" uuid="cc0d850d-c65e-46c6-9bcc-2f72977a773b"/>
+				<textFieldExpression><![CDATA[$F{NomApe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="49" width="297" height="20" uuid="b6cf5c61-1add-4f56-8100-7290179483fc"/>
+				<textFieldExpression><![CDATA[$F{proveclien_RazonSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="69" width="297" height="20" uuid="13d3881a-eab1-4dd1-8d8d-4105bbef8b64"/>
+				<textFieldExpression><![CDATA[$F{peso_NumGuia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="89" width="297" height="20" uuid="8d0eb4ae-910e-4cae-a82a-b8cdefc53584"/>
+				<textFieldExpression><![CDATA[$F{producto_Descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="110" width="297" height="20" uuid="3de4ceec-3aec-4609-ae26-6f2ddf1e9ed0"/>
+				<textFieldExpression><![CDATA[$F{destino_Destino}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="130" width="297" height="20" uuid="be72eee6-40ac-48c4-9544-641a9fcb309d"/>
+				<textFieldExpression><![CDATA[$F{Balancero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="181" width="78" height="20" uuid="e1dfe434-6e36-4bd6-94fd-dd923b0bf7a0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{peso_FechaHoraEnt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="285" width="80" height="20" uuid="00324b0f-b279-4764-ac6f-c1876c2dc70d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{peso_FechaHoraSal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="221" width="178" height="34" uuid="be256326-509b-4965-b21b-241cde5cd8ab"/>
+				<textFieldExpression><![CDATA[$F{peso_ObservE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="325" width="178" height="34" uuid="44d25fe5-2653-4203-9b38-03a164d6fc35"/>
+				<textFieldExpression><![CDATA[$F{peso_ObservS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="243" width="106" height="31" uuid="a13dfd48-c450-4002-b748-3aa85b353114"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{peso_PesoCE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="274" width="106" height="31" uuid="3d12c131-bdab-4688-ade9-ec81da74c28b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{peso_PesoCS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="381" y="308" width="106" height="31" uuid="3cc1c16f-2bae-4297-b2ba-2d79523f099c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{peso_NetoC}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="385" y="305" width="100" height="1" uuid="5b4c056e-32a5-40a9-bba4-2396aec44884"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="13" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="12" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="6" splitType="Stretch"/>
+	</summary>
+</jasperReport>
